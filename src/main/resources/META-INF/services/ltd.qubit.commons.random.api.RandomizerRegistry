@@ -1,0 +1,19 @@
+################################################################################
+#
+#    Copyright (c) 2022 - 2023.
+#    Haixing Hu, Qubit Ltd.
+#
+#    All rights reserved.
+#
+################################################################################
+
+ltd.qubit.commons.random.registry.NullableAnnotatedRandomizerRegistry
+ltd.qubit.commons.random.registry.UniqueAnnotatedRandomizerRegistry
+ltd.qubit.commons.random.registry.InternalRandomizerRegistry
+ltd.qubit.commons.random.registry.TimeRandomizerRegistry
+ltd.qubit.commons.random.registry.AnnotationRandomizerRegistry
+ltd.qubit.commons.random.registry.BeanValidationRandomizerRegistry
+ltd.qubit.commons.random.registry.ScaleAnnotatedRandomizerRegistry
+ltd.qubit.commons.random.registry.MoneyAnnotatedRandomizerRegistry
+ltd.qubit.commons.random.registry.CollectionRandomizerRegistry
+ltd.qubit.commons.random.registry.MapRandomizerRegistry

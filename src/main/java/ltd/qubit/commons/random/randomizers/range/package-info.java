@@ -1,0 +1,14 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//    Copyright (c) 2022 - 2023.
+//    Haixing Hu, Qubit Ltd.
+//
+//    All rights reserved.
+//
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * This package contains range randomizers.
+ *
+ * @author Rémi Alvergnat (toilal.dev@gmail.com)
+ */
+package ltd.qubit.commons.random.randomizers.range;
