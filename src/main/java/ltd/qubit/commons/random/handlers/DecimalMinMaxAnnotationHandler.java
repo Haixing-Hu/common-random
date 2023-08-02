@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -13,8 +13,8 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Random;
 
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 
 import ltd.qubit.commons.random.Context;
 import ltd.qubit.commons.random.api.Randomizer;

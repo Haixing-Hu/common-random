@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -11,7 +11,7 @@ package ltd.qubit.commons.random.registry;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Size;
 
 import ltd.qubit.commons.random.Context;
 import ltd.qubit.commons.random.EasyRandom;
@@ -61,11 +61,11 @@ public class MapRandomizerRegistry implements RandomizerRegistry {
       @Override
       public Object getRandomValue() {
         final Class<?> fieldType = field.getType();
-        if (context == null) {
-          context = new Context(fieldType, parameters);
+        if (super.context == null) {
+          super.context = new Context(fieldType, parameters);
         }
-        final Map<?, ?> map = populator.populate(field, context, null);
-        populateRemainedFields(theRandom, context, fieldType, map);
+        final Map<?, ?> map = populator.populate(field, super.context, null);
+        populateRemainedFields(theRandom, super.context, fieldType, map);
         return map;
       }
     };
@@ -82,11 +82,11 @@ public class MapRandomizerRegistry implements RandomizerRegistry {
     return new AbstractContextAwareRandomizer() {
       @Override
       public Object getRandomValue() {
-        if (context == null) {
-          context = new Context(type, parameters);
+        if (super.context == null) {
+          super.context = new Context(type, parameters);
         }
-        final Map<?, ?> map = populator.populate(type, context, null);
-        populateRemainedFields(theRandom, context, type, map);
+        final Map<?, ?> map = populator.populate(type, super.context, null);
+        populateRemainedFields(theRandom, super.context, type, map);
         return map;
       }
     };

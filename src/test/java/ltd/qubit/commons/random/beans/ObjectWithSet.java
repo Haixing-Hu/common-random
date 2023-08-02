@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.StringJoiner;
 
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Size;
 
 public class ObjectWithSet {
 

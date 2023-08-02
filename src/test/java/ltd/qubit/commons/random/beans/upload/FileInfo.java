@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -12,7 +12,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.annotation.Nullable;
-import javax.validation.constraints.Size;
+
+import jakarta.validation.constraints.Size;
 
 import ltd.qubit.commons.annotation.Scale;
 import ltd.qubit.commons.lang.Argument;

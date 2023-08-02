@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -16,6 +16,8 @@ import java.time.temporal.ChronoField;
 import ltd.qubit.commons.random.Parameters;
 import ltd.qubit.commons.random.randomizers.AbstractRangeRandomizer;
 import ltd.qubit.commons.util.range.CloseRange;
+
+import static ltd.qubit.commons.lang.Argument.requireNonNull;
 
 /**
  * Generate a random {@link YearMonth} in the given range.
@@ -59,8 +61,8 @@ public class YearMonthRangeRandomizer extends
 
   @Override
   protected void checkValues() {
-    final YearMonth min = requireNonNull(range.getMin(), "range.min cannot be null");
-    final YearMonth max = requireNonNull(range.getMax(), "range.max cannot be null");
+    final YearMonth min = requireNonNull("range.min", range.getMin());
+    final YearMonth max = requireNonNull("range.max", range.getMax());
     if (min.isAfter(max)) {
       throw new IllegalArgumentException("max must be after min");
     }

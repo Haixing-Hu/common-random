@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -16,6 +16,8 @@ import ltd.qubit.commons.annotation.Precision;
 import ltd.qubit.commons.random.Parameters;
 import ltd.qubit.commons.random.randomizers.AbstractRangeRandomizer;
 import ltd.qubit.commons.util.range.CloseRange;
+
+import static java.sql.Date.valueOf;
 
 import static ltd.qubit.commons.lang.Argument.requireNonNull;
 import static ltd.qubit.commons.lang.DateUtils.truncateInPlace;
@@ -138,8 +140,8 @@ public class SqlDateRangeRandomizer extends AbstractRangeRandomizer<Date> {
   @Override
   public void setParameters(final Parameters parameters) {
     final CloseRange<LocalDate> localDateRange = parameters.getDateRange();
-    final java.sql.Date minDate = valueOf(localDateRange.getMin());
-    final java.sql.Date maxDate = valueOf(localDateRange.getMax());
+    final Date minDate = valueOf(localDateRange.getMin());
+    final Date maxDate = valueOf(localDateRange.getMax());
     setRange(minDate, maxDate);
   }
 

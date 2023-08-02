@@ -2,7 +2,7 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ~
   ~    Copyright (c) 2022 - 2023.
-  ~    Haixing Hu, Qubit Ltd.
+  ~    Haixing Hu, Qubit Co. Ltd.
   ~
   ~    All rights reserved.
   ~
@@ -21,7 +21,7 @@
   <version>${common-random.version}${build.suffix}</version>
   <packaging>jar</packaging>
   <name>Random Beans Generator</name>
-  <url>${project.url}/${project.artifactId}</url>
+  <url>${project.home.url}/${project.artifactId}</url>
 
   <dependencies>
     <dependency>
@@ -47,10 +47,6 @@
     <dependency>
       <groupId>net.datafaker</groupId>
       <artifactId>datafaker</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>ltd.qubit</groupId>
-      <artifactId>common-java</artifactId>
     </dependency>
   </dependencies>
 </project>

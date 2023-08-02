@@ -1,14 +1,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.random.handlers;
 
-import javax.validation.constraints.Digits;
+import jakarta.validation.constraints.Digits;
 
 import ltd.qubit.commons.random.EasyRandom;
 import ltd.qubit.commons.random.Parameters;

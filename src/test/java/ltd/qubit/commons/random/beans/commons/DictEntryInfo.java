@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -11,7 +11,8 @@ package ltd.qubit.commons.random.beans.commons;
 import java.time.Instant;
 
 import javax.annotation.Nullable;
-import javax.validation.constraints.Size;
+
+import jakarta.validation.constraints.Size;
 
 import ltd.qubit.commons.annotation.Computed;
 import ltd.qubit.commons.annotation.Identifier;

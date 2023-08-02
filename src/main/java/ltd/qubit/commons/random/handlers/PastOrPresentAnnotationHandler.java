@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -11,7 +11,7 @@ package ltd.qubit.commons.random.handlers;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 
-import javax.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.PastOrPresent;
 
 import ltd.qubit.commons.random.Context;
 import ltd.qubit.commons.random.EasyRandom;

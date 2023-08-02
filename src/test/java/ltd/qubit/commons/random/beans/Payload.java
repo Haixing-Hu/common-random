@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -12,7 +12,8 @@ import java.time.Instant;
 import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Nullable;
-import javax.validation.constraints.Size;
+
+import jakarta.validation.constraints.Size;
 
 import ltd.qubit.commons.annotation.Identifier;
 import ltd.qubit.commons.annotation.Precision;
@@ -205,14 +206,13 @@ public class Payload implements Assignable<Payload> {
   }
 
   public String getIndexKey() {
-    final StringBuilder builder = new StringBuilder();
-    builder.append(owner.getType().toUpperCase())
-        .append('-')
-        .append(owner.getId())
-        .append('-')
-        .append(owner.getProperty().toUpperCase())
-        .append('-')
-        .append(key.toUpperCase());
-    return builder.toString();
+    final String builder = owner.getType().toUpperCase()
+        + '-'
+        + owner.getId()
+        + '-'
+        + owner.getProperty().toUpperCase()
+        + '-'
+        + key.toUpperCase();
+    return builder;
   }
 }

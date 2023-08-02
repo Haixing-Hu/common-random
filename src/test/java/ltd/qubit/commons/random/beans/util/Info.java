@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -13,8 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nullable;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import ltd.qubit.commons.annotation.Identifier;
 import ltd.qubit.commons.annotation.Unique;
@@ -230,10 +231,9 @@ public class Info implements Identifiable, WithCode, WithName, Deletable,
       return true;
     }
     // 注意：允许Info的trivial子类和Info进行比较
-    if ((o == null) || (! (o instanceof Info))) {
+    if ((o == null) || (! (o instanceof final Info other))) {
       return false;
     }
-    final Info other = (Info) o;
     return Equality.equals(id, other.id)
             && Equality.equals(code, other.code)
             && Equality.equals(name, other.name)

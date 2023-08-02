@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -11,6 +11,8 @@ package ltd.qubit.commons.random.randomizers.range;
 import ltd.qubit.commons.random.Parameters;
 import ltd.qubit.commons.random.randomizers.AbstractRangeRandomizer;
 import ltd.qubit.commons.util.range.CloseRange;
+
+import static ltd.qubit.commons.lang.Argument.requireNonNull;
 
 /**
  * Generate a random {@link Integer} in the given range.
@@ -70,8 +72,8 @@ public class IntegerRangeRandomizer extends AbstractRangeRandomizer<Integer> {
 
   @Override
   protected void checkValues() {
-    final Integer min = requireNonNull(range.getMin(), "range.min cannot be null");
-    final Integer max = requireNonNull(range.getMax(), "range.max cannot be null");
+    final Integer min = requireNonNull("range.min", range.getMin());
+    final Integer max = requireNonNull("range.max", range.getMax());
     if (min > max) {
       throw new IllegalArgumentException("max must be greater than min");
     }

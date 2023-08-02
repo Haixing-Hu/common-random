@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -11,7 +11,7 @@ package ltd.qubit.commons.random.registry;
 import java.lang.reflect.Field;
 import java.util.Collection;
 
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Size;
 
 import ltd.qubit.commons.random.CollectionPopulator;
 import ltd.qubit.commons.random.Context;
@@ -61,11 +61,11 @@ public class CollectionRandomizerRegistry implements RandomizerRegistry {
       @Override
       public Object getRandomValue() {
         final Class<?> fieldType = field.getType();
-        if (context == null) {
-          context = new Context(fieldType, parameters);
+        if (super.context == null) {
+          super.context = new Context(fieldType, parameters);
         }
-        final Collection<?> col = populator.populate(field, context, null);
-        populateRemainedFields(theRandom, context, fieldType, col);
+        final Collection<?> col = populator.populate(field, super.context, null);
+        populateRemainedFields(theRandom, super.context, fieldType, col);
         return col;
       }
     };
@@ -82,11 +82,11 @@ public class CollectionRandomizerRegistry implements RandomizerRegistry {
     return new AbstractContextAwareRandomizer() {
       @Override
       public Object getRandomValue() {
-        if (context == null) {
-          context = new Context(type, parameters);
+        if (super.context == null) {
+          super.context = new Context(type, parameters);
         }
-        final Collection<?> col = populator.populate(type, context, null);
-        populateRemainedFields(theRandom, context, type, col);
+        final Collection<?> col = populator.populate(type, super.context, null);
+        populateRemainedFields(theRandom, super.context, type, col);
         return col;
       }
     };

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -17,6 +17,8 @@ import ltd.qubit.commons.lang.DateUtils;
 import ltd.qubit.commons.random.Parameters;
 import ltd.qubit.commons.random.randomizers.AbstractRangeRandomizer;
 import ltd.qubit.commons.util.range.CloseRange;
+
+import static java.sql.Date.valueOf;
 
 import static ltd.qubit.commons.lang.Argument.requireNonNull;
 

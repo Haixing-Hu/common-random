@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    Copyright (c) 2022 - 2023.
-//    Haixing Hu, Qubit Ltd.
+//    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
@@ -13,6 +13,8 @@ import java.time.LocalTime;
 import ltd.qubit.commons.random.Parameters;
 import ltd.qubit.commons.random.randomizers.AbstractRangeRandomizer;
 import ltd.qubit.commons.util.range.CloseRange;
+
+import static ltd.qubit.commons.lang.Argument.requireNonNull;
 
 /**
  * Generate a random {@link LocalTime} in the given range.
@@ -56,8 +58,8 @@ public class LocalTimeRangeRandomizer extends
 
   @Override
   protected void checkValues() {
-    final LocalTime min = requireNonNull(range.getMin(), "range.min cannot be null");
-    final LocalTime max = requireNonNull(range.getMax(), "range.max cannot be null");
+    final LocalTime min = requireNonNull("range.min", range.getMin());
+    final LocalTime max = requireNonNull("range.max", range.getMax());
     if (min.isAfter(max)) {
       throw new IllegalArgumentException("max must be after min");
     }
