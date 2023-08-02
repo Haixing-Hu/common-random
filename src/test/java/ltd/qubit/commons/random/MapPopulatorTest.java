@@ -20,6 +20,7 @@ import ltd.qubit.commons.random.beans.EnumMapBean;
 import ltd.qubit.commons.random.beans.MapBean;
 import ltd.qubit.commons.random.beans.Person;
 import ltd.qubit.commons.random.beans.WildCardMapBean;
+import ltd.qubit.commons.util.range.CloseRange;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -62,6 +63,7 @@ class MapPopulatorTest {
   void rawInterfaceMapTypesMustBeGeneratedEmpty() throws Exception {
     // Given
     when(context.getParameters()).thenReturn(parameters);
+    when(random.nextInt(new CloseRange<>(SIZE, SIZE))).thenReturn(SIZE);
     final Field field = Foo.class.getDeclaredField("rawMap");
     // When
     final Map<?, ?> randomMap = mapPopulator.populate(field, context, null);
@@ -73,6 +75,7 @@ class MapPopulatorTest {
   void rawConcreteMapTypesMustBeGeneratedEmpty() throws Exception {
     // Given
     when(context.getParameters()).thenReturn(parameters);
+    when(random.nextInt(new CloseRange<>(SIZE, SIZE))).thenReturn(SIZE);
     final Field field = Foo.class.getDeclaredField("concreteMap");
     // When
     final Map<?, ?> randomMap = mapPopulator.populate(field, context, null);
@@ -84,6 +87,7 @@ class MapPopulatorTest {
   void typedInterfaceMapTypesMightBePopulated() throws Exception {
     // Given
     when(context.getParameters()).thenReturn(parameters);
+    when(random.nextInt(new CloseRange<>(SIZE, SIZE))).thenReturn(SIZE);
     when(random.nextObject(String.class, context)).thenReturn(FOO, BAR);
     final Field field = Foo.class.getDeclaredField("typedMap");
     // When
@@ -97,6 +101,7 @@ class MapPopulatorTest {
   void typedConcreteMapTypesMightBePopulated() throws Exception {
     // Given
     when(context.getParameters()).thenReturn(parameters);
+    when(random.nextInt(new CloseRange<>(SIZE, SIZE))).thenReturn(SIZE);
     when(random.nextObject(String.class, context)).thenReturn(FOO, BAR);
     final Field field = Foo.class.getDeclaredField("typedConcreteMap");
     // When
@@ -110,6 +115,7 @@ class MapPopulatorTest {
   void notAddNullKeysToMap() throws NoSuchFieldException {
     // Given
     when(context.getParameters()).thenReturn(parameters);
+    when(random.nextInt(new CloseRange<>(SIZE, SIZE))).thenReturn(SIZE);
     when(random.nextObject(String.class, context)).thenReturn(null);
     final Field field = Foo.class.getDeclaredField("typedConcreteMap");
     // When

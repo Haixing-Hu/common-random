@@ -46,8 +46,10 @@ class CollectionPopulatorTest {
 
   @Mock
   private Context context;
+
   @Mock
   private EasyRandom random;
+
   private Parameters parameters;
 
   private CollectionPopulator collectionPopulator;
@@ -65,6 +67,7 @@ class CollectionPopulatorTest {
   void rawInterfaceCollectionTypesMustBeReturnedEmpty() throws Exception {
     // Given
     when(context.getParameters()).thenReturn(parameters);
+    when(random.nextInt(new CloseRange<>(SIZE, SIZE))).thenReturn(SIZE);
     final Field field = Foo.class.getDeclaredField("rawInterfaceList");
     // When
     final Collection<?> collection = collectionPopulator.populate(field, context, null);
@@ -76,6 +79,7 @@ class CollectionPopulatorTest {
   void rawConcreteCollectionTypesMustBeReturnedEmpty() throws Exception {
     // Given
     when(context.getParameters()).thenReturn(parameters);
+    when(random.nextInt(new CloseRange<>(SIZE, SIZE))).thenReturn(SIZE);
     final Field field = Foo.class.getDeclaredField("rawConcreteList");
 
     // When
@@ -89,6 +93,7 @@ class CollectionPopulatorTest {
   void typedInterfaceCollectionTypesMightBePopulated() throws Exception {
     // Given
     when(context.getParameters()).thenReturn(parameters);
+    when(random.nextInt(new CloseRange(SIZE, SIZE))).thenReturn(SIZE);
     when(random.nextObject(String.class, context)).thenReturn(STRING);
     final Field field = Foo.class.getDeclaredField("typedInterfaceList");
 
@@ -104,6 +109,7 @@ class CollectionPopulatorTest {
   void typedConcreteCollectionTypesMightBePopulated() throws Exception {
     // Given
     when(context.getParameters()).thenReturn(parameters);
+    when(random.nextInt(new CloseRange(SIZE, SIZE))).thenReturn(SIZE);
     when(random.nextObject(String.class, context)).thenReturn(STRING);
     final Field field = Foo.class.getDeclaredField("typedConcreteList");
 
@@ -165,7 +171,8 @@ class CollectionPopulatorTest {
 
   @Test
   void rawCollectionInterfacesShouldBeEmpty() {
-    final CollectionBean collectionsBean = random.nextObject(CollectionBean.class);
+    final EasyRandom rand = new EasyRandom();
+    final CollectionBean collectionsBean = rand.nextObject(CollectionBean.class);
     assertThat(collectionsBean).isNotNull();
     assertThat(collectionsBean.getCollection()).isEmpty();
     assertThat(collectionsBean.getSet()).isEmpty();
@@ -181,7 +188,8 @@ class CollectionPopulatorTest {
 
   @Test
   void unboundedWildCardTypedCollectionInterfacesShouldBeEmpty() {
-    final WildCardCollectionBean collectionsBean = random.nextObject(WildCardCollectionBean.class);
+    final EasyRandom rand = new EasyRandom();
+    final WildCardCollectionBean collectionsBean = rand.nextObject(WildCardCollectionBean.class);
     assertThat(collectionsBean).isNotNull();
     assertThat(collectionsBean.getUnboundedWildCardTypedCollection()).isEmpty();
     assertThat(collectionsBean.getUnboundedWildCardTypedSet()).isEmpty();
@@ -197,7 +205,8 @@ class CollectionPopulatorTest {
 
   @Test
   void boundedWildCardTypedCollectionInterfacesShouldBeEmpty() {
-    final WildCardCollectionBean collectionsBean = random.nextObject(WildCardCollectionBean.class);
+    final EasyRandom rand = new EasyRandom();
+    final WildCardCollectionBean collectionsBean = rand.nextObject(WildCardCollectionBean.class);
     assertThat(collectionsBean).isNotNull();
     assertThat(collectionsBean.getBoundedWildCardTypedCollection()).isEmpty();
     assertThat(collectionsBean.getBoundedWildCardTypedSet()).isEmpty();
@@ -213,7 +222,8 @@ class CollectionPopulatorTest {
 
   @Test
   void typedCollectionInterfacesShouldNotBeEmpty() {
-    final CollectionBean collectionsBean = random.nextObject(CollectionBean.class);
+    final EasyRandom rand = new EasyRandom();
+    final CollectionBean collectionsBean = rand.nextObject(CollectionBean.class);
     assertThat(collectionsBean).isNotNull();
     assertContainsOnlyNonEmptyPersons(collectionsBean.getTypedCollection());
     assertContainsOnlyNonEmptyPersons(collectionsBean.getTypedSet());
@@ -229,7 +239,8 @@ class CollectionPopulatorTest {
 
   @Test
   void rawCollectionClassesShouldBeEmpty() {
-    final CollectionBean collectionsBean = random.nextObject(CollectionBean.class);
+    final EasyRandom rand = new EasyRandom();
+    final CollectionBean collectionsBean = rand.nextObject(CollectionBean.class);
     assertThat(collectionsBean).isNotNull();
     assertThat(collectionsBean.getArrayList()).isEmpty();
     assertThat(collectionsBean.getLinkedList()).isEmpty();
@@ -252,7 +263,8 @@ class CollectionPopulatorTest {
 
   @Test
   void unboundedWildCardTypedCollectionClassesShouldBeEmpty() {
-    final WildCardCollectionBean collectionsBean = random.nextObject(WildCardCollectionBean.class);
+    final EasyRandom rand = new EasyRandom();
+    final WildCardCollectionBean collectionsBean = rand.nextObject(WildCardCollectionBean.class);
     assertThat(collectionsBean).isNotNull();
     assertThat(collectionsBean.getUnboundedWildCardTypedArrayList()).isEmpty();
     assertThat(collectionsBean.getUnboundedWildCardTypedLinkedList()).isEmpty();
@@ -279,7 +291,8 @@ class CollectionPopulatorTest {
 
   @Test
   void boundedWildCardTypedCollectionClassesShouldBeEmpty() {
-    final WildCardCollectionBean collectionsBean = random.nextObject(WildCardCollectionBean.class);
+    final EasyRandom rand = new EasyRandom();
+    final WildCardCollectionBean collectionsBean = rand.nextObject(WildCardCollectionBean.class);
     assertThat(collectionsBean).isNotNull();
     assertThat(collectionsBean.getBoundedWildCardTypedArrayList()).isEmpty();
     assertThat(collectionsBean.getBoundedWildCardTypedLinkedList()).isEmpty();
@@ -302,7 +315,8 @@ class CollectionPopulatorTest {
 
   @Test
   void typedCollectionClassesShouldNoBeEmpty() {
-    final CollectionBean collectionsBean = random.nextObject(CollectionBean.class);
+    final EasyRandom rand = new EasyRandom();
+    final CollectionBean collectionsBean = rand.nextObject(CollectionBean.class);
     assertThat(collectionsBean).isNotNull();
     assertContainsOnlyNonEmptyPersons(collectionsBean.getTypedArrayList());
     assertContainsOnlyNonEmptyPersons(collectionsBean.getTypedLinkedList());
@@ -325,8 +339,9 @@ class CollectionPopulatorTest {
 
   @Test
   void compositeCollectionTypesShouldBeEmpty() {
+    final EasyRandom rand = new EasyRandom();
     final CompositeCollectionBean compositeCollectionBean =
-        random.nextObject(CompositeCollectionBean.class);
+        rand.nextObject(CompositeCollectionBean.class);
     assertThat(compositeCollectionBean.getListOfLists()).isEmpty();
     assertThat(compositeCollectionBean.getTypedListOfLists()).isEmpty();
     assertThat(compositeCollectionBean.getSetOfSets()).isEmpty();
@@ -337,13 +352,15 @@ class CollectionPopulatorTest {
 
   @Test
   void synchronousQueueTypeMustBeRejected() {
-    assertThatThrownBy(() -> random.nextObject(SynchronousQueueBean.class))
+    final EasyRandom rand = new EasyRandom();
+    assertThatThrownBy(() -> rand.nextObject(SynchronousQueueBean.class))
         .isInstanceOf(ObjectCreationException.class);
   }
 
   @Test
   void delayedQueueTypeMustBeRejected() {
-    assertThatThrownBy(() -> random.nextObject(DelayedQueueBean.class))
+    final EasyRandom rand = new EasyRandom();
+    assertThatThrownBy(() -> rand.nextObject(DelayedQueueBean.class))
         .isInstanceOf(ObjectCreationException.class);
   }
 
@@ -381,15 +398,17 @@ class CollectionPopulatorTest {
 
   @Test
   void userDefinedCollectionTypeShouldBePopulated() {
-    final CustomList customList = random.nextObject(CustomList.class);
+    final EasyRandom rand = new EasyRandom();
+    final CustomList customList = rand.nextObject(CustomList.class);
     assertThat(customList).isNotNull();
     assertThat(customList.getName()).isNotNull();
   }
 
   @Test
   void typeVariableCollectionTypesMustBeGeneratedEmpty() {
+    final EasyRandom rand = new EasyRandom();
     final TypeVariableCollectionBean<String, String> bean =
-        random.nextObject(TypeVariableCollectionBean.class);
+        rand.nextObject(TypeVariableCollectionBean.class);
     assertThat(bean.getCollection()).isEmpty();
     assertThat(bean.getList()).isEmpty();
     assertThat(bean.getSet()).isEmpty();

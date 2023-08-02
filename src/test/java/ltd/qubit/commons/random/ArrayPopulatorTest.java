@@ -12,6 +12,7 @@ import java.lang.reflect.Array;
 
 import ltd.qubit.commons.random.beans.ArrayBean;
 import ltd.qubit.commons.random.beans.Person;
+import ltd.qubit.commons.util.range.CloseRange;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,7 @@ class ArrayPopulatorTest {
   @Test
   void getRandomArray() {
     when(context.getParameters()).thenReturn(new Parameters().collectionSizeRange(INT, INT));
+    when(random.nextInt(new CloseRange<>(INT, INT))).thenReturn(INT);
     when(random.nextObject(String.class, context)).thenReturn(STRING);
     final String[] strings = (String[]) arrayPopulator.populate(String[].class, context, null);
     assertThat(strings).containsOnly(STRING);
