@@ -10,7 +10,6 @@ package ltd.qubit.commons.random.beans.upload;
 
 import java.util.Locale;
 
-import ltd.qubit.commons.error.UnsupportedContentTypeException;
 import ltd.qubit.commons.lang.EnumUtils;
 
 import static ltd.qubit.commons.lang.EnumUtils.registerLocalizedNames;
