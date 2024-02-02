@@ -17,6 +17,7 @@ import jakarta.validation.constraints.Size;
 
 import ltd.qubit.commons.annotation.Identifier;
 import ltd.qubit.commons.annotation.Precision;
+import ltd.qubit.commons.error.ErrorInfo;
 import ltd.qubit.commons.lang.Equality;
 import ltd.qubit.commons.lang.Hash;
 import ltd.qubit.commons.random.beans.person.UserInfo;
