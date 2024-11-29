@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -19,7 +19,8 @@ import ltd.qubit.commons.random.Parameters;
 import ltd.qubit.commons.random.randomizers.AbstractRangeRandomizer;
 import ltd.qubit.commons.util.range.CloseRange;
 
-import static ltd.qubit.commons.lang.Argument.requireNonNull;
+import static java.util.Objects.requireNonNull;
+
 import static ltd.qubit.commons.random.Parameters.DEFAULT_DATES_RANGE;
 
 /**
@@ -64,8 +65,8 @@ public class OffsetTimeRangeRandomizer extends
 
   @Override
   protected void checkValues() {
-    final OffsetTime min = requireNonNull("range.min", range.getMin());
-    final OffsetTime max = requireNonNull("range.max", range.getMax());
+    final OffsetTime min = requireNonNull(range.getMin(), "range.min cannot be null");
+    final OffsetTime max = requireNonNull(range.getMax(), "range.max cannot be null");
     if (min.isAfter(max)) {
       throw new IllegalArgumentException("max must be after min");
     }

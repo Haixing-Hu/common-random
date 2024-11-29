@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -11,11 +11,11 @@ package ltd.qubit.commons.random;
 import java.util.HashSet;
 import java.util.List;
 
-import ltd.qubit.commons.random.beans.Organization;
-import ltd.qubit.commons.random.beans.Payload;
-
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import ltd.qubit.commons.random.beans.Organization;
+import ltd.qubit.commons.random.beans.Payload;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -33,7 +33,7 @@ public class UniqueAnnotatedFieldTest {
       final Organization o = g.nextObject(Organization.class);
       final List<Payload> payloads = o.getPayloads();
       if (payloads != null) {
-        for (final Payload p : payloads) {
+        for (Payload p : payloads) {
           System.out.println("Generate a payload with key: " + p.getKey());
           assertFalse(keys.contains(p.getKey()));
           keys.add(p.getKey());

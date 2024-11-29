@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -166,7 +166,7 @@ public class City implements HasInfo, Auditable, Emptyful, Normalizable, Assigna
   }
 
   @Override
-  public City clone() {
+  public City cloneEx() {
     return new City(this);
   }
 

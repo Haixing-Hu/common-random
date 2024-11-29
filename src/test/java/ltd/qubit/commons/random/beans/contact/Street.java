@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -158,7 +158,7 @@ public class Street implements HasInfo, Auditable, Emptyful, Normalizable, Assig
   }
 
   @Override
-  public Street clone() {
+  public Street cloneEx() {
     return new Street(this);
   }
 

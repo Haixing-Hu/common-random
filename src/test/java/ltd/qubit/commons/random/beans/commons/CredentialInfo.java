@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -115,7 +115,7 @@ public class CredentialInfo implements Identifiable, Emptyful, Normalizable,
   }
 
   @Override
-  public CredentialInfo clone() {
+  public CredentialInfo cloneEx() {
     return new CredentialInfo(this);
   }
 

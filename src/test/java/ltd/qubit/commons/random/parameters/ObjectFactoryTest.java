@@ -1,12 +1,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
 //
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.random.parameters;
+
+import org.junit.jupiter.api.Test;
 
 import ltd.qubit.commons.random.Context;
 import ltd.qubit.commons.random.EasyRandom;
@@ -17,11 +19,9 @@ import ltd.qubit.commons.random.beans.Address;
 import ltd.qubit.commons.random.beans.Person;
 import ltd.qubit.commons.random.beans.Street;
 
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ObjectFactoryTests {
+class ObjectFactoryTest {
 
   @Test
   void testCustomObjectFactory() {

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -10,15 +10,15 @@ package ltd.qubit.commons.random.parameters;
 
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.Test;
+
 import ltd.qubit.commons.random.EasyRandom;
 import ltd.qubit.commons.random.Parameters;
-
-import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class CollectionSizeRangeParameterTests {
+class CollectionSizeRangeParameterTest {
 
   //  stop checkstyle: MagicNumberCheck
   @Test

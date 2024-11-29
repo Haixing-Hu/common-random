@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -137,7 +137,7 @@ public class UserInfo implements Identifiable, WithUsername, WithName, Stateful,
   }
 
   @Override
-  public UserInfo clone() {
+  public UserInfo cloneEx() {
     return new UserInfo(this);
   }
 

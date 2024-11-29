@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -197,7 +197,7 @@ public class Setting implements Serializable, WithName, Creatable, Modifiable,
   }
 
   @Override
-  public Setting clone() {
+  public Setting cloneEx() {
     return new Setting(this);
   }
 

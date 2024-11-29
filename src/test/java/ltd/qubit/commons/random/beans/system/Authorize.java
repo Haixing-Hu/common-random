@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -77,7 +77,7 @@ public class Authorize implements Serializable, WithApp, Assignable<Authorize> {
   }
 
   @Override
-  public Authorize clone() {
+  public Authorize cloneEx() {
     return new Authorize(this);
   }
 

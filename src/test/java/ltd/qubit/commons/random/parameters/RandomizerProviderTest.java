@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -12,6 +12,8 @@ import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.jupiter.api.Test;
+
 import ltd.qubit.commons.random.Context;
 import ltd.qubit.commons.random.EasyRandom;
 import ltd.qubit.commons.random.Parameters;
@@ -19,11 +21,9 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.api.RandomizerProvider;
 import ltd.qubit.commons.random.api.RandomizerRegistry;
 
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RandomizerProviderTests {
+class RandomizerProviderTest {
 
   static class CustomizedRandomizerProvider implements RandomizerProvider {
 

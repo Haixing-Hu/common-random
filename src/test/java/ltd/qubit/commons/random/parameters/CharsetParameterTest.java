@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -10,7 +10,7 @@ package ltd.qubit.commons.random.parameters;
 
 import org.junit.jupiter.api.Test;
 
-class CharsetParameterTests {
+class CharsetParameterTest {
 
   @Test
   void testCharset() {

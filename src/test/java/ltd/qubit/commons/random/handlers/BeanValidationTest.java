@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -19,19 +19,19 @@ import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import jakarta.validation.constraints.Digits;
 
-import ltd.qubit.commons.random.EasyRandom;
-import ltd.qubit.commons.random.Parameters;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static ltd.qubit.commons.random.handlers.NullableAnnotationHandler.DEFAULT_NULL_RATIO;
+import ltd.qubit.commons.random.EasyRandom;
+import ltd.qubit.commons.random.Parameters;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static ltd.qubit.commons.random.handlers.NullableAnnotationHandler.DEFAULT_NULL_RATIO;
 
 class BeanValidationTest {
 
@@ -256,8 +256,7 @@ class BeanValidationTest {
     assertThat(bean.getMaxQuantity()).isEqualTo(-2055951745);
     assertThat(bean.getMinQuantity()).isEqualTo(91531906);
     assertThat(bean.getMaxDiscount())
-        .isEqualTo(new BigDecimal(
-            "1.2786858993971550457757757612853311002254486083984375"));
+        .isEqualTo(new BigDecimal(1.2786858993971550457757757612853311002254486083984375));
     assertThat(bean.getMinDiscount())
         .isEqualTo(new BigDecimal("76622828766383706091461017405438016323843710"
             + "1175572542764478589628103315446510748101423686509060287000660814"
@@ -266,8 +265,7 @@ class BeanValidationTest {
             + "6226391925118863015267421517488006570725654526844517171464812422"
             + "9156864D"));
     assertThat(bean.getDiscount())
-        .isEqualTo(new BigDecimal(
-            "0.182723708049134681008496272625052370131015777587890625"));
+        .isEqualTo(new BigDecimal(0.182723708049134681008496272625052370131015777587890625));
     assertThat(bean.getMinQuantity()).isEqualTo(91531906);
     assertThat(bean.getBriefMessage()).isEqualTo("tg");
     assertThat(bean.getRegexString()).isEqualTo("vuna");

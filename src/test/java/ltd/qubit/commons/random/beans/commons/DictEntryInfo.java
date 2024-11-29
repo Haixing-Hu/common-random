@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -157,7 +157,7 @@ public class DictEntryInfo implements HasInfo, Deletable, Emptyful,
   }
 
   @Override
-  public DictEntryInfo clone() {
+  public DictEntryInfo cloneEx() {
     return new DictEntryInfo(this);
   }
 

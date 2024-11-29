@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -73,7 +73,7 @@ public class StatefulInfo extends Info implements Stateful {
   }
 
   @Override
-  public StatefulInfo clone() {
+  public StatefulInfo cloneEx() {
     return new StatefulInfo(this);
   }
 

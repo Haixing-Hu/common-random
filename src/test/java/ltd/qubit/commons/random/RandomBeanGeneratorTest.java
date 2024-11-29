@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -18,6 +18,8 @@ import java.util.Set;
 import java.util.StringJoiner;
 
 import jakarta.validation.constraints.Size;
+
+import org.junit.jupiter.api.Test;
 
 import ltd.qubit.commons.annotation.Unique;
 import ltd.qubit.commons.random.beans.AbstractFoo;
@@ -45,14 +47,13 @@ import ltd.qubit.commons.random.beans.UniqueAnnotatedFieldObject;
 import ltd.qubit.commons.random.beans.UniqueSizeNullableAnnotatedFieldObject;
 import ltd.qubit.commons.util.range.CloseRange;
 
-import org.junit.jupiter.api.Test;
-
-import static ltd.qubit.commons.random.handlers.NullableAnnotationHandler.DEFAULT_NULL_RATIO;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static ltd.qubit.commons.random.handlers.NullableAnnotationHandler.DEFAULT_NULL_RATIO;
 
 /**
  * Unit test of the {@link RandomBeanGenerator}.
@@ -214,7 +215,7 @@ public class RandomBeanGeneratorTest {
       if (obj.f1 == null) {
         ++nullCount;
       } else {
-        assertEquals(4, obj.f1.scale());
+        assertTrue(obj.f1.scale() == 4);
         assertFalse(values.contains(obj.f1));
         values.add(obj.f1);
       }

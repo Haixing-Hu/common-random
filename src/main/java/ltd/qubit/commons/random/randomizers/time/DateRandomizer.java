@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -11,6 +11,8 @@ package ltd.qubit.commons.random.randomizers.time;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import ltd.qubit.commons.random.Context;
+import ltd.qubit.commons.random.api.ContextAwareRandomizer;
 import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.range.DateRangeRandomizer;
 
@@ -21,7 +23,8 @@ import static ltd.qubit.commons.random.Parameters.DEFAULT_DATES_RANGE;
  *
  * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  */
-public class DateRandomizer implements Randomizer<Date> {
+public class DateRandomizer implements Randomizer<Date>,
+    ContextAwareRandomizer<Date> {
 
   private final DateRangeRandomizer delegate;
 
@@ -70,6 +73,11 @@ public class DateRandomizer implements Randomizer<Date> {
     final Date min = Date.from(DEFAULT_DATES_RANGE.getMin().toInstant());
     final Date max = Date.from(DEFAULT_DATES_RANGE.getMax().toInstant());
     delegate = new DateRangeRandomizer(min, max, precision, seed);
+  }
+
+  @Override
+  public void setContext(final Context context) {
+    delegate.setContext(context);
   }
 
   @Override

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -96,7 +96,7 @@ public class Location implements Serializable, Emptyful, Normalizable,
   }
 
   @Override
-  public Location clone() {
+  public Location cloneEx() {
     return new Location(this);
   }
 

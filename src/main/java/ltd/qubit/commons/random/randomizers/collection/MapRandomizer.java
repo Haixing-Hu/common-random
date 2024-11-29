@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -29,7 +29,7 @@ import static java.lang.Math.abs;
  */
 public class MapRandomizer<K, V> implements ContextAwareRandomizer<Map<K, V>> {
 
-  private final int nbElements;
+  private final int size;
   private final Randomizer<K> keyRandomizer;
   private final Randomizer<V> valueRandomizer;
 
@@ -53,37 +53,37 @@ public class MapRandomizer<K, V> implements ContextAwareRandomizer<Map<K, V>> {
    *         the randomizer for keys
    * @param valueRandomizer
    *         the randomizer for values
-   * @param nbEntries
+   * @param size
    *         the number of entries to generate
    */
   public MapRandomizer(final Randomizer<K> keyRandomizer,
-          final Randomizer<V> valueRandomizer, final int nbEntries) {
+          final Randomizer<V> valueRandomizer, final int size) {
     if (keyRandomizer == null) {
       throw new IllegalArgumentException("keyRandomizer must not be null");
     }
     if (valueRandomizer == null) {
       throw new IllegalArgumentException("valueRandomizer must not be null");
     }
-    checkArguments(nbEntries);
+    checkArguments(size);
     this.keyRandomizer = keyRandomizer;
     this.valueRandomizer = valueRandomizer;
-    this.nbElements = nbEntries;
+    this.size = size;
   }
 
   @Override
   public void setContext(final Context context) {
     if (keyRandomizer instanceof ContextAwareRandomizer) {
-      ((ContextAwareRandomizer) keyRandomizer).setContext(context);
+      ((ContextAwareRandomizer<?>) keyRandomizer).setContext(context);
     }
     if (valueRandomizer instanceof ContextAwareRandomizer) {
-      ((ContextAwareRandomizer) valueRandomizer).setContext(context);
+      ((ContextAwareRandomizer<?>) valueRandomizer).setContext(context);
     }
   }
 
   @Override
   public Map<K, V> getRandomValue() {
     final Map<K, V> result = new HashMap<>();
-    for (int i = 0; i < nbElements; i++) {
+    for (int i = 0; i < size; i++) {
       result.put(keyRandomizer.getRandomValue(), valueRandomizer.getRandomValue());
     }
     return result;

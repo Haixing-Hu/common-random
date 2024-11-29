@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -10,56 +10,74 @@ package ltd.qubit.commons.random.randomizers.collection;
 
 import java.util.Collection;
 
-import ltd.qubit.commons.random.Context;
-import ltd.qubit.commons.random.api.ContextAwareRandomizer;
 import ltd.qubit.commons.random.api.Randomizer;
-import ltd.qubit.commons.random.randomizers.number.ByteRandomizer;
 
-import static java.lang.Math.abs;
+import static ltd.qubit.commons.lang.ClassUtils.isPopulatable;
+import static ltd.qubit.commons.random.util.ReflectionUtils.createEmptyCollection;
 
 /**
- * A base class for collection randomizers.
+ * A randomizer for generating {@link Collection} types.
  *
  * @param <T>
- *         the type of elements in the collection
- * @author Mahmoud Ben Hassine, Haixing Hu
+ *     the type of elements in the collection
  */
-abstract class CollectionRandomizer<T> implements
-        ContextAwareRandomizer<Collection<T>> {
+public class CollectionRandomizer<T> extends AbstractCollectionRandomizer<T> {
 
-  final int nbElements;
+  private final Class<? extends Collection<T>> collectionType;
+  private final Class<T> elementType;
 
-  final Randomizer<T> delegate;
-
-  CollectionRandomizer(final Randomizer<T> delegate) {
-    this(delegate, abs(new ByteRandomizer().getRandomValue()));
+  /**
+   * Constructs a new randomizer.
+   *
+   * @param delegate
+   *     the randomizer used to generate the elements in the collection.
+   * @param collectionType
+   *     the type of the collection to create.
+   * @param elementType
+   *     the type of the elements in the collection to create.
+   */
+  public CollectionRandomizer(final Randomizer<T> delegate,
+      final Class<? extends Collection<T>> collectionType,
+      final Class<T> elementType) {
+    super(delegate);
+    this.collectionType = collectionType;
+    this.elementType = elementType;
+  }
+  /**
+   * Constructs a new randomizer.
+   *
+   * @param delegate
+   *     the randomizer used to generate the elements in the collection.
+   * @param size
+   *     the number of elements to generate.
+   * @param collectionType
+   *     the type of the collection to create.
+   * @param elementType
+   *     the type of the elements in the collection to create.
+   */
+  CollectionRandomizer(final Randomizer<T> delegate, final int size,
+      final Class<? extends Collection<T>> collectionType,
+      final Class<T> elementType) {
+    super(delegate, size);
+    this.collectionType = collectionType;
+    this.elementType = elementType;
   }
 
-  CollectionRandomizer(final Randomizer<T> delegate, final int nbElements) {
-    if (delegate == null) {
-      throw new IllegalArgumentException("delegate must not be null");
-    }
-    checkArguments(nbElements);
-    this.nbElements = nbElements;
-    this.delegate = delegate;
-  }
-
-  private void checkArguments(final int nbElements) {
-    if (nbElements < 0) {
-      throw new IllegalArgumentException(
-          "The number of elements to generate must be >= 0");
-    }
-  }
-
+  /**
+   * Generates a random collection.
+   *
+   * @return
+   *     a random collection.
+   */
   @Override
-  public void setContext(final Context context) {
-    if (delegate instanceof ContextAwareRandomizer) {
-      ((ContextAwareRandomizer) delegate).setContext(context);
+  public Collection<T> getRandomValue() {
+    final Collection<T> result = createEmptyCollection(collectionType, size);
+    if (elementType != null && isPopulatable(elementType)) {
+      for (int i = 0; i < size; ++i) {
+        final T item = getRandomElement();
+        result.add(item);
+      }
     }
+    return result;
   }
-
-  T getRandomElement() {
-    return delegate.getRandomValue();
-  }
-
 }

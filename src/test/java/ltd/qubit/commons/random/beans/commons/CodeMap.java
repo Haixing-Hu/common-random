@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -102,7 +102,7 @@ public class CodeMap implements Identifiable, WithEntity, Auditable, Emptyful,
   }
 
   @Override
-  public CodeMap clone() {
+  public CodeMap cloneEx() {
     return new CodeMap(this);
   }
 

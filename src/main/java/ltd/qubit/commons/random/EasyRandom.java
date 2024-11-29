@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -8,6 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.random;
 
+import java.io.Serial;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -21,6 +22,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ltd.qubit.commons.math.RandomEx;
 import ltd.qubit.commons.random.api.ContextAwareRandomizer;
 import ltd.qubit.commons.random.api.ExclusionPolicy;
@@ -29,19 +33,18 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.api.RandomizerProvider;
 import ltd.qubit.commons.random.api.RandomizerRegistry;
 import ltd.qubit.commons.random.randomizers.misc.EnumRandomizer;
-import ltd.qubit.commons.random.util.ReflectionUtils;
 import ltd.qubit.commons.util.range.CloseRange;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static java.util.Objects.requireNonNull;
 
-import static ltd.qubit.commons.reflect.ClassUtils.isArrayType;
-import static ltd.qubit.commons.reflect.ClassUtils.isCollectionType;
-import static ltd.qubit.commons.reflect.ClassUtils.isEnumType;
-import static ltd.qubit.commons.reflect.ClassUtils.isIntrospectable;
-import static ltd.qubit.commons.reflect.ClassUtils.isMapType;
+import static ltd.qubit.commons.lang.ClassUtils.isArrayType;
+import static ltd.qubit.commons.lang.ClassUtils.isCollectionType;
+import static ltd.qubit.commons.lang.ClassUtils.isEnumType;
+import static ltd.qubit.commons.lang.ClassUtils.isIntrospectable;
+import static ltd.qubit.commons.lang.ClassUtils.isMapType;
+import static ltd.qubit.commons.random.util.ReflectionUtils.getEmptyImplementationForCollectionInterface;
+import static ltd.qubit.commons.random.util.ReflectionUtils.getEmptyImplementationForMapInterface;
+import static ltd.qubit.commons.random.util.ReflectionUtils.getPopulatableFields;
 
 /**
  * Extension of {@link java.util.Random} that is able to generate random Java
@@ -52,6 +55,7 @@ import static ltd.qubit.commons.reflect.ClassUtils.isMapType;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class EasyRandom extends RandomEx {
 
+  @Serial
   private static final long serialVersionUID = -1460004897173461959L;
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -177,8 +181,7 @@ public class EasyRandom extends RandomEx {
   private <T> T doPopulateBean(final Class<T> type, final Context context) {
     logger.debug("Populate bean: class = {}, context = {}", type, context);
     final ExclusionPolicy exclusionPolicy = parameters.getExclusionPolicy();
-    if (exclusionPolicy != null
-        && exclusionPolicy.shouldBeExcluded(type, context)) {
+    if ((exclusionPolicy != null) && exclusionPolicy.shouldBeExcluded(type, context)) {
       return null;
     }
     final T result;
@@ -205,7 +208,7 @@ public class EasyRandom extends RandomEx {
       // cache instance in the population context
       context.addPopulatedBean(type, result);
       // retrieve fields to be populated
-      final List<Field> fields = ReflectionUtils.getPopulatableFields(type, result);
+      final List<Field> fields = getPopulatableFields(type, result);
       // populate fields with random data
       fieldPopulator.populateFields(result, fields, context);
       return result;
@@ -236,16 +239,15 @@ public class EasyRandom extends RandomEx {
       return (T) arrayPopulator.populate(type, context, null);
     }
     if (isCollectionType(type)) {
-      return (T) ReflectionUtils.getEmptyImplementationForCollectionInterface(type);
+      return (T) getEmptyImplementationForCollectionInterface(type);
     }
     if (isMapType(type)) {
-      return (T) ReflectionUtils.getEmptyImplementationForMapInterface(type);
+      return (T) getEmptyImplementationForMapInterface(type);
     }
     return null;
   }
 
-  private LinkedHashSet<RandomizerRegistry> setupRegistries(
-      final Parameters parameters) {
+  private LinkedHashSet<RandomizerRegistry> setupRegistries(final Parameters parameters) {
     final LinkedHashSet<RandomizerRegistry> registries = new LinkedHashSet<>();
     registries.add(parameters.getCustomRandomizerRegistry());
     registries.add(parameters.getExclusionRandomizerRegistry());
@@ -282,7 +284,6 @@ public class EasyRandom extends RandomEx {
   }
 
   public <E> List<E> nextList(final Class<E> elementType) {
-    final Parameters parameters = getParameters();
     final CloseRange<Integer> range = parameters.getCollectionSizeRange();
     final int size = nextInt(range);
     final List<E> result = new ArrayList<>();
@@ -293,7 +294,6 @@ public class EasyRandom extends RandomEx {
   }
 
   public <E> Set<E> nextSet(final Class<E> elementType) {
-    final Parameters parameters = getParameters();
     final CloseRange<Integer> range = parameters.getCollectionSizeRange();
     final int size = nextInt(range);
     final Set<E> result = new HashSet<>();
@@ -338,48 +338,38 @@ public class EasyRandom extends RandomEx {
   }
 
   public final String nextDigitString() {
-    final Parameters parameters = getParameters();
-    final CloseRange<Integer> lengthCloseRange = parameters
-        .getStringLengthRange();
+    final CloseRange<Integer> lengthCloseRange = parameters.getStringLengthRange();
     final int length = nextInt(lengthCloseRange);
     return nextDigitString(length);
   }
 
   public final String nextLowercaseLetterString() {
-    final Parameters parameters = getParameters();
-    final CloseRange<Integer> lengthCloseRange = parameters
-        .getStringLengthRange();
+    final CloseRange<Integer> lengthCloseRange = parameters.getStringLengthRange();
     final int length = nextInt(lengthCloseRange);
     return nextLowercaseLetterString(length);
   }
 
   public final String nextUppercaseLetterString() {
-    final Parameters parameters = getParameters();
-    final CloseRange<Integer> lengthCloseRange = parameters
-        .getStringLengthRange();
+    final CloseRange<Integer> lengthCloseRange = parameters.getStringLengthRange();
     final int length = nextInt(lengthCloseRange);
     return nextUppercaseLetterString(length);
   }
 
   public final String nextLetterString() {
-    final Parameters parameters = getParameters();
-    final CloseRange<Integer> lengthCloseRange = parameters
-        .getStringLengthRange();
+    final CloseRange<Integer> lengthCloseRange = parameters.getStringLengthRange();
     final int length = nextInt(lengthCloseRange);
     return nextLetterString(length);
   }
 
   public final String nextLetterDigitString() {
-    final Parameters parameters = getParameters();
-    final CloseRange<Integer> lengthCloseRange = parameters
-        .getStringLengthRange();
+    final CloseRange<Integer> lengthCloseRange = parameters.getStringLengthRange();
     final int length = nextInt(lengthCloseRange);
     return nextLetterDigitString(length);
   }
 
   public <T> T[] nextObjectArray(final int size, final Class<T> type) {
-    @SuppressWarnings("unchecked") final T[] result = (T[]) Array
-        .newInstance(type, size);
+    @SuppressWarnings("unchecked")
+    final T[] result = (T[]) Array.newInstance(type, size);
     for (int i = 0; i < size; ++i) {
       result[i] = nextObject(type);
     }

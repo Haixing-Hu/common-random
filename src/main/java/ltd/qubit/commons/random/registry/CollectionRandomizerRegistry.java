@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -23,8 +23,8 @@ import ltd.qubit.commons.random.randomizers.AbstractContextAwareRandomizer;
 
 import static java.util.Objects.requireNonNull;
 
+import static ltd.qubit.commons.lang.ClassUtils.isCollectionType;
 import static ltd.qubit.commons.random.util.RandomUtils.populateRemainedFields;
-import static ltd.qubit.commons.reflect.ClassUtils.isCollectionType;
 import static ltd.qubit.commons.reflect.FieldUtils.isAnnotationPresent;
 
 /**
@@ -57,15 +57,14 @@ public class CollectionRandomizerRegistry implements RandomizerRegistry {
     }
     final CollectionPopulator populator = random.getCollectionPopulator();
     final EasyRandom theRandom = this.random;
-    return new AbstractContextAwareRandomizer() {
+    return new AbstractContextAwareRandomizer(context) {
       @Override
       public Object getRandomValue() {
-        final Class<?> fieldType = field.getType();
-        if (super.context == null) {
-          super.context = new Context(fieldType, parameters);
+        if (this.context == null) {
+          this.context = new Context(fieldType, parameters);
         }
-        final Collection<?> col = populator.populate(field, super.context, null);
-        populateRemainedFields(theRandom, super.context, fieldType, col);
+        final Collection<?> col = populator.populate(field, this.context, null);
+        populateRemainedFields(theRandom, this.context, fieldType, col);
         return col;
       }
     };
@@ -79,14 +78,14 @@ public class CollectionRandomizerRegistry implements RandomizerRegistry {
     }
     final CollectionPopulator populator = random.getCollectionPopulator();
     final EasyRandom theRandom = this.random;
-    return new AbstractContextAwareRandomizer() {
+    return new AbstractContextAwareRandomizer(context) {
       @Override
       public Object getRandomValue() {
-        if (super.context == null) {
-          super.context = new Context(type, parameters);
+        if (this.context == null) {
+          this.context = new Context(type, parameters);
         }
-        final Collection<?> col = populator.populate(type, super.context, null);
-        populateRemainedFields(theRandom, super.context, type, col);
+        final Collection<?> col = populator.populate(type, this.context, null);
+        populateRemainedFields(theRandom, this.context, type, col);
         return col;
       }
     };

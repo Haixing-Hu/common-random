@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -213,7 +213,7 @@ public class Info implements Identifiable, WithCode, WithName, Deletable,
   }
 
   @Override
-  public Info clone() {
+  public Info cloneEx() {
     return new Info(this);
   }
 
@@ -225,20 +225,23 @@ public class Info implements Identifiable, WithCode, WithName, Deletable,
     return params.toArray(new KeyValuePair[0]);
   }
 
+  @Override
   public boolean equals(final Object o) {
     if (this == o) {
       return true;
     }
-    if ((o == null) || (getClass() != o.getClass())) {
+    // 注意：允许Info的trivial子类和Info进行比较
+    if ((o == null) || (! (o instanceof Info))) {
       return false;
     }
     final Info other = (Info) o;
     return Equality.equals(id, other.id)
-        && Equality.equals(code, other.code)
-        && Equality.equals(name, other.name)
-        && Equality.equals(deleteTime, other.deleteTime);
+            && Equality.equals(code, other.code)
+            && Equality.equals(name, other.name)
+            && Equality.equals(deleteTime, other.deleteTime);
   }
 
+  @Override
   public int hashCode() {
     final int multiplier = 7;
     int result = 3;
@@ -249,12 +252,13 @@ public class Info implements Identifiable, WithCode, WithName, Deletable,
     return result;
   }
 
+  @Override
   public String toString() {
     return new ToStringBuilder(this)
-        .append("id", id)
-        .append("code", code)
-        .append("name", name)
-        .append("deleteTime", deleteTime)
-        .toString();
+            .append("id", id)
+            .append("code", code)
+            .append("name", name)
+            .append("deleteTime", deleteTime)
+            .toString();
   }
 }

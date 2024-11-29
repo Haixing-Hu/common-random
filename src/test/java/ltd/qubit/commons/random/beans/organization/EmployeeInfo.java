@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -186,7 +186,7 @@ public class EmployeeInfo implements HasInfo, Emptyful, Normalizable,
   }
 
   @Override
-  public EmployeeInfo clone() {
+  public EmployeeInfo cloneEx() {
     return new EmployeeInfo(this);
   }
 

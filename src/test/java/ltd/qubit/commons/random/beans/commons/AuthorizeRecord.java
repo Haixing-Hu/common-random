@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -56,7 +56,7 @@ public class AuthorizeRecord implements Assignable<AuthorizeRecord> {
   }
 
   @Override
-  public AuthorizeRecord clone() {
+  public AuthorizeRecord cloneEx() {
     return new AuthorizeRecord(this);
   }
 

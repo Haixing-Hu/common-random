@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -86,7 +86,7 @@ public class Environment implements Serializable, Emptyful, Normalizable,
   }
 
   @Override
-  public Environment clone() {
+  public Environment cloneEx() {
     return new Environment(this);
   }
 

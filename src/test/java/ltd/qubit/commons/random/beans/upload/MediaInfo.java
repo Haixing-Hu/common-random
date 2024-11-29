@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -66,7 +66,7 @@ public class MediaInfo implements Serializable, Assignable<MediaInfo> {
   }
 
   @Override
-  public MediaInfo clone() {
+  public MediaInfo cloneEx() {
     return new MediaInfo(this);
   }
 

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -10,13 +10,13 @@ package ltd.qubit.commons.random.beans.contact;
 
 import java.io.IOException;
 
-import ltd.qubit.commons.util.codec.Codec;
-import ltd.qubit.commons.util.codec.DecodingException;
-
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+
+import ltd.qubit.commons.util.codec.Codec;
+import ltd.qubit.commons.util.codec.DecodingException;
 
 import static ltd.qubit.commons.lang.Argument.requireNonNull;
 

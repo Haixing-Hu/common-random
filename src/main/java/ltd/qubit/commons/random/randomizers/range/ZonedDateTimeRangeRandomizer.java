@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -19,7 +19,7 @@ import ltd.qubit.commons.random.Parameters;
 import ltd.qubit.commons.random.randomizers.AbstractRangeRandomizer;
 import ltd.qubit.commons.util.range.CloseRange;
 
-import static ltd.qubit.commons.lang.Argument.requireNonNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Generate a random {@link ZonedDateTime} in the given range.
@@ -63,8 +63,8 @@ public class ZonedDateTimeRangeRandomizer extends AbstractRangeRandomizer<ZonedD
 
   @Override
   protected void checkValues() {
-    final ZonedDateTime min = requireNonNull("range.min", range.getMin());
-    final ZonedDateTime max = requireNonNull("range.max", range.getMax());
+    final ZonedDateTime min = requireNonNull(range.getMin(), "range.min cannot be null");
+    final ZonedDateTime max = requireNonNull(range.getMax(), "range.max cannot be null");
     if (min.isAfter(max)) {
       throw new IllegalArgumentException("max must be after min");
     }

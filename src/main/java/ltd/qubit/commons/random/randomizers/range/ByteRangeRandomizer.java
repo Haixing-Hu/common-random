@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -11,7 +11,7 @@ package ltd.qubit.commons.random.randomizers.range;
 import ltd.qubit.commons.random.Parameters;
 import ltd.qubit.commons.random.randomizers.AbstractRangeRandomizer;
 
-import static ltd.qubit.commons.lang.Argument.requireNonNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Generate a random {@link Byte} in the given range.
@@ -48,8 +48,8 @@ public class ByteRangeRandomizer extends AbstractRangeRandomizer<Byte> {
 
   @Override
   protected void checkValues() {
-    final Byte min = requireNonNull("range.min", range.getMin());
-    final Byte max = requireNonNull("range.max", range.getMax());
+    final Byte min = requireNonNull(range.getMin(), "range.min cannot be null");
+    final Byte max = requireNonNull(range.getMax(), "range.max cannot be null");
     if (min > max) {
       throw new IllegalArgumentException("max must be greater than min");
     }

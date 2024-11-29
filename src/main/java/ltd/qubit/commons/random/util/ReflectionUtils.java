@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -63,6 +63,12 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
+import org.objenesis.ObjenesisStd;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import net.jodah.typetools.TypeResolver;
+
 import ltd.qubit.commons.random.Context;
 import ltd.qubit.commons.random.ObjectCreationException;
 import ltd.qubit.commons.random.annotation.RandomizerArgument;
@@ -73,25 +79,19 @@ import ltd.qubit.commons.reflect.Option;
 import ltd.qubit.commons.reflect.ReflectionException;
 import ltd.qubit.commons.util.pair.Pair;
 
-import org.objenesis.ObjenesisStd;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import net.jodah.typetools.TypeResolver;
-
 import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static java.util.Locale.ENGLISH;
 
-import static ltd.qubit.commons.reflect.AccessibleUtils.withAccessibleObject;
-import static ltd.qubit.commons.reflect.ClassUtils.isInterface;
-import static ltd.qubit.commons.reflect.ClassUtils.isJdkBuiltIn;
-import static ltd.qubit.commons.reflect.ClassUtils.isParameterizedType;
-import static ltd.qubit.commons.reflect.FieldUtils.isFinal;
-import static ltd.qubit.commons.reflect.FieldUtils.isStatic;
-
 import static net.jodah.typetools.TypeResolver.resolveRawArgument;
 import static net.jodah.typetools.TypeResolver.resolveRawArguments;
+
+import static ltd.qubit.commons.lang.ClassUtils.isInterface;
+import static ltd.qubit.commons.lang.ClassUtils.isJdkBuiltIn;
+import static ltd.qubit.commons.lang.ClassUtils.isParameterizedType;
+import static ltd.qubit.commons.reflect.AccessibleUtils.withAccessibleObject;
+import static ltd.qubit.commons.reflect.FieldUtils.isFinal;
+import static ltd.qubit.commons.reflect.FieldUtils.isStatic;
 
 /**
  * Reflection utility methods.
@@ -336,7 +336,7 @@ public final class ReflectionUtils {
     if (value == null) {
       return false;
     }
-    if ((type == boolean.class) && ((boolean) value == false)) {
+    if ((type == boolean.class) && (!((boolean) value))) {
       return true;
     }
     if ((type == byte.class) && ((byte) value == (byte) 0)) {
@@ -413,9 +413,9 @@ public final class ReflectionUtils {
    *     for which an empty implementation should be returned
    * @return empty implementation for the collection interface
    */
-  public static Collection<?> getEmptyImplementationForCollectionInterface(
+  public static <T> Collection<T> getEmptyImplementationForCollectionInterface(
       final Class<?> collectionInterface) {
-    Collection<?> collection = new ArrayList<>();
+    Collection<T> collection = new ArrayList<>();
     if (List.class.isAssignableFrom(collectionInterface)) {
       collection = new ArrayList<>();
     } else if (NavigableSet.class.isAssignableFrom(collectionInterface)) {
@@ -441,28 +441,26 @@ public final class ReflectionUtils {
   /**
    * Create an empty collection for the given type.
    *
-   * @param fieldType
+   * @param type
    *     for which an empty collection should we created
-   * @param initialSize
+   * @param size
    *     initial size of the collection
    * @return empty collection
    */
-  public static Collection<?> getEmptyCollectionForType(
-      final Class<?> fieldType,
-      final int initialSize) {
-    rejectUnsupportedTypes(fieldType);
-    Collection<?> collection;
+  @SuppressWarnings("unchecked")
+  public static <T> Collection<T> getEmptyCollectionForType(final Class<?> type, final int size) {
+    rejectUnsupportedTypes(type);
+    Collection<T> collection;
     try {
-      collection = (Collection<?>) fieldType.getDeclaredConstructor()
-                                            .newInstance();
+      collection = (Collection<T>) type.getDeclaredConstructor().newInstance();
     } catch (final InstantiationException
         | IllegalAccessException
         | NoSuchMethodException
         | InvocationTargetException e) {
-      if (fieldType.equals(ArrayBlockingQueue.class)) {
-        collection = new ArrayBlockingQueue<>(initialSize);
+      if (type.equals(ArrayBlockingQueue.class)) {
+        collection = new ArrayBlockingQueue<>(size);
       } else {
-        collection = (Collection<?>) new ObjenesisStd().newInstance(fieldType);
+        collection = (Collection<T>) new ObjenesisStd().newInstance(type);
       }
     }
     return collection;
@@ -699,11 +697,11 @@ public final class ReflectionUtils {
         .getAllFields(obj.getClass(), Option.ALL);
     // remove static final fields
     fields.removeIf(field -> isStatic(field) && isFinal(field));
-    // inner classes (and static nested classes) have a field named "this$0"
-    // that references the enclosing class.
-    // This field should be excluded
+    // inner classes (and static nested classes) have a field named "this$0",
+    // "this$1", etc, that references the enclosing classes. These fields should
+    // be excluded
     if (type.getEnclosingClass() != null) {
-      fields.removeIf(field -> field.getName().equals("this$0"));
+      fields.removeIf(field -> field.getName().matches("this\\$[0-9]+"));
     }
     // remove all fields declared from the JDK collections
     fields.removeIf(field -> isJdkBuiltIn(field.getDeclaringClass()));
@@ -754,8 +752,7 @@ public final class ReflectionUtils {
         return null;
       }
     } else if (type instanceof Class) {
-      final Class<?> result = resolveRawArgument(Collection.class,
-          (Class<?>) type);
+      final Class<?> result = resolveRawArgument(Collection.class, (Class<?>) type);
       return (result == TypeResolver.Unknown.class ? null : result);
     } else {
       return null;
@@ -807,7 +804,7 @@ public final class ReflectionUtils {
    *     of the created collection.
    * @return an empty collection object.
    */
-  public static Collection<?> createEmptyCollection(final Class<?> type,
+  public static <T> Collection<T> createEmptyCollection(final Class<?> type,
       final int size) {
     if (isInterface(type)) {
       return getEmptyImplementationForCollectionInterface(type);

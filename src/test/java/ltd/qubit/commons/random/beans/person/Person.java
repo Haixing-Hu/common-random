@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -338,7 +338,7 @@ public class Person implements Identifiable, WithName, WithCredential,
   }
 
   @Override
-  public Person clone() {
+  public Person cloneEx() {
     return new Person(this);
   }
 

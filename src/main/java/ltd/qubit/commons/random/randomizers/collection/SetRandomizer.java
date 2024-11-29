@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -21,8 +21,7 @@ import ltd.qubit.commons.random.api.Randomizer;
  *         the type of elements to generate
  * @author Eric Taix, Haixing Hu
  */
-public class SetRandomizer<T> extends CollectionRandomizer<T> {
-
+public class SetRandomizer<T> extends AbstractCollectionRandomizer<T> {
   /**
    * Create a new {@link SetRandomizer} that will generate a {@link Set} with a
    * random number of elements.
@@ -40,17 +39,17 @@ public class SetRandomizer<T> extends CollectionRandomizer<T> {
    *
    * @param delegate
    *         The {@link Randomizer} used to generate each element
-   * @param nbElements
+   * @param size
    *         The number of elements to generate
    */
-  public SetRandomizer(final Randomizer<T> delegate, final int nbElements) {
-    super(delegate, nbElements);
+  public SetRandomizer(final Randomizer<T> delegate, final int size) {
+    super(delegate, size);
   }
 
   @Override
   public Set<T> getRandomValue() {
     final Set<T> result = new HashSet<>();
-    for (int i = 0; i < nbElements; i++) {
+    for (int i = 0; i < size; i++) {
       result.add(getRandomElement());
     }
     return result;
@@ -58,6 +57,6 @@ public class SetRandomizer<T> extends CollectionRandomizer<T> {
 
   @Override
   public String toString() {
-    return "SetRandomizer [delegate=" + delegate + ", nbElements=" + nbElements + "]";
+    return "SetRandomizer [delegate=" + delegate + ", nbElements=" + size + "]";
   }
 }

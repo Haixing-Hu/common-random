@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -142,7 +142,7 @@ public class Country implements HasInfo, Auditable, Emptyful, Normalizable, Assi
   }
 
   @Override
-  public Country clone() {
+  public Country cloneEx() {
     return new Country(this);
   }
 

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -157,7 +157,7 @@ public class Source implements HasInfo, WithApp, WithEntity, Auditable,
   }
 
   @Override
-  public Source clone() {
+  public Source cloneEx() {
     return new Source(this);
   }
 

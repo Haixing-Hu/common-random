@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -23,8 +23,8 @@ import ltd.qubit.commons.random.randomizers.AbstractContextAwareRandomizer;
 
 import static java.util.Objects.requireNonNull;
 
+import static ltd.qubit.commons.lang.ClassUtils.isMapType;
 import static ltd.qubit.commons.random.util.RandomUtils.populateRemainedFields;
-import static ltd.qubit.commons.reflect.ClassUtils.isMapType;
 import static ltd.qubit.commons.reflect.FieldUtils.isAnnotationPresent;
 
 /**

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -8,15 +8,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.random.parameters;
 
+import org.junit.jupiter.api.Test;
+
 import ltd.qubit.commons.random.EasyRandom;
 import ltd.qubit.commons.random.Parameters;
 import ltd.qubit.commons.random.beans.Person;
 
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
-class StringLengthRangeParameterTests {
+class StringLengthRangeParameterTest {
 
   @Test
   void testStringLengthRange() {

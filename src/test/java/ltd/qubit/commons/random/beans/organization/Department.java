@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -180,7 +180,7 @@ public class Department implements HasStatefulInfo, WithCategory, WithContact,
   }
 
   @Override
-  public Department clone() {
+  public Department cloneEx() {
     return new Department(this);
   }
 

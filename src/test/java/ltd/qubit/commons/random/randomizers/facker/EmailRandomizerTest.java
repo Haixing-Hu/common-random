@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -12,9 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import ltd.qubit.commons.random.randomizers.faker.EmailRandomizer;
-
 import org.junit.jupiter.api.Test;
+
+import ltd.qubit.commons.random.randomizers.faker.EmailRandomizer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

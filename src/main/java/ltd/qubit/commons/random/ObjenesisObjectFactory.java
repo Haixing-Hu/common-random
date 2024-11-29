@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -10,14 +10,14 @@ package ltd.qubit.commons.random;
 
 import java.lang.reflect.Constructor;
 
-import ltd.qubit.commons.random.api.ObjectFactory;
-import ltd.qubit.commons.random.util.CollectionUtils;
-import ltd.qubit.commons.random.util.ReflectionUtils;
-
 import org.objenesis.Objenesis;
 import org.objenesis.ObjenesisStd;
 
-import static ltd.qubit.commons.reflect.ClassUtils.isAbstract;
+import ltd.qubit.commons.random.api.ObjectFactory;
+
+import static ltd.qubit.commons.lang.ClassUtils.isAbstract;
+import static ltd.qubit.commons.random.util.CollectionUtils.randomElementOf;
+import static ltd.qubit.commons.random.util.ReflectionUtils.getPublicConcreteSubTypesOf;
 
 /**
  * Objenesis based factory to create "fancy" objects: immutable java beans,
@@ -34,8 +34,8 @@ class ObjenesisObjectFactory implements ObjectFactory {
   public <T> T createInstance(final Class<T> type, final Context context) {
     if (context.getParameters().isScanClasspathForConcreteTypes() && isAbstract(
         type)) {
-      final Class<?> randomConcreteSubType = CollectionUtils.randomElementOf(
-          ReflectionUtils.getPublicConcreteSubTypesOf((type)));
+      final Class<?> randomConcreteSubType = randomElementOf(
+          getPublicConcreteSubTypesOf((type)));
       if (randomConcreteSubType == null) {
         throw new InstantiationError("Unable to find a matching concrete "
             + "subtype of type: " + type + " in the classpath");

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -132,7 +132,7 @@ public class DictEntry implements Identifiable, WithComment, Auditable,
   }
 
   @Override
-  public DictEntry clone() {
+  public DictEntry cloneEx() {
     return new DictEntry(this);
   }
 

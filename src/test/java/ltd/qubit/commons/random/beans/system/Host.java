@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -64,7 +64,7 @@ public class Host implements Identifiable, Assignable<Host> {
   }
 
   @Override
-  public Host clone() {
+  public Host cloneEx() {
     return new Host(this);
   }
 

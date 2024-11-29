@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -15,6 +15,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
 import ltd.qubit.commons.random.beans.CollectionBean;
 import ltd.qubit.commons.random.beans.CompositeCollectionBean;
 import ltd.qubit.commons.random.beans.CustomList;
@@ -25,12 +31,6 @@ import ltd.qubit.commons.random.beans.SynchronousQueueBean;
 import ltd.qubit.commons.random.beans.TypeVariableCollectionBean;
 import ltd.qubit.commons.random.beans.WildCardCollectionBean;
 import ltd.qubit.commons.util.range.CloseRange;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -46,10 +46,8 @@ class CollectionPopulatorTest {
 
   @Mock
   private Context context;
-
   @Mock
   private EasyRandom random;
-
   private Parameters parameters;
 
   private CollectionPopulator collectionPopulator;
@@ -109,7 +107,7 @@ class CollectionPopulatorTest {
   void typedConcreteCollectionTypesMightBePopulated() throws Exception {
     // Given
     when(context.getParameters()).thenReturn(parameters);
-    when(random.nextInt(new CloseRange(SIZE, SIZE))).thenReturn(SIZE);
+    when(random.nextInt(new CloseRange<>(SIZE, SIZE))).thenReturn(SIZE);
     when(random.nextObject(String.class, context)).thenReturn(STRING);
     final Field field = Foo.class.getDeclaredField("typedConcreteList");
 
@@ -171,9 +169,12 @@ class CollectionPopulatorTest {
 
   @Test
   void rawCollectionInterfacesShouldBeEmpty() {
-    final EasyRandom rand = new EasyRandom();
-    final CollectionBean collectionsBean = rand.nextObject(CollectionBean.class);
+    final EasyRandom random = new EasyRandom();
+
+    final CollectionBean collectionsBean = random.nextObject(CollectionBean.class);
+
     assertThat(collectionsBean).isNotNull();
+
     assertThat(collectionsBean.getCollection()).isEmpty();
     assertThat(collectionsBean.getSet()).isEmpty();
     assertThat(collectionsBean.getSortedSet()).isEmpty();
@@ -188,9 +189,12 @@ class CollectionPopulatorTest {
 
   @Test
   void unboundedWildCardTypedCollectionInterfacesShouldBeEmpty() {
-    final EasyRandom rand = new EasyRandom();
-    final WildCardCollectionBean collectionsBean = rand.nextObject(WildCardCollectionBean.class);
+    final EasyRandom random = new EasyRandom();
+
+    final WildCardCollectionBean collectionsBean = random.nextObject(WildCardCollectionBean.class);
+
     assertThat(collectionsBean).isNotNull();
+
     assertThat(collectionsBean.getUnboundedWildCardTypedCollection()).isEmpty();
     assertThat(collectionsBean.getUnboundedWildCardTypedSet()).isEmpty();
     assertThat(collectionsBean.getUnboundedWildCardTypedSortedSet()).isEmpty();
@@ -205,9 +209,12 @@ class CollectionPopulatorTest {
 
   @Test
   void boundedWildCardTypedCollectionInterfacesShouldBeEmpty() {
-    final EasyRandom rand = new EasyRandom();
-    final WildCardCollectionBean collectionsBean = rand.nextObject(WildCardCollectionBean.class);
+    final EasyRandom random = new EasyRandom();
+
+    final WildCardCollectionBean collectionsBean = random.nextObject(WildCardCollectionBean.class);
+
     assertThat(collectionsBean).isNotNull();
+
     assertThat(collectionsBean.getBoundedWildCardTypedCollection()).isEmpty();
     assertThat(collectionsBean.getBoundedWildCardTypedSet()).isEmpty();
     assertThat(collectionsBean.getBoundedWildCardTypedSortedSet()).isEmpty();
@@ -222,9 +229,12 @@ class CollectionPopulatorTest {
 
   @Test
   void typedCollectionInterfacesShouldNotBeEmpty() {
-    final EasyRandom rand = new EasyRandom();
-    final CollectionBean collectionsBean = rand.nextObject(CollectionBean.class);
+    final EasyRandom random = new EasyRandom();
+
+    final CollectionBean collectionsBean = random.nextObject(CollectionBean.class);
+
     assertThat(collectionsBean).isNotNull();
+
     assertContainsOnlyNonEmptyPersons(collectionsBean.getTypedCollection());
     assertContainsOnlyNonEmptyPersons(collectionsBean.getTypedSet());
     assertContainsOnlyNonEmptyPersons(collectionsBean.getTypedSortedSet());
@@ -239,9 +249,12 @@ class CollectionPopulatorTest {
 
   @Test
   void rawCollectionClassesShouldBeEmpty() {
-    final EasyRandom rand = new EasyRandom();
-    final CollectionBean collectionsBean = rand.nextObject(CollectionBean.class);
+    final EasyRandom random = new EasyRandom();
+
+    final CollectionBean collectionsBean = random.nextObject(CollectionBean.class);
+
     assertThat(collectionsBean).isNotNull();
+
     assertThat(collectionsBean.getArrayList()).isEmpty();
     assertThat(collectionsBean.getLinkedList()).isEmpty();
     assertThat(collectionsBean.getVector()).isEmpty();
@@ -263,9 +276,12 @@ class CollectionPopulatorTest {
 
   @Test
   void unboundedWildCardTypedCollectionClassesShouldBeEmpty() {
-    final EasyRandom rand = new EasyRandom();
-    final WildCardCollectionBean collectionsBean = rand.nextObject(WildCardCollectionBean.class);
+    final EasyRandom random = new EasyRandom();
+
+    final WildCardCollectionBean collectionsBean = random.nextObject(WildCardCollectionBean.class);
+
     assertThat(collectionsBean).isNotNull();
+
     assertThat(collectionsBean.getUnboundedWildCardTypedArrayList()).isEmpty();
     assertThat(collectionsBean.getUnboundedWildCardTypedLinkedList()).isEmpty();
     assertThat(collectionsBean.getUnboundedWildCardTypedVector()).isEmpty();
@@ -291,9 +307,12 @@ class CollectionPopulatorTest {
 
   @Test
   void boundedWildCardTypedCollectionClassesShouldBeEmpty() {
-    final EasyRandom rand = new EasyRandom();
-    final WildCardCollectionBean collectionsBean = rand.nextObject(WildCardCollectionBean.class);
+    final EasyRandom random = new EasyRandom();
+
+    final WildCardCollectionBean collectionsBean = random.nextObject(WildCardCollectionBean.class);
+
     assertThat(collectionsBean).isNotNull();
+
     assertThat(collectionsBean.getBoundedWildCardTypedArrayList()).isEmpty();
     assertThat(collectionsBean.getBoundedWildCardTypedLinkedList()).isEmpty();
     assertThat(collectionsBean.getBoundedWildCardTypedVector()).isEmpty();
@@ -315,9 +334,12 @@ class CollectionPopulatorTest {
 
   @Test
   void typedCollectionClassesShouldNoBeEmpty() {
-    final EasyRandom rand = new EasyRandom();
-    final CollectionBean collectionsBean = rand.nextObject(CollectionBean.class);
+    final EasyRandom random = new EasyRandom();
+
+    final CollectionBean collectionsBean = random.nextObject(CollectionBean.class);
+
     assertThat(collectionsBean).isNotNull();
+
     assertContainsOnlyNonEmptyPersons(collectionsBean.getTypedArrayList());
     assertContainsOnlyNonEmptyPersons(collectionsBean.getTypedLinkedList());
     assertContainsOnlyNonEmptyPersons(collectionsBean.getTypedVector());
@@ -339,9 +361,11 @@ class CollectionPopulatorTest {
 
   @Test
   void compositeCollectionTypesShouldBeEmpty() {
-    final EasyRandom rand = new EasyRandom();
+    final EasyRandom random = new EasyRandom();
+
     final CompositeCollectionBean compositeCollectionBean =
-        rand.nextObject(CompositeCollectionBean.class);
+        random.nextObject(CompositeCollectionBean.class);
+
     assertThat(compositeCollectionBean.getListOfLists()).isEmpty();
     assertThat(compositeCollectionBean.getTypedListOfLists()).isEmpty();
     assertThat(compositeCollectionBean.getSetOfSets()).isEmpty();
@@ -352,63 +376,67 @@ class CollectionPopulatorTest {
 
   @Test
   void synchronousQueueTypeMustBeRejected() {
-    final EasyRandom rand = new EasyRandom();
-    assertThatThrownBy(() -> rand.nextObject(SynchronousQueueBean.class))
+    final EasyRandom random = new EasyRandom();
+
+    assertThatThrownBy(() -> random.nextObject(SynchronousQueueBean.class))
         .isInstanceOf(ObjectCreationException.class);
   }
 
   @Test
   void delayedQueueTypeMustBeRejected() {
-    final EasyRandom rand = new EasyRandom();
-    assertThatThrownBy(() -> rand.nextObject(DelayedQueueBean.class))
+    final EasyRandom random = new EasyRandom();
+
+    assertThatThrownBy(() -> random.nextObject(DelayedQueueBean.class))
         .isInstanceOf(ObjectCreationException.class);
   }
 
   @Test
   void rawInterfaceCollectionTypesMustBeGeneratedEmpty() {
-    final Parameters params = new Parameters().scanClasspathForConcreteTypes(true);
-    final EasyRandom rand = new EasyRandom(params);
-    final List<?> list = rand.nextObject(List.class);
+    final Parameters parameters = new Parameters().scanClasspathForConcreteTypes(true);
+    random = new EasyRandom(parameters);
+    final List<?> list = random.nextObject(List.class);
     assertThat(list).isEmpty();
   }
 
   @Test
   void rawConcreteCollectionTypesMustBeGeneratedEmpty() {
-    final Parameters params = new Parameters().scanClasspathForConcreteTypes(true);
-    final EasyRandom rand = new EasyRandom(params);
-    final ArrayList<?> list = rand.nextObject(ArrayList.class);
+    final Parameters parameters = new Parameters().scanClasspathForConcreteTypes(true);
+    random = new EasyRandom(parameters);
+    final ArrayList<?> list = random.nextObject(ArrayList.class);
     assertThat(list).isEmpty();
   }
 
   @Test
   void rawInterfaceMapTypesMustBeGeneratedEmpty() {
-    final Parameters params = new Parameters().scanClasspathForConcreteTypes(true);
-    final EasyRandom rand = new EasyRandom(params);
-    final Map<?, ?> map = rand.nextObject(Map.class);
+    final Parameters parameters = new Parameters().scanClasspathForConcreteTypes(true);
+    random = new EasyRandom(parameters);
+    final Map<?, ?> map = random.nextObject(Map.class);
     assertThat(map).isEmpty();
   }
 
   @Test
   void rawConcreteMapTypesMustBeGeneratedEmpty() {
-    final Parameters params = new Parameters().scanClasspathForConcreteTypes(true);
-    final EasyRandom rand = new EasyRandom(params);
-    final HashMap<?, ?> map = rand.nextObject(HashMap.class);
+    final Parameters parameters = new Parameters().scanClasspathForConcreteTypes(true);
+    random = new EasyRandom(parameters);
+    final HashMap<?, ?> map = random.nextObject(HashMap.class);
     assertThat(map).isEmpty();
   }
 
   @Test
   void userDefinedCollectionTypeShouldBePopulated() {
-    final EasyRandom rand = new EasyRandom();
-    final CustomList customList = rand.nextObject(CustomList.class);
+    final EasyRandom random = new EasyRandom();
+
+    final CustomList customList = random.nextObject(CustomList.class);
+
     assertThat(customList).isNotNull();
     assertThat(customList.getName()).isNotNull();
   }
 
   @Test
   void typeVariableCollectionTypesMustBeGeneratedEmpty() {
-    final EasyRandom rand = new EasyRandom();
+    final EasyRandom random = new EasyRandom();
     final TypeVariableCollectionBean<String, String> bean =
-        rand.nextObject(TypeVariableCollectionBean.class);
+        random.nextObject(TypeVariableCollectionBean.class);
     assertThat(bean.getCollection()).isEmpty();
     assertThat(bean.getList()).isEmpty();
     assertThat(bean.getSet()).isEmpty();
@@ -426,11 +454,11 @@ class CollectionPopulatorTest {
 
   @Test
   void collectionSubclassShouldBePopulated() {
-    final EasyRandom rand = new EasyRandom();
-    final Parameters params = rand.getParameters();
-    params.ignoreRandomizationErrors(false);
-    final CloseRange<Integer> range = params.getCollectionSizeRange();
-    final ListSubclass bean = rand.nextObject(ListSubclass.class);
+    final EasyRandom random = new EasyRandom();
+    final Parameters parameters = random.getParameters();
+    parameters.ignoreRandomizationErrors(false);
+    final CloseRange<Integer> range = parameters.getCollectionSizeRange();
+    final ListSubclass bean = random.nextObject(ListSubclass.class);
     assertNotNull(bean.getName());
     assertNotNull(bean.getAliases());
     assertThat(bean.getAliases().size())

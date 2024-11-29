@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -158,7 +158,7 @@ public class District implements HasInfo, Auditable, Emptyful, Normalizable, Ass
   }
 
   @Override
-  public District clone() {
+  public District cloneEx() {
     return new District(this);
   }
 

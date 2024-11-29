@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -64,14 +64,23 @@ public class Parameters {
 
   /**
    * Number of different objects to generate for a type.
+   * <p>
+   * <b>NOTE</b>: This is the maximum number of objects to generate for a type.
+   * It must be larger enough, to avoid duplicated keys when generating unique
+   * values in a collection.
+   * <p>
+   * For example, if you have a {@code List<Foo>} field, each {@code Foo} object
+   * has a unique field {@code Foo.key}. When generating the {@code List<Foo>}
+   * field with a loop, if the size of the list exceeds the object pool size,
+   * the generated {@code Foo} objects in the list may have duplicated keys.
    */
-  public static final int DEFAULT_OBJECT_POOL_SIZE = 10;
+  public static final int DEFAULT_OBJECT_POOL_SIZE = Integer.MAX_VALUE;
 
   /**
    * Default value for randomization depth, which mean, that randomization depth
-   * is unlimited.
+   * is limited.
    */
-  public static final int DEFAULT_RANDOMIZATION_DEPTH = 100;
+  public static final int DEFAULT_RANDOMIZATION_DEPTH = 20;
 
   /**
    * Default string length size.
@@ -241,6 +250,24 @@ public class Parameters {
     return objectPoolSize;
   }
 
+  /**
+   * Set the size of the object pool.
+   * <p>
+   * <b>NOTE</b>: This is the maximum number of objects to generate for a type.
+   * It must be larger enough, to avoid duplicated keys when generating unique
+   * values in a collection.
+   * <p>
+   * For example, if you have a {@code List<Foo>} field, each {@code Foo} object
+   * has a unique field {@code Foo.key}. When generating the {@code List<Foo>}
+   * field with a loop, if the size of the list exceeds the object pool size,
+   * the generated {@code Foo} objects in the list may have duplicated keys.
+   *
+   * @param objectPoolSize
+   *     the size of the object pool, which controls the maximum number of
+   *     objects to generate for the same type.
+   * @return
+   *     the current {@link Parameters} instance for method chaining.
+   */
   public Parameters setObjectPoolSize(final int objectPoolSize) {
     if (objectPoolSize < 1) {
       throw new IllegalArgumentException("objectPoolSize must be >= 1");
@@ -749,6 +776,7 @@ public class Parameters {
     return this;
   }
 
+  @Override
   public Parameters clone() {
     return new Parameters(this);
   }

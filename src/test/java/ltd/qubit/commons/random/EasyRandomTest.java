@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -9,11 +9,17 @@
 package ltd.qubit.commons.random;
 
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Stream;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.beans.AbstractBean;
@@ -31,26 +37,20 @@ import ltd.qubit.commons.random.beans.TestEnum;
 import ltd.qubit.commons.random.util.ReflectionUtils;
 import ltd.qubit.commons.util.range.CloseRange;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 import static java.sql.Timestamp.valueOf;
 import static java.time.LocalDateTime.of;
-
-import static ltd.qubit.commons.random.FieldPredicates.hasModifiers;
-import static ltd.qubit.commons.random.FieldPredicates.inClass;
-import static ltd.qubit.commons.random.FieldPredicates.named;
-import static ltd.qubit.commons.random.FieldPredicates.ofType;
+import static java.util.Arrays.asList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.api.BDDAssertions.then;
+
+import static ltd.qubit.commons.random.FieldPredicates.hasModifiers;
+import static ltd.qubit.commons.random.FieldPredicates.inClass;
+import static ltd.qubit.commons.random.FieldPredicates.named;
+import static ltd.qubit.commons.random.FieldPredicates.ofType;
 
 @ExtendWith(MockitoExtension.class)
 class EasyRandomTest {
@@ -79,12 +79,12 @@ class EasyRandomTest {
 
     assertThat(thrown).isInstanceOf(ObjectCreationException.class)
                       .hasMessageContaining("Unable to create a random instance "
-                          + "of type class ltd.qubit.commons.random.beans.Salary");
+                          + "of type class " + Salary.class.getName());
 
     final Throwable cause = thrown.getCause();
     assertThat(cause).isInstanceOf(ObjectCreationException.class)
                      .hasMessageContaining("Unable to invoke setter for field amount "
-                         + "of class ltd.qubit.commons.random.beans.Salary");
+                         + "of class " + Salary.class.getName());
 
     final Throwable rootCause = cause.getCause();
     assertThat(rootCause).isInstanceOf(IllegalArgumentException.class)
@@ -199,8 +199,11 @@ class EasyRandomTest {
 
   @Test
   void beansWithRecursiveStructureMustNotCauseStackOverflowException() {
+    final Parameters parameters = random.getParameters();
+    parameters.setRandomizationDepth(3);
     final Node node = random.nextObject(Node.class);
     assertThat(node).hasNoNullFieldsOrProperties();
+    parameters.setRandomizationDepth(Parameters.DEFAULT_RANDOMIZATION_DEPTH);
   }
 
   @Test
@@ -280,7 +283,7 @@ class EasyRandomTest {
   private void validatePerson(final Person person) {
     assertThat(person).isNotNull();
     assertThat(person.getEmail()).isNotEmpty();
-    assertThat(person.getGender()).isIn(Arrays.asList(Gender.values()));
+    assertThat(person.getGender()).isIn(asList(Gender.values()));
     assertThat(person.getBirthDate()).isNotNull();
     assertThat(person.getPhoneNumber()).isNotEmpty();
     assertThat(person.getNicknames()).isNotNull();

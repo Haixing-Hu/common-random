@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -8,16 +8,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.random.randomizers.time.internal;
 
-import ltd.qubit.commons.random.randomizers.AbstractRandomizerTest;
-import ltd.qubit.commons.random.randomizers.time.MinuteRandomizer;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static ltd.qubit.commons.random.randomizers.time.MinuteRandomizer.MAX_MINUTE;
-import static ltd.qubit.commons.random.randomizers.time.MinuteRandomizer.MIN_MINUTE;
+import ltd.qubit.commons.random.randomizers.AbstractRandomizerTest;
+import ltd.qubit.commons.random.randomizers.time.MinuteRandomizer;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import static ltd.qubit.commons.random.randomizers.time.MinuteRandomizer.MAX_MINUTE;
+import static ltd.qubit.commons.random.randomizers.time.MinuteRandomizer.MIN_MINUTE;
 
 class MinuteRandomizerTest extends AbstractRandomizerTest<Integer> {
 

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -251,7 +251,7 @@ public class User implements Identifiable, WithUsername, WithPassword, WithName,
   }
 
   @Override
-  public User clone() {
+  public User cloneEx() {
     return new User(this);
   }
 

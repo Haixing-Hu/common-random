@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -101,7 +101,7 @@ public class FileInfo implements Serializable, Assignable<FileInfo> {
   }
 
   @Override
-  public FileInfo clone() {
+  public FileInfo cloneEx() {
     return new FileInfo(this);
   }
 

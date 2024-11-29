@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -84,7 +84,7 @@ public class Owner implements Serializable, Assignable<Owner> {
   }
 
   @Override
-  public Owner clone() {
+  public Owner cloneEx() {
     return new Owner(this);
   }
 

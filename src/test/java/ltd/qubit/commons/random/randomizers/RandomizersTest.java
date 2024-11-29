@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -9,6 +9,10 @@
 package ltd.qubit.commons.random.randomizers;
 
 import java.text.DecimalFormatSymbols;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.faker.CityRandomizer;
@@ -34,10 +38,6 @@ import ltd.qubit.commons.random.randomizers.faker.StateRandomizer;
 import ltd.qubit.commons.random.randomizers.faker.StreetRandomizer;
 import ltd.qubit.commons.random.randomizers.faker.WordRandomizer;
 import ltd.qubit.commons.random.randomizers.faker.ZipCodeRandomizer;
-
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.BDDAssertions.then;
 

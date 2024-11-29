@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -134,7 +134,7 @@ public class Contact implements Serializable, WithAddress, Emptyful,
   }
 
   @Override
-  public Contact clone() {
+  public Contact cloneEx() {
     return new Contact(this);
   }
 

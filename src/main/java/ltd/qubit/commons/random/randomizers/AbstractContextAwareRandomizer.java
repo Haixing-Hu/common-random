@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -19,11 +19,15 @@ public abstract class AbstractContextAwareRandomizer<T> extends AbstractRandomiz
   protected boolean contextAware = true;
 
   public AbstractContextAwareRandomizer() {
-    super();
   }
 
   public AbstractContextAwareRandomizer(final long seed) {
     super(seed);
+  }
+
+  public AbstractContextAwareRandomizer(final Context context) {
+    this.context = context;
+    this.contextAware = true;
   }
 
   public final boolean isContextAware() {

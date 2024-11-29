@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -8,11 +8,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.random.randomizers.range;
 
+import java.lang.reflect.Field;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
 import ltd.qubit.commons.annotation.Precision;
+import ltd.qubit.commons.random.Context;
 import ltd.qubit.commons.random.Parameters;
 import ltd.qubit.commons.random.randomizers.AbstractRangeRandomizer;
 import ltd.qubit.commons.util.range.CloseRange;
@@ -21,6 +23,7 @@ import static java.sql.Date.valueOf;
 
 import static ltd.qubit.commons.lang.Argument.requireNonNull;
 import static ltd.qubit.commons.lang.DateUtils.truncateInPlace;
+import static ltd.qubit.commons.reflect.FieldUtils.getAnnotation;
 
 /**
  * Generate a random {@link java.sql.Date} in a given range.
@@ -140,9 +143,21 @@ public class SqlDateRangeRandomizer extends AbstractRangeRandomizer<Date> {
   @Override
   public void setParameters(final Parameters parameters) {
     final CloseRange<LocalDate> localDateRange = parameters.getDateRange();
-    final Date minDate = valueOf(localDateRange.getMin());
-    final Date maxDate = valueOf(localDateRange.getMax());
+    final java.sql.Date minDate = valueOf(localDateRange.getMin());
+    final java.sql.Date maxDate = valueOf(localDateRange.getMax());
     setRange(minDate, maxDate);
+  }
+
+  @Override
+  public void setContext(final Context context) {
+    super.setContext(context);
+    final Field field = context.getCurrentField();
+    if (field != null) {
+      final Precision precisionAnn = getAnnotation(field, Precision.class);
+      if (precisionAnn != null) {
+        precision = precisionAnn.value();
+      }
+    }
   }
 
   @Override

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -35,7 +35,6 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
-import ltd.qubit.commons.annotation.Precision;
 import ltd.qubit.commons.annotation.Priority;
 import ltd.qubit.commons.random.Context;
 import ltd.qubit.commons.random.EasyRandom;
@@ -60,7 +59,6 @@ import ltd.qubit.commons.random.handlers.PastOrPresentAnnotationHandler;
 import ltd.qubit.commons.random.handlers.PatternAnnotationHandler;
 import ltd.qubit.commons.random.handlers.PositiveAnnotationHandler;
 import ltd.qubit.commons.random.handlers.PositiveOrZeroAnnotationHandler;
-import ltd.qubit.commons.random.handlers.PrecisionAnnotationHandler;
 import ltd.qubit.commons.random.handlers.SizeAnnotationHandler;
 
 import static ltd.qubit.commons.reflect.FieldUtils.isAnnotationPresent;
@@ -101,7 +99,6 @@ public class BeanValidationRandomizerRegistry implements RandomizerRegistry {
     handlers.put(NotEmpty.class, new NotEmptyAnnotationHandler(seed, random, parameters));
     handlers.put(NotBlank.class, new NotBlankAnnotationHandler(seed));
     handlers.put(Email.class, new EmailAnnotationHandler(seed));
-    handlers.put(Precision.class, new PrecisionAnnotationHandler(seed, parameters));
   }
 
   @Override

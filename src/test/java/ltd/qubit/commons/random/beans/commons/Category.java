@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -165,7 +165,7 @@ public class Category implements HasInfoWithEntity, Auditable, Emptyful,
   }
 
   @Override
-  public Category clone() {
+  public Category cloneEx() {
     return new Category(this);
   }
 

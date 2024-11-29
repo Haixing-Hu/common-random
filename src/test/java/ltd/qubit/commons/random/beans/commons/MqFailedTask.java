@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -100,7 +100,7 @@ public final class MqFailedTask implements Identifiable,
   }
 
   @Override
-  public MqFailedTask clone() {
+  public MqFailedTask cloneEx() {
     return new MqFailedTask(this);
   }
 

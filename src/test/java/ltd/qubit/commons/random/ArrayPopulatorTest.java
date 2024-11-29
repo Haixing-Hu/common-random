@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -10,15 +10,15 @@ package ltd.qubit.commons.random;
 
 import java.lang.reflect.Array;
 
-import ltd.qubit.commons.random.beans.ArrayBean;
-import ltd.qubit.commons.random.beans.Person;
-import ltd.qubit.commons.util.range.CloseRange;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import ltd.qubit.commons.random.beans.ArrayBean;
+import ltd.qubit.commons.random.beans.Person;
+import ltd.qubit.commons.util.range.CloseRange;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;

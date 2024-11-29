@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -11,14 +11,14 @@ package ltd.qubit.commons.random.randomizers.net;
 import java.net.URI;
 import java.net.URL;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
 import ltd.qubit.commons.random.EasyRandom;
 import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.beans.Website;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizerTest;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.BDDAssertions.then;
 

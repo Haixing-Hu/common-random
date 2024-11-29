@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -10,52 +10,98 @@ package ltd.qubit.commons.random.randomizers.number;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
-import ltd.qubit.commons.random.randomizers.AbstractRandomizerTest;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.BDDAssertions.then;
+import ltd.qubit.commons.annotation.Money;
+import ltd.qubit.commons.annotation.Round;
+import ltd.qubit.commons.annotation.Scale;
+import ltd.qubit.commons.random.EasyRandom;
+import ltd.qubit.commons.random.randomizers.AbstractRandomizerTest;
 
-class BigDecimalRandomizerTest extends AbstractRandomizerTest<BigDecimal> {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class BigDecimalRandomizerTest extends AbstractRandomizerTest<BigDecimal> {
 
   @Test
-  void generatedValueShouldHaveProvidedPositiveScale() {
-    // given
+  public void generatedValueShouldHaveProvidedPositiveScale() {
     final Integer scale = 1;
-    final BigDecimalRandomizer bigDecimalRandomizer = new BigDecimalRandomizer(scale);
-
-    // when
-    final BigDecimal bigDecimal = bigDecimalRandomizer.getRandomValue();
-
-    then(bigDecimal.scale()).isEqualTo(scale);
+    randomizer = new BigDecimalRandomizer(scale);
+    final BigDecimal bigDecimal = randomizer.getRandomValue();
+    assertEquals(scale, bigDecimal.scale());
   }
 
   @Test
-  void generatedValueShouldHaveProvidedNegativeScale() {
-    // given
+  public void generatedValueShouldHaveProvidedNegativeScale() {
     final Integer scale = -1;
-    final BigDecimalRandomizer bigDecimalRangeRandomizer =
-        new BigDecimalRandomizer(scale);
-
-    // when
-    final BigDecimal bigDecimal = bigDecimalRangeRandomizer.getRandomValue();
-
-    then(bigDecimal.scale()).isEqualTo(scale);
+    randomizer = new BigDecimalRandomizer(scale);
+    final BigDecimal bigDecimal = randomizer.getRandomValue();
+    assertEquals(scale, bigDecimal.scale());
   }
 
   @Test
-  void testCustomRoundingMode() {
-    // given
+  public void testCustomRoundingMode() {
     final long initialSeed = 123;
     final Integer scale = 1;
     final RoundingMode roundingMode = RoundingMode.DOWN;
-    final BigDecimalRandomizer bigDecimalRandomizer =
-        new BigDecimalRandomizer(initialSeed, scale, roundingMode);
+    randomizer = new BigDecimalRandomizer(initialSeed, scale, roundingMode);
+    final BigDecimal bigDecimal = randomizer.getRandomValue();
+    assertEquals(new BigDecimal("0.7"), bigDecimal);
+  }
 
-    // when
-    final BigDecimal bigDecimal = bigDecimalRandomizer.getRandomValue();
+  static class Foo {
+    @Scale(2)
+    @Round(RoundingMode.DOWN)
+    BigDecimal value;
 
-    then(bigDecimal).isEqualTo(new BigDecimal("0.7"));
+    @Money
+    BigDecimal money;
+  }
+
+  @Test
+  public void testContextAwareRoundingMode() {
+    final EasyRandom random = new EasyRandom();
+    final Foo foo = random.nextObject(Foo.class);
+    assertEquals(2, foo.value.scale());
+    assertEquals(Money.DEFAULT_SCALE, foo.money.scale());
+  }
+
+  static class Goo {
+    @Scale(2)
+    @Round(RoundingMode.DOWN)
+    List<BigDecimal> values;
+
+    @Money
+    List<BigDecimal> moneys;
+
+    @Scale(2)
+    @Round(RoundingMode.DOWN)
+    List<List<BigDecimal>> values2D;
+
+    @Money
+    List<List<BigDecimal>> moneys2D;
+  }
+
+  @Test
+  public void testContextAwareRoundingModeForList() {
+    final EasyRandom random = new EasyRandom();
+    final Goo goo = random.nextObject(Goo.class);
+    for (final BigDecimal value : goo.values) {
+      assertEquals(2, value.scale());
+    }
+    for (final BigDecimal money : goo.moneys) {
+      assertEquals(Money.DEFAULT_SCALE, money.scale());
+    }
+    for (final List<BigDecimal> values : goo.values2D) {
+      for (final BigDecimal value : values) {
+        assertEquals(2, value.scale());
+      }
+    }
+    for (final List<BigDecimal> moneys : goo.moneys2D) {
+      for (final BigDecimal money : moneys) {
+        assertEquals(Money.DEFAULT_SCALE, money.scale());
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -12,6 +12,11 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
 import ltd.qubit.commons.random.api.ContextAwareRandomizer;
 import ltd.qubit.commons.random.beans.Address;
 import ltd.qubit.commons.random.beans.Human;
@@ -22,18 +27,13 @@ import ltd.qubit.commons.random.beans.exclusion.A;
 import ltd.qubit.commons.random.beans.exclusion.B;
 import ltd.qubit.commons.random.beans.exclusion.C;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import static ltd.qubit.commons.random.FieldPredicates.hasModifiers;
 import static ltd.qubit.commons.random.FieldPredicates.inClass;
 import static ltd.qubit.commons.random.FieldPredicates.isAnnotatedWith;
 import static ltd.qubit.commons.random.FieldPredicates.named;
 import static ltd.qubit.commons.random.FieldPredicates.ofType;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
 class FieldExclusionTest {
@@ -224,7 +224,7 @@ class FieldExclusionTest {
   @Test
   void testThirdLevelExclusion() { // goal: exclude only b2.a2.s2
     final Parameters parameters = new Parameters()
-        .randomize(named("s2")
+        .randomize(FieldPredicates.named("s2")
                                   .and(inClass(A.class)),
             new ContextAwareRandomizer<String>() {
               private Context context;
@@ -266,7 +266,7 @@ class FieldExclusionTest {
   @Test
   void testFirstLevelCollectionExclusion() {
     final Parameters parameters = new Parameters()
-        .excludeField(named("b3").and(inClass(C.class)));
+        .excludeField(FieldPredicates.named("b3").and(inClass(C.class)));
     random = new EasyRandom(parameters);
 
     final C c = random.nextObject(C.class);
@@ -298,7 +298,7 @@ class FieldExclusionTest {
   @Test
   void testSecondLevelCollectionExclusion() { // b3.a2 does not make sense, should be ignored
     final Parameters parameters = new Parameters()
-        .randomize(named("a2")
+        .randomize(FieldPredicates.named("a2")
                                   .and(inClass(B.class)),
             new ContextAwareRandomizer<A>() {
               private Context context;

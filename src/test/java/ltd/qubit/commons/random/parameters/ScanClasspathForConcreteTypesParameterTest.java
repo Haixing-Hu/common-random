@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -9,6 +9,8 @@
 package ltd.qubit.commons.random.parameters;
 
 import java.util.Date;
+
+import org.junit.jupiter.api.Test;
 
 import ltd.qubit.commons.random.EasyRandom;
 import ltd.qubit.commons.random.ObjectCreationException;
@@ -24,14 +26,11 @@ import ltd.qubit.commons.random.beans.Mamals;
 import ltd.qubit.commons.random.beans.Person;
 import ltd.qubit.commons.random.beans.SocialPerson;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.BDDAssertions.then;
 
-class ScanClasspathForConcreteTypesParameterTests {
+class ScanClasspathForConcreteTypesParameterTest {
 
   private EasyRandom easyRandom;
 
@@ -117,17 +116,14 @@ class ScanClasspathForConcreteTypesParameterTests {
   }
 
   // issue https://github.com/j-easy/easy-random/issues/353
-
   @Test
   void scanClasspathForConcreteTypes_whenConcreteTypeIsAnInnerClass() {
     final Parameters parameters =
             new Parameters().scanClasspathForConcreteTypes(true);
     final EasyRandom easyRandom = new EasyRandom(parameters);
-
     final Foobar foobar = easyRandom.nextObject(Foobar.class);
-
-    Assertions.assertThat(foobar).isNotNull();
-    Assertions.assertThat(foobar.getToto()).isNotNull();
+    assertThat(foobar).isNotNull();
+    assertThat(foobar.getToto()).isNotNull();
   }
 
   public class Foobar {

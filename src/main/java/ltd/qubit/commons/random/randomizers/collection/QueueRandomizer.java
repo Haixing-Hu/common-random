@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -21,7 +21,7 @@ import ltd.qubit.commons.random.api.Randomizer;
  *         the type of elements in the queue
  * @author Mahmoud Ben Hassine, Haixing Hu
  */
-public class QueueRandomizer<T> extends CollectionRandomizer<T> {
+public class QueueRandomizer<T> extends AbstractCollectionRandomizer<T> {
 
   /**
    * Create a new {@link QueueRandomizer} that will generate a queue with a
@@ -50,7 +50,7 @@ public class QueueRandomizer<T> extends CollectionRandomizer<T> {
   @Override
   public Queue<T> getRandomValue() {
     final Queue<T> result = new LinkedList<>();
-    for (int i = 0; i < nbElements; i++) {
+    for (int i = 0; i < size; i++) {
       result.add(getRandomElement());
     }
     return result;
@@ -58,6 +58,6 @@ public class QueueRandomizer<T> extends CollectionRandomizer<T> {
 
   @Override
   public String toString() {
-    return "QueueRandomizer [delegate=" + delegate + ", nbElements=" + nbElements + "]";
+    return "QueueRandomizer [delegate=" + delegate + ", nbElements=" + size + "]";
   }
 }

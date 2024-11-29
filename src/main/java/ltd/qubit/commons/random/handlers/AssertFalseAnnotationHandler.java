@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -23,6 +23,7 @@ import ltd.qubit.commons.random.randomizers.misc.ConstantRandomizer;
  */
 public class AssertFalseAnnotationHandler implements AnnotationHandler {
 
+  @Override
   public Randomizer<?> getRandomizer(final Field field, final Context context) {
     return new ConstantRandomizer<>(false);
   }

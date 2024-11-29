@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -24,6 +24,8 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.SynchronousQueue;
 
+import org.junit.jupiter.api.Test;
+
 import ltd.qubit.commons.random.beans.Bar;
 import ltd.qubit.commons.random.beans.CustomList;
 import ltd.qubit.commons.random.beans.CustomMap;
@@ -35,8 +37,6 @@ import ltd.qubit.commons.random.beans.MammalImpl;
 import ltd.qubit.commons.random.beans.SocialPerson;
 import ltd.qubit.commons.reflect.FieldUtils;
 
-import org.junit.jupiter.api.Test;
-
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.ElementType.FIELD;
@@ -44,6 +44,21 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static ltd.qubit.commons.lang.ClassUtils.isAbstract;
+import static ltd.qubit.commons.lang.ClassUtils.isArrayType;
+import static ltd.qubit.commons.lang.ClassUtils.isCollectionType;
+import static ltd.qubit.commons.lang.ClassUtils.isEnumType;
+import static ltd.qubit.commons.lang.ClassUtils.isInterface;
+import static ltd.qubit.commons.lang.ClassUtils.isJdkBuiltIn;
+import static ltd.qubit.commons.lang.ClassUtils.isMapType;
+import static ltd.qubit.commons.lang.ClassUtils.isPublic;
 import static ltd.qubit.commons.random.util.ReflectionUtils.fieldHasDefaultValue;
 import static ltd.qubit.commons.random.util.ReflectionUtils.getDeclaredFields;
 import static ltd.qubit.commons.random.util.ReflectionUtils.getEmptyCollectionForType;
@@ -53,23 +68,8 @@ import static ltd.qubit.commons.random.util.ReflectionUtils.getInheritedFields;
 import static ltd.qubit.commons.random.util.ReflectionUtils.getPopulatableFields;
 import static ltd.qubit.commons.random.util.ReflectionUtils.getWrapperType;
 import static ltd.qubit.commons.random.util.ReflectionUtils.isPrimitiveFieldWithDefaultValue;
-import static ltd.qubit.commons.reflect.ClassUtils.isAbstract;
-import static ltd.qubit.commons.reflect.ClassUtils.isArrayType;
-import static ltd.qubit.commons.reflect.ClassUtils.isCollectionType;
-import static ltd.qubit.commons.reflect.ClassUtils.isEnumType;
-import static ltd.qubit.commons.reflect.ClassUtils.isInterface;
-import static ltd.qubit.commons.reflect.ClassUtils.isJdkBuiltIn;
-import static ltd.qubit.commons.reflect.ClassUtils.isMapType;
-import static ltd.qubit.commons.reflect.ClassUtils.isPublic;
 import static ltd.qubit.commons.reflect.FieldUtils.getReadMethod;
 import static ltd.qubit.commons.reflect.FieldUtils.isStatic;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ReflectionUtilsTest {
 
@@ -98,8 +98,7 @@ class ReflectionUtilsTest {
   void testGetDeclaredFields() {
     final BigDecimal javaVersion = new BigDecimal(System.getProperty("java.specification.version"));
     System.out.println("Java version: " + javaVersion);
-    final List<Field> fields = filterIgnoredFields(getDeclaredFields(
-        SocialPerson.class));
+    final List<Field> fields = filterIgnoredFields(getDeclaredFields(SocialPerson.class));
     if (javaVersion.compareTo(new BigDecimal("17")) >= 0) {
       assertThat(fields).hasSize(21);
     } else if (javaVersion.compareTo(new BigDecimal("15")) >= 0) {

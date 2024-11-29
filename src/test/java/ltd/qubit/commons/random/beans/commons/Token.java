@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -75,7 +75,7 @@ public class Token implements Serializable, Emptyful, Normalizable, Assignable<T
   }
 
   @Override
-  public Token clone() {
+  public Token cloneEx() {
     return new Token(this);
   }
 

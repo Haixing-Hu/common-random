@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -262,7 +262,7 @@ public class Employee implements Identifiable, WithCode, WithName, WithCategory,
   }
 
   @Override
-  public Employee clone() {
+  public Employee cloneEx() {
     return new Employee(this);
   }
 

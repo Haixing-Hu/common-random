@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Nullable;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import ltd.qubit.commons.annotation.Priority;
 import ltd.qubit.commons.annotation.TypeCodec;
@@ -40,7 +43,9 @@ import static ltd.qubit.commons.random.Parameters.DEFAULT_MAX_LOOPS;
 @Priority(Integer.MAX_VALUE - 1)
 public class UniqueValueRandomizer<T> implements ContextAwareRandomizer<T> {
 
+  private final Logger logger = LoggerFactory.getLogger(this.getClass());
   private final Field field;
+  private final String fieldName;
   private final String[] respectTo;
   private final boolean ignoreCase;
   private final EasyRandom random;
@@ -53,6 +58,7 @@ public class UniqueValueRandomizer<T> implements ContextAwareRandomizer<T> {
       final EasyRandom random, final RandomizerProvider provider,
       final Set<Object> cache) {
     this.field = requireNonNull(field, "field cannot be null");
+    this.fieldName = field.getDeclaringClass().getSimpleName() + "." + field.getName();
     this.respectTo = respectTo;
     this.ignoreCase = ignoreCase;
     this.random = requireNonNull(random, "random cannot be null");
@@ -95,6 +101,7 @@ public class UniqueValueRandomizer<T> implements ContextAwareRandomizer<T> {
       @SuppressWarnings("unchecked")
       final T value = (T) randomizer.getRandomValue();
       if (value == null) {
+        logger.trace("Generating a null value for field: {}", fieldName);
         return null;    // for @Nullable annotation
       }
       // 应忽略唯一属性的 respectTo 属性，不将其作为 cache 的 value 的一部分
@@ -125,6 +132,7 @@ public class UniqueValueRandomizer<T> implements ContextAwareRandomizer<T> {
       synchronized (cache) {
         if (! cache.contains(cachedValue)) {
           cache.add(cachedValue);
+          logger.trace("Generated a unique value for the field {}: {}", fieldName, value);
           return value;
         }
       }

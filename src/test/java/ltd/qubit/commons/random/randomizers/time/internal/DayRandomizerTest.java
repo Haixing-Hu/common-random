@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -8,16 +8,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.random.randomizers.time.internal;
 
-import ltd.qubit.commons.random.randomizers.AbstractRandomizerTest;
-import ltd.qubit.commons.random.randomizers.time.DayRandomizer;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static ltd.qubit.commons.random.randomizers.time.DayRandomizer.MAX_DAY;
-import static ltd.qubit.commons.random.randomizers.time.DayRandomizer.MIN_DAY;
+import ltd.qubit.commons.random.randomizers.AbstractRandomizerTest;
+import ltd.qubit.commons.random.randomizers.time.DayRandomizer;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import static ltd.qubit.commons.random.randomizers.time.DayRandomizer.MAX_DAY;
+import static ltd.qubit.commons.random.randomizers.time.DayRandomizer.MIN_DAY;
 
 class DayRandomizerTest extends AbstractRandomizerTest<Integer> {
 

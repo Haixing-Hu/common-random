@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -100,7 +100,7 @@ public class Payload implements Assignable<Payload> {
   }
 
   @Override
-  public Payload clone() {
+  public Payload cloneEx() {
     return new Payload(this);
   }
 
@@ -206,13 +206,14 @@ public class Payload implements Assignable<Payload> {
   }
 
   public String getIndexKey() {
-    final String builder = owner.getType().toUpperCase()
-        + '-'
-        + owner.getId()
-        + '-'
-        + owner.getProperty().toUpperCase()
-        + '-'
-        + key.toUpperCase();
-    return builder;
+    final StringBuilder builder = new StringBuilder();
+    builder.append(owner.getType().toUpperCase())
+        .append('-')
+        .append(owner.getId())
+        .append('-')
+        .append(owner.getProperty().toUpperCase())
+        .append('-')
+        .append(key.toUpperCase());
+    return builder.toString();
   }
 }

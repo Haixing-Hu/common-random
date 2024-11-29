@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -22,9 +22,9 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.text.StringRandomizer;
 import ltd.qubit.commons.util.range.CloseRange;
 
-import static ltd.qubit.commons.reflect.ClassUtils.isArrayType;
-import static ltd.qubit.commons.reflect.ClassUtils.isCollectionType;
-import static ltd.qubit.commons.reflect.ClassUtils.isMapType;
+import static ltd.qubit.commons.lang.ClassUtils.isArrayType;
+import static ltd.qubit.commons.lang.ClassUtils.isCollectionType;
+import static ltd.qubit.commons.lang.ClassUtils.isMapType;
 
 /**
  * An annotation handler for the {@link NotEmpty} annotation.

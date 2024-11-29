@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -10,6 +10,7 @@ package ltd.qubit.commons.random.beans.upload;
 
 import java.util.Locale;
 
+import ltd.qubit.commons.error.UnsupportedContentTypeException;
 import ltd.qubit.commons.lang.EnumUtils;
 
 import static ltd.qubit.commons.lang.EnumUtils.registerLocalizedNames;
@@ -87,7 +88,7 @@ public enum AttachmentType {
     } else if (contentType.equals("text/x-vcard")) {
       return VCARD;
     } else {
-      throw new IllegalArgumentException(contentType);
+      throw new UnsupportedContentTypeException(contentType);
     }
   }
 

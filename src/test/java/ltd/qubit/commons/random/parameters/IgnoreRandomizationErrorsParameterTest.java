@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -10,16 +10,16 @@ package ltd.qubit.commons.random.parameters;
 
 import java.util.concurrent.Callable;
 
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import ltd.qubit.commons.random.EasyRandom;
 import ltd.qubit.commons.random.ObjectCreationException;
 import ltd.qubit.commons.random.Parameters;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class IgnoreRandomizationErrorsParameterTests {
+class IgnoreRandomizationErrorsParameterTest {
 
   private EasyRandom easyRandom;
 

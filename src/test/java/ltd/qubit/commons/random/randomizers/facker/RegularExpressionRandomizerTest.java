@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -8,9 +8,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.random.randomizers.facker;
 
-import ltd.qubit.commons.random.randomizers.faker.RegularExpressionRandomizer;
-
 import org.junit.jupiter.api.Test;
+
+import ltd.qubit.commons.random.randomizers.faker.RegularExpressionRandomizer;
 
 import static org.assertj.core.api.BDDAssertions.then;
 

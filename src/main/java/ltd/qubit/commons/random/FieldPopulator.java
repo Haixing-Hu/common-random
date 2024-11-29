@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -13,21 +13,24 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ltd.qubit.commons.random.api.ContextAwareRandomizer;
 import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.api.RandomizerProvider;
 import ltd.qubit.commons.random.randomizers.misc.SkipRandomizer;
-import ltd.qubit.commons.random.util.ReflectionUtils;
 import ltd.qubit.commons.reflect.FieldUtils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import static ltd.qubit.commons.reflect.ClassUtils.isAbstract;
-import static ltd.qubit.commons.reflect.ClassUtils.isArrayType;
-import static ltd.qubit.commons.reflect.ClassUtils.isCollectionType;
-import static ltd.qubit.commons.reflect.ClassUtils.isEnumType;
-import static ltd.qubit.commons.reflect.ClassUtils.isMapType;
+import static ltd.qubit.commons.lang.ClassUtils.isAbstract;
+import static ltd.qubit.commons.lang.ClassUtils.isArrayType;
+import static ltd.qubit.commons.lang.ClassUtils.isCollectionType;
+import static ltd.qubit.commons.lang.ClassUtils.isEnumType;
+import static ltd.qubit.commons.lang.ClassUtils.isMapType;
+import static ltd.qubit.commons.random.util.ReflectionUtils.filterSameParameterizedTypes;
+import static ltd.qubit.commons.random.util.ReflectionUtils.getPublicConcreteSubTypesOf;
+import static ltd.qubit.commons.random.util.ReflectionUtils.setFieldValue;
+import static ltd.qubit.commons.random.util.ReflectionUtils.setProperty;
 
 /**
  * Component that encapsulate the logic of generating a random value for a given
@@ -123,10 +126,10 @@ public class FieldPopulator {
       }
     }
     if (context.getParameters().isBypassSetters()) {
-      ReflectionUtils.setFieldValue(object, field, value);
+      setFieldValue(object, field, value);
     } else {
       try {
-        ReflectionUtils.setProperty(object, field, value);
+        setProperty(object, field, value);
       } catch (final InvocationTargetException e) {
         final String exceptionMessage = String.format(
                 "Unable to invoke setter for field %s of class %s",
@@ -161,8 +164,8 @@ public class FieldPopulator {
       if (context.getParameters().isScanClasspathForConcreteTypes()
               && isAbstract(fieldType)
               && !isEnumType(fieldType)) { /*enums can be abstract, but can not inherit*/
-        List<Class<?>> subTypes = ReflectionUtils.getPublicConcreteSubTypesOf(fieldType);
-        subTypes = ReflectionUtils.filterSameParameterizedTypes(subTypes, fieldGenericType);
+        List<Class<?>> subTypes = getPublicConcreteSubTypesOf(fieldType);
+        subTypes = filterSameParameterizedTypes(subTypes, fieldGenericType);
         final Class<?> randomConcreteSubType = random.choose(subTypes);
         if (randomConcreteSubType == null) {
           throw new ObjectCreationException(

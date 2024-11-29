@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -16,6 +16,9 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ltd.qubit.commons.math.RandomEx;
 import ltd.qubit.commons.random.Context;
 import ltd.qubit.commons.random.EasyRandom;
@@ -26,10 +29,18 @@ import ltd.qubit.commons.random.api.ObjectFactory;
 import ltd.qubit.commons.util.pair.Pair;
 import ltd.qubit.commons.util.range.CloseRange;
 
-import static ltd.qubit.commons.reflect.ClassUtils.isIntrospectable;
-import static ltd.qubit.commons.reflect.ClassUtils.isPopulatable;
+import static ltd.qubit.commons.lang.ClassUtils.isIntrospectable;
+import static ltd.qubit.commons.lang.ClassUtils.isPopulatable;
+import static ltd.qubit.commons.random.util.ReflectionUtils.createEmptyCollection;
+import static ltd.qubit.commons.random.util.ReflectionUtils.createEmptyMap;
+import static ltd.qubit.commons.random.util.ReflectionUtils.fieldHasDefaultValue;
+import static ltd.qubit.commons.random.util.ReflectionUtils.getCollectionElementType;
+import static ltd.qubit.commons.random.util.ReflectionUtils.getMapElementType;
+import static ltd.qubit.commons.random.util.ReflectionUtils.getPopulatableFields;
 
 public class RandomUtils {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(RandomUtils.class);
 
   /**
    * Gets the random size of a collection.
@@ -60,9 +71,9 @@ public class RandomUtils {
    *     a random bean generator.
    * @param context
    *     the randomization context.
-   * @param type
+   * @param collectionType
    *     the class of the collection.
-   * @param genericType
+   * @param collectionGenericType
    *     the generic type of the collection, or it could be the same as the
    *     {@code type} argument.
    * @param size
@@ -70,15 +81,16 @@ public class RandomUtils {
    * @return a random collection of the specified size; or an empty collection
    *     if its element type cannot be resolved.
    */
-  @SuppressWarnings({"unchecked", "rawtypes"})
-  public static Collection createRandomCollection(final EasyRandom random,
-      final Context context, final Class<?> type, final Type genericType,
+  @SuppressWarnings({"unchecked"})
+  public static <T> Collection<T> createRandomCollection(final EasyRandom random,
+      final Context context, final Class<T> collectionType, final Type collectionGenericType,
       final int size) {
-    final Collection result = ReflectionUtils.createEmptyCollection(type, size);
-    final Class<?> elementType = ReflectionUtils.getCollectionElementType(genericType);
+    final Collection<T> result = createEmptyCollection(collectionType, size);
+    final Class<T> elementType = (Class<T>) getCollectionElementType(collectionGenericType);
     if (elementType != null && isPopulatable(elementType)) {
       for (int i = 0; i < size; ++i) {
-        final Object item = random.nextObject(elementType, context);
+        final T item = random.nextObject(elementType, context);
+        LOGGER.trace("Add a random item to the collection: {}", item);
         result.add(item);
       }
     }
@@ -108,9 +120,9 @@ public class RandomUtils {
   public static Map createRandomMap(final EasyRandom random,
       final ObjectFactory objectFactory, final Context context,
       final Class<?> type, final Type genericType, final int size) {
-    final Map<Object, Object> result = ReflectionUtils.createEmptyMap(objectFactory, context,
+    final Map<Object, Object> result = createEmptyMap(objectFactory, context,
         type, genericType);
-    final Pair<Class<?>, Class<?>> elementTypes = ReflectionUtils.getMapElementType(
+    final Pair<Class<?>, Class<?>> elementTypes = getMapElementType(
         genericType);
     if (elementTypes != null) {
       final Class<?> keyType = elementTypes.first;
@@ -152,18 +164,18 @@ public class RandomUtils {
    *     the type of the object.
    * @return the object whose remained fields are populated.
    */
-  public static <T> T populateRemainedFields(final EasyRandom random, final Context context,
-      final Class<?> type, final T obj) {
+  public static <T> T populateRemainedFields(final EasyRandom random,
+      final Context context, final Class<?> type, final T obj) {
     if (!isIntrospectable(type)) {
       return obj;
     }
     final FieldPopulator populator = random.getFieldPopulator();
     // retrieve fields to be populated
-    final List<Field> fields = ReflectionUtils.getPopulatableFields(type, obj);
+    final List<Field> fields = getPopulatableFields(type, obj);
     try {
       for (final Field field : fields) {
         if (context.shouldFieldBePopulated(obj, field)
-            && ReflectionUtils.fieldHasDefaultValue(obj, field)) {
+            && fieldHasDefaultValue(obj, field)) {
           populator.populate(obj, field, context);
         }
       }

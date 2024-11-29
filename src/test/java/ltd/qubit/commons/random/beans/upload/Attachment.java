@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -151,7 +151,7 @@ public class Attachment implements Identifiable, WithOwner, WithCategory,
   }
 
   @Override
-  public Attachment clone() {
+  public Attachment cloneEx() {
     return new Attachment(this);
   }
 

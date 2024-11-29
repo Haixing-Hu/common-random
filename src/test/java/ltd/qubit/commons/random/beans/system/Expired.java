@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -52,7 +52,7 @@ public class Expired implements Assignable<Expired> {
   }
 
   @Override
-  public Expired clone() {
+  public Expired cloneEx() {
     return new Expired(this);
   }
 

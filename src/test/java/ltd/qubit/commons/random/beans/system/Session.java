@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -165,7 +165,7 @@ public class Session implements Identifiable, WithApp, WithToken, Expirable,
   }
 
   @Override
-  public Session clone() {
+  public Session cloneEx() {
     return new Session(this);
   }
 

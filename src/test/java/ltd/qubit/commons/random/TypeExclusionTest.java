@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -8,16 +8,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.random;
 
+import org.junit.jupiter.api.Test;
+
 import ltd.qubit.commons.random.beans.Address;
 import ltd.qubit.commons.random.beans.Website;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import static ltd.qubit.commons.random.TypePredicates.inPackage;
 import static ltd.qubit.commons.random.TypePredicates.isAbstract;
 import static ltd.qubit.commons.random.TypePredicates.isInterface;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class TypeExclusionTest {
 

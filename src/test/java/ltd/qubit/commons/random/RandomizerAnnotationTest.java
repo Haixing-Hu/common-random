@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -8,11 +8,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.random;
 
+import org.junit.jupiter.api.Test;
+
 import ltd.qubit.commons.random.annotation.Randomizer;
 import ltd.qubit.commons.random.annotation.RandomizerArgument;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
-
-import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -140,8 +140,7 @@ class RandomizerAnnotationTest {
     private String name;
   }
 
-  public static class RandomizerWithoutDefaultConstrcutor implements
-      ltd.qubit.commons.random.api.Randomizer<String> {
+  public static class RandomizerWithoutDefaultConstrcutor implements ltd.qubit.commons.random.api.Randomizer<String> {
 
     public RandomizerWithoutDefaultConstrcutor(final int d) {
     }
@@ -152,8 +151,7 @@ class RandomizerAnnotationTest {
     }
   }
 
-  public static class DummyRandomizer implements
-      ltd.qubit.commons.random.api.Randomizer<String> {
+  public static class DummyRandomizer implements ltd.qubit.commons.random.api.Randomizer<String> {
 
     @Override
     public String getRandomValue() {

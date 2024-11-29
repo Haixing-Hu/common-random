@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -17,10 +17,10 @@ import java.util.Stack;
 
 import ltd.qubit.commons.math.RandomEx;
 import ltd.qubit.commons.random.api.ExclusionPolicy;
-import ltd.qubit.commons.random.util.ReflectionUtils;
 
 import static java.util.stream.Collectors.toList;
 
+import static ltd.qubit.commons.random.util.ReflectionUtils.fieldHasDefaultValue;
 import static ltd.qubit.commons.reflect.FieldUtils.isFinal;
 import static ltd.qubit.commons.reflect.FieldUtils.isTransient;
 
@@ -54,7 +54,7 @@ public class Context {
     final int objectPoolSize = parameters.getObjectPoolSize();
     List<Object> objects = populatedBeans.get(type);
     if (objects == null) {
-      objects = new ArrayList<>(objectPoolSize);
+      objects = new ArrayList<>();
     }
     if (objects.size() < objectPoolSize) {
       objects.add(object);
@@ -77,8 +77,12 @@ public class Context {
     stack.push(field);
   }
 
-  void popStackItem() {
-    stack.pop();
+  ContextStackItem popStackItem() {
+    return stack.pop();
+  }
+
+  ContextStackItem peekStackItem() {
+    return stack.peek();
   }
 
   String getFieldFullName(final Field field) {
@@ -118,7 +122,7 @@ public class Context {
     }
   }
 
-  public Object getCurrentField() {
+  public Field getCurrentField() {
     if (stack.empty()) {
       return null;
     } else {
@@ -153,17 +157,15 @@ public class Context {
       return false;
     }
     if (!parameters.isOverrideDefaultInitialization()
-            && !ReflectionUtils.fieldHasDefaultValue(obj, field)) {
+            && !fieldHasDefaultValue(obj, field)) {
       return false;
     }
     if (isFinal(field)) {
       if (!parameters.isOverrideFinal()) {
         return false;
       }
-      if (!parameters.isOverrideFinalDefaultInitialization()
-              && !ReflectionUtils.fieldHasDefaultValue(obj, field)) {
-        return false;
-      }
+      return parameters.isOverrideFinalDefaultInitialization()
+          || fieldHasDefaultValue(obj, field);
     }
     return true;
   }

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -66,6 +66,7 @@ public class EnumRandomizer<E extends Enum<E>> extends AbstractRandomizer<E> {
    *         when excludedValues contains all enumeration values, ie all
    *         elements from the enumeration are excluded
    */
+  @SuppressWarnings("varargs")
   @SafeVarargs
   public EnumRandomizer(final Class<E> enumeration,
           final E... excludedValues) throws IllegalArgumentException {

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -13,23 +13,23 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 import java.lang.reflect.Field;
 
-import ltd.qubit.commons.random.api.ContextAwareRandomizer;
-import ltd.qubit.commons.random.beans.Address;
-import ltd.qubit.commons.random.beans.Person;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import ltd.qubit.commons.random.api.ContextAwareRandomizer;
+import ltd.qubit.commons.random.beans.Address;
+import ltd.qubit.commons.random.beans.Person;
+
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-import static ltd.qubit.commons.random.FieldPredicates.named;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
+
+import static ltd.qubit.commons.random.FieldPredicates.named;
 
 @ExtendWith(MockitoExtension.class)
 public class ContextTest {
@@ -50,14 +50,15 @@ public class ContextTest {
 
   @Test
   void whenATypeHasBeenRandomized_populatedBeanShouldReturnTrueOnlyWhenTheObjectPoolIsFilled() {
-    when(parameters.getObjectPoolSize()).thenReturn(Parameters.DEFAULT_OBJECT_POOL_SIZE);
+    final int objectPoolSize = 100;
+    when(parameters.getObjectPoolSize()).thenReturn(objectPoolSize);
 
     // Only one instance has been randomized => should be considered as not randomized yet
     context.addPopulatedBean(String.class, "bean" + 0);
     assertThat(context.hasAlreadyRandomizedType(String.class)).isFalse();
 
     // When the object pool size is filled => should be considered as already randomized
-    for (int i = 1; i < Parameters.DEFAULT_OBJECT_POOL_SIZE; i++) {
+    for (int i = 1; i < objectPoolSize; i++) {
       context.addPopulatedBean(String.class, "bean" + i);
     }
     assertThat(context.hasAlreadyRandomizedType(String.class)).isTrue();

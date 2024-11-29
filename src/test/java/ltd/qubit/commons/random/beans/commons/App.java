@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -195,7 +195,7 @@ public class App implements HasStatefulInfo, WithOrganization, WithCategory,
   }
 
   @Override
-  public App clone() {
+  public App cloneEx() {
     return new App(this);
   }
 

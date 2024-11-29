@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -8,17 +8,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.random.randomizers.range;
 
+import java.lang.reflect.Field;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
+import ltd.qubit.commons.annotation.Precision;
 import ltd.qubit.commons.lang.DateUtils;
+import ltd.qubit.commons.random.Context;
 import ltd.qubit.commons.random.Parameters;
 import ltd.qubit.commons.random.randomizers.AbstractRangeRandomizer;
 import ltd.qubit.commons.util.range.CloseRange;
 
 import static ltd.qubit.commons.lang.Argument.requireNonNull;
 import static ltd.qubit.commons.lang.DateUtils.toChronoUnit;
+import static ltd.qubit.commons.reflect.FieldUtils.getAnnotation;
 
 /**
  * Generate a random {@link Instant} in the given range.
@@ -132,9 +136,20 @@ public class InstantRangeRandomizer extends AbstractRangeRandomizer<Instant> {
   }
 
   @Override
+  public void setContext(final Context context) {
+    super.setContext(context);
+    final Field field = context.getCurrentField();
+    if (field != null) {
+      final Precision precisionAnn = getAnnotation(field, Precision.class);
+      if (precisionAnn != null) {
+        precision = precisionAnn.value();
+      }
+    }
+  }
+
+  @Override
   public Instant getRandomValue() {
     final Instant result = random.nextInstant(range);
     return result.truncatedTo(toChronoUnit(precision));
   }
-
 }

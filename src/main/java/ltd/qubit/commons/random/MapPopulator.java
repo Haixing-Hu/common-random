@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -17,10 +17,11 @@ import javax.annotation.Nullable;
 import ltd.qubit.commons.random.api.ObjectFactory;
 import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.AbstractContextAwareRandomizer;
-import ltd.qubit.commons.random.util.RandomUtils;
 import ltd.qubit.commons.util.range.CloseRange;
 
-import static ltd.qubit.commons.reflect.ClassUtils.isMapType;
+import static ltd.qubit.commons.lang.ClassUtils.isMapType;
+import static ltd.qubit.commons.random.util.RandomUtils.createRandomMap;
+import static ltd.qubit.commons.random.util.RandomUtils.getRandomCollectionSize;
 
 /**
  * Random map populator.
@@ -50,8 +51,8 @@ public class MapPopulator {
       throw new UnsupportedOperationException("Only support map type");
     }
     final Type fieldGenericType = field.getGenericType();
-    final int size = RandomUtils.getRandomCollectionSize(random, context, sizeRange);
-    return RandomUtils.createRandomMap(random, objectFactory, context, fieldType,
+    final int size = getRandomCollectionSize(random, context, sizeRange);
+    return createRandomMap(random, objectFactory, context, fieldType,
             fieldGenericType, size);
   }
 
@@ -61,8 +62,8 @@ public class MapPopulator {
     if (! isMapType(fieldType)) {
       throw new UnsupportedOperationException("Only support map type");
     }
-    final int size = RandomUtils.getRandomCollectionSize(random, context, sizeRange);
-    return RandomUtils.createRandomMap(random, objectFactory, context, fieldType,
+    final int size = getRandomCollectionSize(random, context, sizeRange);
+    return createRandomMap(random, objectFactory, context, fieldType,
             fieldType, size);
   }
 

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -62,7 +62,7 @@ public class AccessToken implements Serializable, Assignable<AccessToken> {
   }
 
   @Override
-  public AccessToken clone() {
+  public AccessToken cloneEx() {
     return new AccessToken(this);
   }
 

@@ -79,5 +79,11 @@
       <artifactId>mybatis</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- logging implementation for unit testing -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <scope>test</scope>     <!-- only need in unit test -->
+    </dependency>
   </dependencies>
 </project>

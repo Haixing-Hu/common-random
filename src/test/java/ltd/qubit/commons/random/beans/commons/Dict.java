@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -171,7 +171,7 @@ public class Dict implements HasStatefulInfo, WithApp, WithCategory, WithComment
   }
 
   @Override
-  public Dict clone() {
+  public Dict cloneEx() {
     return new Dict(this);
   }
 

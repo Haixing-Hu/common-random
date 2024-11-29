@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (c) 2022 - 2023.
+//    Copyright (c) 2022 - 2024.
 //    Haixing Hu, Qubit Co. Ltd.
 //
 //    All rights reserved.
@@ -104,7 +104,7 @@ public class Payload implements Identifiable, Auditable, Assignable<Payload> {
   }
 
   @Override
-  public Payload clone() {
+  public Payload cloneEx() {
     return new Payload(this);
   }
 
