@@ -93,7 +93,7 @@ public enum AttachmentType {
   }
 
   static {
-    registerLocalizedNames(AttachmentType.class, "i18n/attachment-type");
+    registerLocalizedNames(AttachmentType.class, "i18n.attachment-type");
   }
 
   public String getLocalizedName() {

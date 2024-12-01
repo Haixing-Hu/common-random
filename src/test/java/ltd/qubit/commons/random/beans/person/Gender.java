@@ -70,7 +70,7 @@ public enum Gender {
   }
 
   static {
-    registerLocalizedNames(Gender.class, "i18n/gender");
+    registerLocalizedNames(Gender.class, "i18n.gender");
   }
 
   public String getLocalizedName() {

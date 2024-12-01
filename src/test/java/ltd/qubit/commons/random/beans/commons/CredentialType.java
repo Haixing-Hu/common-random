@@ -162,7 +162,7 @@ public enum CredentialType {
   }
 
   static {
-    registerLocalizedNames(CredentialType.class, "i18n/credential-type");
+    registerLocalizedNames(CredentialType.class, "i18n.credential-type");
   }
 
   public String getLocalizedName() {

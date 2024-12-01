@@ -47,7 +47,7 @@ public enum KinshipType {
   OTHER;
 
   static {
-    registerLocalizedNames(KinshipType.class, "i18n/kinship-type");
+    registerLocalizedNames(KinshipType.class, "i18n.kinship-type");
   }
 
   public String getLocalizedName() {

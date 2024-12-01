@@ -42,7 +42,7 @@ public enum DayType {
   WEEKEND;
 
   static {
-    registerLocalizedNames(DayType.class, "i18n/day-type");
+    registerLocalizedNames(DayType.class, "i18n.day-type");
   }
 
   public String getLocalizedName() {

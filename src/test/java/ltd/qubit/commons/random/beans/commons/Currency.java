@@ -74,7 +74,7 @@ public enum Currency {
   }
 
   static {
-    registerLocalizedNames(Currency.class, "i18n/currency");
+    registerLocalizedNames(Currency.class, "i18n.currency");
   }
 
   public String getLocalizedName() {
