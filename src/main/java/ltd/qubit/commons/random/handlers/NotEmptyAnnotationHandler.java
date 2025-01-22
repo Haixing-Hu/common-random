@@ -51,7 +51,6 @@ public class NotEmptyAnnotationHandler implements AnnotationHandler {
   }
 
   @Override
-  @SuppressWarnings({"unchecked", "rawtypes"})
   public Randomizer<?> getRandomizer(final Field field, final Context context) {
     // NotEmpty sizeAnnotation = getAnnotation(field, NotEmpty.class);
     final CloseRange<Integer> defaultSizeRange = parameters.getCollectionSizeRange();

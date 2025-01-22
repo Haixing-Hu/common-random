@@ -92,12 +92,16 @@ public class EasyRandom extends RandomEx {
   public EasyRandom(final Parameters parameters) {
     this.parameters = requireNonNull(parameters, "Parameters must not be null");
     setSeed(parameters.getSeed());
-    randomizerProvider = buildRandomizerProvider(parameters);
     objectFactory = parameters.getObjectFactory();
-    arrayPopulator = new ArrayPopulator(this);
-    collectionPopulator = new CollectionPopulator(this);
-    mapPopulator = new MapPopulator(this);
     enumRandomizersByType = new ConcurrentHashMap<>();
+    arrayPopulator = new ArrayPopulator(this);
+    mapPopulator = new MapPopulator(this);
+    collectionPopulator = new CollectionPopulator(this);
+    // Nota that randomizerProvider must be created after the initialization
+    // of all other populators, since some provider may need them.
+    randomizerProvider = buildRandomizerProvider(parameters);
+    // Note that the field populator must be created after the randomizerProvider
+    // is created, since the field populator needs the randomizerProvider.
     fieldPopulator = new FieldPopulator(this);
   }
 
