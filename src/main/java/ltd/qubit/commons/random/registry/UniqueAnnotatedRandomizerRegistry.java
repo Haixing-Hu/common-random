@@ -41,7 +41,7 @@ import static ltd.qubit.commons.reflect.FieldUtils.isAnnotationPresent;
  *
  * @author Haixing Hu
  */
-@Priority(Integer.MAX_VALUE - 1)
+@Priority(Integer.MAX_VALUE - 3)
 public class UniqueAnnotatedRandomizerRegistry implements RandomizerRegistry {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());

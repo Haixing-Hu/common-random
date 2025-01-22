@@ -29,7 +29,7 @@ import ltd.qubit.commons.random.randomizers.misc.SkipRandomizer;
  *
  * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  */
-@Priority(0)
+@Priority(Integer.MAX_VALUE)
 public class ExclusionRandomizerRegistry implements RandomizerRegistry {
 
   private final Set<Predicate<Field>> fieldPredicates = new HashSet<>();

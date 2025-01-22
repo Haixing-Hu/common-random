@@ -44,6 +44,7 @@ public class RegistriesRandomizerProvider implements RandomizerProvider {
     byTypeCache = new ConcurrentHashMap<>();
   }
 
+  @Override
   public RegistriesRandomizerProvider clone() {
     final RegistriesRandomizerProvider result = new RegistriesRandomizerProvider();
     result.registries.addAll(this.registries);
@@ -59,7 +60,8 @@ public class RegistriesRandomizerProvider implements RandomizerProvider {
     } else {
       Optional<Randomizer<?>> result = byFieldCache.get(field);
       if (result == null) {
-        result = Optional.ofNullable(getRandomizer(new ByFieldProvider(field), context));
+        final ByFieldProvider byFieldProvider = new ByFieldProvider(field);
+        result = Optional.ofNullable(getRandomizer(byFieldProvider, context));
         byFieldCache.put(field, result);
       }
       return result.orElse(null);

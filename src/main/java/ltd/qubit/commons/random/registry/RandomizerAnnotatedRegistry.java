@@ -25,12 +25,12 @@ import static ltd.qubit.commons.reflect.FieldUtils.getAnnotation;
 import static ltd.qubit.commons.reflect.FieldUtils.isAnnotationPresent;
 
 /**
- * A {@link RandomizerRegistry} for fields annotated with {@link ltd.qubit.commons.random.api.Randomizer}.
+ * A {@link RandomizerRegistry} for fields annotated with the {@link Randomizer} annotation.
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author Mahmoud Ben Hassine, Haixing Hu
  */
-@Priority(-1)
-public class AnnotationRandomizerRegistry implements RandomizerRegistry {
+@Priority(Integer.MAX_VALUE - 1)
+public class RandomizerAnnotatedRegistry implements RandomizerRegistry {
 
   private final Map<Field, ltd.qubit.commons.random.api.Randomizer<?>> registry = new HashMap<>();
 
@@ -44,8 +44,7 @@ public class AnnotationRandomizerRegistry implements RandomizerRegistry {
     if (isAnnotationPresent(field, Randomizer.class)) {
       ltd.qubit.commons.random.api.Randomizer<?> randomizer = registry.get(field);
       if (randomizer == null) {
-        final Randomizer annotation =
-                getAnnotation(field, Randomizer.class);
+        final Randomizer annotation = getAnnotation(field, Randomizer.class);
         final Class<?> type = annotation.value();
         final RandomizerArgument[] arguments = annotation.args();
         randomizer = ReflectionUtils.newInstance(type, arguments);

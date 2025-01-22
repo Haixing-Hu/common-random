@@ -57,7 +57,7 @@ import ltd.qubit.commons.random.randomizers.time.SqlTimestampRandomizer;
  *
  * @author Rémi Alvergnat (toilal.dev@gmail.com)
  */
-@Priority(-4)
+@Priority(Integer.MIN_VALUE)
 public class InternalRandomizerRegistry implements RandomizerRegistry {
 
   private final Map<Class<?>, Randomizer<?>> randomizers = new HashMap<>();

@@ -13,6 +13,7 @@ import java.util.Map;
 
 import jakarta.validation.constraints.Size;
 
+import ltd.qubit.commons.annotation.Priority;
 import ltd.qubit.commons.random.Context;
 import ltd.qubit.commons.random.EasyRandom;
 import ltd.qubit.commons.random.MapPopulator;
@@ -32,6 +33,7 @@ import static ltd.qubit.commons.reflect.FieldUtils.isAnnotationPresent;
  *
  * @author Haixing Hu
  */
+@Priority(-3)
 public class MapRandomizerRegistry implements RandomizerRegistry {
 
   private EasyRandom random;

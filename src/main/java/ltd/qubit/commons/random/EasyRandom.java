@@ -107,8 +107,7 @@ public class EasyRandom extends RandomEx {
 
   private RandomizerProvider buildRandomizerProvider(
       final Parameters parameters) {
-    final LinkedHashSet<RandomizerRegistry> registries = setupRegistries(
-        parameters);
+    final LinkedHashSet<RandomizerRegistry> registries = setupRegistries(parameters);
     final RandomizerProvider provider = parameters.getRandomizerProvider();
     final RandomizerProvider result = (provider == null
                                        ? new RegistriesRandomizerProvider()

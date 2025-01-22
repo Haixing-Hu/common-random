@@ -56,7 +56,7 @@ import ltd.qubit.commons.random.randomizers.time.ZoneOffsetRandomizer;
  *
  * @author Mahmoud Ben Hassine, Haixing Hu
  */
-@Priority(-3)
+@Priority(-4)
 public class TimeRandomizerRegistry implements RandomizerRegistry {
 
   private final Map<Class<?>, Randomizer<?>> randomizers = new HashMap<>();

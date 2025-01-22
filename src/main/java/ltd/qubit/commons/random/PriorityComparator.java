@@ -24,7 +24,7 @@ public class PriorityComparator implements Comparator<Object> {
   public int compare(final Object o1, final Object o2) {
     final int p1 = getPriority(o1);
     final int p2 = getPriority(o2);
-    return p2 - p1;
+    return Integer.compare(p2, p1);
   }
 
   private int getPriority(final Object object) {

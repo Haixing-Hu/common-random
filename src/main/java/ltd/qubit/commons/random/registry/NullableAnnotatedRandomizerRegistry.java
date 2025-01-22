@@ -27,7 +27,7 @@ import ltd.qubit.commons.random.handlers.NullableAnnotationHandler;
  *
  * @author Haixing Hu
  */
-@Priority(Integer.MAX_VALUE)
+@Priority(Integer.MAX_VALUE - 2)
 public class NullableAnnotatedRandomizerRegistry implements RandomizerRegistry {
 
   private AnnotationHandler handler;

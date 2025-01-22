@@ -2,7 +2,7 @@ ltd.qubit.commons.random.registry.NullableAnnotatedRandomizerRegistry
 ltd.qubit.commons.random.registry.UniqueAnnotatedRandomizerRegistry
 ltd.qubit.commons.random.registry.InternalRandomizerRegistry
 ltd.qubit.commons.random.registry.TimeRandomizerRegistry
-ltd.qubit.commons.random.registry.AnnotationRandomizerRegistry
+ltd.qubit.commons.random.registry.RandomizerAnnotatedRegistry
 ltd.qubit.commons.random.registry.BeanValidationRandomizerRegistry
 ltd.qubit.commons.random.registry.CollectionRandomizerRegistry
 ltd.qubit.commons.random.registry.MapRandomizerRegistry
