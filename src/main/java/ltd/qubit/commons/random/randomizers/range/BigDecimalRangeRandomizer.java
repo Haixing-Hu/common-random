@@ -11,19 +11,16 @@ package ltd.qubit.commons.random.randomizers.range;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import ltd.qubit.commons.random.Parameters;
-import ltd.qubit.commons.random.randomizers.AbstractContextAwareRandomizer;
+import ltd.qubit.commons.random.randomizers.number.ScalableRandomizer;
 
 /**
  * Generate a random {@link BigDecimal} in the given range.
  *
  * @author Rémi Alvergnat, Haixing Hu
  */
-public class BigDecimalRangeRandomizer extends AbstractContextAwareRandomizer<BigDecimal> {
+public class BigDecimalRangeRandomizer extends ScalableRandomizer<BigDecimal> {
 
   private final DoubleRangeRandomizer delegate;
-  private Integer scale;
-  private RoundingMode roundingMode = RoundingMode.HALF_UP;
 
   /**
    * Create a new {@link BigDecimalRangeRandomizer}.
@@ -124,11 +121,6 @@ public class BigDecimalRangeRandomizer extends AbstractContextAwareRandomizer<Bi
     delegate = new DoubleRangeRandomizer(min, max, seed);
     this.scale = scale;
     this.roundingMode = roundingMode;
-  }
-
-  @Override
-  public void setParameters(final Parameters parameters) {
-    delegate.setParameters(parameters);
   }
 
   @Override

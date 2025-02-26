@@ -8,30 +8,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.random.randomizers.number;
 
-import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
-import ltd.qubit.commons.annotation.Money;
-import ltd.qubit.commons.annotation.Round;
-import ltd.qubit.commons.annotation.Scale;
-import ltd.qubit.commons.random.Context;
-import ltd.qubit.commons.random.api.ContextAwareRandomizer;
-import ltd.qubit.commons.random.api.Randomizer;
-
-import static ltd.qubit.commons.reflect.FieldUtils.getAnnotation;
 
 /**
  * Generate a random {@link BigDecimal}.
  *
  * @author Mahmoud Ben Hassine, Haixing Hu
  */
-public class BigDecimalRandomizer implements Randomizer<BigDecimal>,
-    ContextAwareRandomizer<BigDecimal> {
+public class BigDecimalRandomizer extends ScalableRandomizer<BigDecimal> {
 
   private final DoubleRandomizer delegate;
-  private Integer scale;
-  private RoundingMode roundingMode = RoundingMode.HALF_UP;
 
   /**
    * Create a new {@link BigDecimalRandomizer}.
@@ -95,26 +82,6 @@ public class BigDecimalRandomizer implements Randomizer<BigDecimal>,
     this(seed);
     this.scale = scale;
     this.roundingMode = roundingMode;
-  }
-
-  @Override
-  public void setContext(final Context context) {
-    final Field field = context.getCurrentField();
-    if (field != null) {
-      final Scale scaleAnn = getAnnotation(field, Scale.class);
-      if (scaleAnn != null) {
-        this.scale = scaleAnn.value();
-      }
-      final Round roundAnn = getAnnotation(field, Round.class);
-      if (roundAnn != null) {
-        this.roundingMode = roundAnn.value();
-      }
-      final Money moneyAnn = getAnnotation(field, Money.class);
-      if (moneyAnn != null) {
-        this.scale = moneyAnn.scale();
-        this.roundingMode = moneyAnn.roundingModel();
-      }
-    }
   }
 
   @Override
