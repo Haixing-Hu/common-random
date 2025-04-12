@@ -37,6 +37,9 @@ class SeedParameterTest {
 
     assertThat(actualString).isEqualTo(expectedString);
     assertThat(actualInts).isEqualTo(expectedInts);
-    assertThat(actualPerson).isEqualToIgnoringNullFields(expectedPerson);
+    assertThat(actualPerson)
+        .usingRecursiveComparison()
+        .ignoringExpectedNullFields()
+        .isEqualTo(expectedPerson);
   }
 }
