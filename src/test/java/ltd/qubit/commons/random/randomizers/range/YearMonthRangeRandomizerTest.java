@@ -67,7 +67,7 @@ class YearMonthRangeRandomizerTest extends
     final YearMonth randomValue = randomizer.getRandomValue();
 
     // Then
-    assertThat(randomValue).isLessThanOrEqualTo(maxYearMonth);
+    assertThat(randomValue).isBeforeOrEqualTo(maxYearMonth);
   }
 
   @Test
@@ -79,6 +79,6 @@ class YearMonthRangeRandomizerTest extends
     final YearMonth randomValue = randomizer.getRandomValue();
 
     // Then
-    assertThat(randomValue).isGreaterThanOrEqualTo(minYearMonth);
+    assertThat(randomValue).isAfterOrEqualTo(minYearMonth);
   }
 }
