@@ -14,30 +14,36 @@ import java.net.URISyntaxException;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * Generate a random {@link URI}.
+ * 生成一个随机的 {@link URI}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class UriRandomizer extends AbstractRandomizer<URI> {
 
   private final String[] uris = getPredefinedValuesOf("uris");
 
   /**
-   * Create a new {@link UriRandomizer}.
+   * 创建一个新的 {@link UriRandomizer}。
    */
   public UriRandomizer() {
   }
 
   /**
-   * Create a new {@link UriRandomizer}.
+   * 创建一个新的 {@link UriRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *     初始种子。
    */
   public UriRandomizer(final long seed) {
     super(seed);
   }
 
+  /**
+   * 生成一个随机的 {@link URI}。
+   *
+   * @return
+   *     一个随机的 {@link URI}。
+   */
   @Override
   public URI getRandomValue() {
     try {

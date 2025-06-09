@@ -17,12 +17,15 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.misc.ConstantRandomizer;
 
 /**
- * The annotation handler for the {@link AssertFalse} annotation.
+ * {@link AssertFalse} 注解的注解处理器。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class AssertFalseAnnotationHandler implements AnnotationHandler {
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> getRandomizer(final Field field, final Context context) {
     return new ConstantRandomizer<>(false);

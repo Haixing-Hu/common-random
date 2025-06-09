@@ -12,9 +12,9 @@ import ltd.qubit.commons.annotation.Priority;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates null values.
+ * 一个生成null值的 {@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine
+ * @author 胡海星
  */
 @Priority(Integer.MAX_VALUE)
 public class NullRandomizer implements Randomizer<Void> {

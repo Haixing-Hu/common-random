@@ -25,20 +25,26 @@ import static ltd.qubit.commons.reflect.FieldUtils.getAnnotation;
 import static ltd.qubit.commons.reflect.FieldUtils.isAnnotationPresent;
 
 /**
- * A {@link RandomizerRegistry} for fields annotated with the {@link Randomizer} annotation.
+ * 一个 {@link RandomizerRegistry}，用于处理使用 {@link Randomizer} 注解的字段。
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author 胡海星
  */
 @Priority(Integer.MAX_VALUE - 1)
 public class RandomizerAnnotatedRegistry implements RandomizerRegistry {
 
   private final Map<Field, ltd.qubit.commons.random.api.Randomizer<?>> registry = new HashMap<>();
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void init(final EasyRandom random, final Parameters parameters) {
     // no op
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public ltd.qubit.commons.random.api.Randomizer<?> get(final Field field, final Context context) {
     if (isAnnotationPresent(field, Randomizer.class)) {
@@ -55,6 +61,9 @@ public class RandomizerAnnotatedRegistry implements RandomizerRegistry {
     return null;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public ltd.qubit.commons.random.api.Randomizer<?> get(final Class<?> clazz, final Context context) {
     return null;

@@ -20,19 +20,28 @@ import ltd.qubit.commons.random.Parameters;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * The annotation handler for the {@link Past} annotation.
+ * {@link Past} 注解的注解处理器。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class PastAnnotationHandler implements AnnotationHandler {
 
   private final long seed;
   private EasyRandom random;
 
+  /**
+   * 构造一个 {@link PastAnnotationHandler}。
+   *
+   * @param seed
+   *     用于生成随机数的种子。
+   */
   public PastAnnotationHandler(final long seed) {
     this.seed = seed;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> getRandomizer(final Field field, final Context context) {
     if (random == null) {

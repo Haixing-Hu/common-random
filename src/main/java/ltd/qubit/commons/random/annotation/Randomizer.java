@@ -14,8 +14,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation to mark a field to be populated with a random value using the
- * given {@code Randomizer}.
+ * 用于标记字段的注解，该字段将使用给定的{@code Randomizer}
+ * 填充随机值。
  *
  * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
  */
@@ -24,11 +24,16 @@ import java.lang.annotation.Target;
 public @interface Randomizer {
 
   /**
-   * The {@code Randomizer} to use to generate the random value for this field.
+   * 用于为此字段生成随机值的{@code Randomizer}。
    *
-   * @return the randomizer's class
+   * @return 随机化器的类
    */
   Class<? extends ltd.qubit.commons.random.api.Randomizer<?>> value();
 
+  /**
+   * 随机化器的参数。
+   *
+   * @return 随机化器的参数。
+   */
   @RandomizerArgument RandomizerArgument[] args() default {};
 }

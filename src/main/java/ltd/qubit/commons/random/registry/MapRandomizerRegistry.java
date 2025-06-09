@@ -29,9 +29,9 @@ import static ltd.qubit.commons.random.util.RandomUtils.populateRemainedFields;
 import static ltd.qubit.commons.reflect.FieldUtils.isAnnotationPresent;
 
 /**
- * A randomizer registry for generating randomized maps.
+ * 一个用于生成随机映射表的随机化器注册表。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 @Priority(-3)
 public class MapRandomizerRegistry implements RandomizerRegistry {
@@ -39,12 +39,18 @@ public class MapRandomizerRegistry implements RandomizerRegistry {
   private EasyRandom random;
   private Parameters parameters;
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void init(final EasyRandom random, final Parameters parameters) {
     this.random = requireNonNull(random, "random cannot be null");
     this.parameters = requireNonNull(parameters, "parameters cannot be null");
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   @SuppressWarnings("rawtypes")
   public Randomizer<?> get(final Field field, final Context context) {
@@ -73,6 +79,9 @@ public class MapRandomizerRegistry implements RandomizerRegistry {
     };
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @SuppressWarnings("rawtypes")
   @Override
   public Randomizer<?> get(final Class<?> type, final Context context) {

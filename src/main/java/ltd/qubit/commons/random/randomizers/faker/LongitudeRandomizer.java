@@ -13,40 +13,45 @@ import java.util.Locale;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random longitudes.
+ * 生成随机经度的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class LongitudeRandomizer extends FakerBasedRandomizer<String> {
 
   /**
-   * Create a new {@link LongitudeRandomizer}.
+   * 创建一个新的{@link LongitudeRandomizer}。
    */
   public LongitudeRandomizer() {
   }
 
   /**
-   * Create a new {@link LongitudeRandomizer}.
+   * 创建一个新的{@link LongitudeRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    */
   public LongitudeRandomizer(final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link LongitudeRandomizer}.
+   * 创建一个新的{@link LongitudeRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    * @param locale
-   *         the locale to use
+   *         要使用的区域设置
    */
   public LongitudeRandomizer(final long seed, final Locale locale) {
     super(seed, locale);
   }
 
+  /**
+   * 生成一个随机的经度。
+   *
+   * @return 一个随机的经度
+   */
   @Override
   public String getRandomValue() {
     return faker.address().longitude();

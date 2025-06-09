@@ -7,8 +7,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * This package contains internal registries.
+ * 此包包含内部注册表。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 package ltd.qubit.commons.random.registry;

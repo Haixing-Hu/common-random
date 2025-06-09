@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Collection utility methods.
+ * 集合工具类。
  *
- * <strong>This class is intended for internal use only.</strong>
+ * <p><strong>此类仅供内部使用。</strong>
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public final class CollectionUtils {
 
@@ -24,13 +24,13 @@ public final class CollectionUtils {
   }
 
   /**
-   * Get a random element from the list.
+   * 从列表中获取一个随机元素。
    *
    * @param list
-   *         the input list
+   *     输入列表
    * @param <T>
-   *         the type of elements in the list
-   * @return a random element from the list or null if the list is empty
+   *     列表中元素的类型
+   * @return 列表中的一个随机元素，如果列表为空则返回null
    */
   public static <T> T randomElementOf(final List<T> list) {
     if (list.isEmpty()) {

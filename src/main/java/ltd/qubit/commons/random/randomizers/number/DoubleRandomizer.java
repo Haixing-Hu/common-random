@@ -11,28 +11,33 @@ package ltd.qubit.commons.random.randomizers.number;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * Generate a random {@link Double}.
+ * 生成一个随机的{@link Double}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class DoubleRandomizer extends AbstractRandomizer<Double> {
 
   /**
-   * Create a new {@link DoubleRandomizer}.
+   * 创建一个新的{@link DoubleRandomizer}。
    */
   public DoubleRandomizer() {
   }
 
   /**
-   * Create a new {@link DoubleRandomizer}.
+   * 创建一个新的{@link DoubleRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public DoubleRandomizer(final long seed) {
     super(seed);
   }
 
+  /**
+   * 生成一个随机的{@link Double}。
+   *
+   * @return 一个随机的{@link Double}
+   */
   @Override
   public Double getRandomValue() {
     return random.nextDouble();

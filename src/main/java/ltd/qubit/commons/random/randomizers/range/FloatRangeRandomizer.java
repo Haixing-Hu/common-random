@@ -14,33 +14,33 @@ import ltd.qubit.commons.random.randomizers.AbstractRangeRandomizer;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Generate a random {@link Float} in the given range.
+ * 在给定范围内生成一个随机的{@link Float}。
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author 胡海星
  */
 public class FloatRangeRandomizer extends AbstractRangeRandomizer<Float> {
 
   /**
-   * Create a new {@link FloatRangeRandomizer}.
+   * 创建一个新的{@link FloatRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    */
   public FloatRangeRandomizer(final Float min, final Float max) {
     super(min, max);
   }
 
   /**
-   * Create a new {@link FloatRangeRandomizer}.
+   * 创建一个新的{@link FloatRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public FloatRangeRandomizer(final Float min, final Float max,
           final long seed) {

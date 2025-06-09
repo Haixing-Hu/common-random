@@ -11,31 +11,36 @@ package ltd.qubit.commons.random.randomizers.number;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * Generate a random {@link Byte}.
+ * 生成一个随机的{@link Byte}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class ByteRandomizer implements Randomizer<Byte> {
 
   private final IntegerRandomizer delegate;
 
   /**
-   * Create a new {@link ByteRandomizer}.
+   * 创建一个新的{@link ByteRandomizer}。
    */
   public ByteRandomizer() {
     delegate = new IntegerRandomizer();
   }
 
   /**
-   * Create a new {@link ByteRandomizer}.
+   * 创建一个新的{@link ByteRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public ByteRandomizer(final long seed) {
     delegate = new IntegerRandomizer(seed);
   }
 
+  /**
+   * 生成一个随机的{@link Byte}。
+   *
+   * @return 一个随机的{@link Byte}
+   */
   @Override
   public Byte getRandomValue() {
     return delegate.getRandomValue().byteValue();

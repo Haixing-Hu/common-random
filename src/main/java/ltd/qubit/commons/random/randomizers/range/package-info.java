@@ -7,8 +7,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * This package contains range randomizers.
+ * 此包包含范围随机化器。
  *
- * @author Rémi Alvergnat (toilal.dev@gmail.com)
+ * @author 胡海星
  */
 package ltd.qubit.commons.random.randomizers.range;

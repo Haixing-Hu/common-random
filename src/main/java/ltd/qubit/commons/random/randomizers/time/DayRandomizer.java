@@ -12,10 +12,10 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.range.IntegerRangeRandomizer;
 
 /**
- * A {@link Randomizer} that generates a random day value between {@link
- * DayRandomizer#MIN_DAY} and {@link DayRandomizer#MAX_DAY}.
+ * 生成介于{@link DayRandomizer#MIN_DAY}和{@link DayRandomizer#MAX_DAY}
+ * 之间的随机日期值的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class DayRandomizer implements Randomizer<Integer> {
 
@@ -26,14 +26,28 @@ public class DayRandomizer implements Randomizer<Integer> {
 
   private final IntegerRangeRandomizer dayRandomizer;
 
+  /**
+   * 创建一个新的{@link DayRandomizer}。
+   */
   public DayRandomizer() {
     dayRandomizer = new IntegerRangeRandomizer(MIN_DAY, MAX_DAY);
   }
 
+  /**
+   * 创建一个新的{@link DayRandomizer}。
+   *
+   * @param seed
+   *         初始种子
+   */
   public DayRandomizer(final long seed) {
     dayRandomizer = new IntegerRangeRandomizer(MIN_DAY, MAX_DAY, seed);
   }
 
+  /**
+   * 生成一个随机的日期值。
+   *
+   * @return 一个随机的日期值（1-28）
+   */
   @Override
   public Integer getRandomValue() {
     return dayRandomizer.getRandomValue();

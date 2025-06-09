@@ -26,35 +26,35 @@ import static ltd.qubit.commons.lang.DateUtils.truncateInPlace;
 import static ltd.qubit.commons.reflect.FieldUtils.getAnnotation;
 
 /**
- * Generate a random {@link java.sql.Date} in a given range.
+ * 在给定范围内生成一个随机的{@link java.sql.Date}。
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author 胡海星
  */
 public class SqlDateRangeRandomizer extends AbstractRangeRandomizer<Date> {
 
   private TimeUnit precision = Precision.DEFAULT_VALUE;
 
   /**
-   * Create a new {@link SqlDateRangeRandomizer}.
+   * 创建一个新的{@link SqlDateRangeRandomizer}。
    *
    * @param min
-   *     min value
+   *     最小值
    * @param max
-   *     max value
+   *     最大值
    */
   public SqlDateRangeRandomizer(final Date min, final Date max) {
     super(min, max);
   }
 
   /**
-   * Create a new {@link SqlDateRangeRandomizer}.
+   * 创建一个新的{@link SqlDateRangeRandomizer}。
    *
    * @param min
-   *     min value
+   *     最小值
    * @param max
-   *     max value
+   *     最大值
    * @param precision
-   *     the precision of the generated date time.
+   *     生成日期的精度。
    */
   public SqlDateRangeRandomizer(final Date min, final Date max,
       final TimeUnit precision) {
@@ -63,14 +63,14 @@ public class SqlDateRangeRandomizer extends AbstractRangeRandomizer<Date> {
   }
 
   /**
-   * Create a new {@link SqlDateRangeRandomizer}.
+   * 创建一个新的{@link SqlDateRangeRandomizer}。
    *
    * @param min
-   *     min value
+   *     最小值
    * @param max
-   *     max value
+   *     最大值
    * @param seed
-   *     initial seed
+   *     初始种子
    */
   public SqlDateRangeRandomizer(final Date min, final Date max,
       final long seed) {
@@ -78,16 +78,16 @@ public class SqlDateRangeRandomizer extends AbstractRangeRandomizer<Date> {
   }
 
   /**
-   * Create a new {@link SqlDateRangeRandomizer}.
+   * 创建一个新的{@link SqlDateRangeRandomizer}。
    *
    * @param min
-   *     min value
+   *     最小值
    * @param max
-   *     max value
+   *     最大值
    * @param precision
-   *     the precision of the generated date time.
+   *     生成日期的精度。
    * @param seed
-   *     initial seed
+   *     初始种子
    */
   public SqlDateRangeRandomizer(final Date min, final Date max,
       final TimeUnit precision, final long seed) {
@@ -96,10 +96,10 @@ public class SqlDateRangeRandomizer extends AbstractRangeRandomizer<Date> {
   }
 
   /**
-   * Create a new {@link DateRangeRandomizer}.
+   * 创建一个新的{@link SqlDateRangeRandomizer}。
    *
    * @param parameters
-   *     the random generator parameters.
+   *     随机生成器参数。
    */
   public SqlDateRangeRandomizer(final Parameters parameters) {
     super(parameters.getSeed());
@@ -107,12 +107,12 @@ public class SqlDateRangeRandomizer extends AbstractRangeRandomizer<Date> {
   }
 
   /**
-   * Create a new {@link DateRangeRandomizer}.
+   * 创建一个新的{@link SqlDateRangeRandomizer}。
    *
    * @param parameters
-   *     the random generator parameters.
+   *     随机生成器参数。
    * @param precision
-   *     the precision of the generated date time.
+   *     生成日期的精度。
    */
   public SqlDateRangeRandomizer(final Parameters parameters,
       final TimeUnit precision) {

@@ -18,18 +18,27 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.text.StringRandomizer;
 
 /**
- * The annotation handler for the {@link NotBlank} annotation.
+ * {@link NotBlank} 注解的注解处理器。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class NotBlankAnnotationHandler implements AnnotationHandler {
 
   private final Random random;
 
+  /**
+   * 构造一个 {@link NotBlankAnnotationHandler}。
+   *
+   * @param seed
+   *     用于生成随机数的种子。
+   */
   public NotBlankAnnotationHandler(final long seed) {
     random = new Random(seed);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> getRandomizer(final Field field, final Context context) {
     return new StringRandomizer(random.nextLong());

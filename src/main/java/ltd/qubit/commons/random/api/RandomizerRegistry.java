@@ -15,41 +15,41 @@ import ltd.qubit.commons.random.EasyRandom;
 import ltd.qubit.commons.random.Parameters;
 
 /**
- * Interface for a registry of {@link Randomizer}s.
+ * {@link Randomizer} 注册表接口。
  *
- * @author Rémi Alvergnat, Haixing Hu
+ * @author 胡海星
  */
 public interface RandomizerRegistry {
 
   /**
-   * Initialize the registry.
+   * 初始化注册表。
    *
    * @param random
-   *         the {@link EasyRandom} instance being configured
+   *     正在配置的 {@link EasyRandom} 实例。
    * @param parameters
-   *         the {@link Parameters} instance being configured.
+   *     正在配置的 {@link Parameters} 实例。
    */
   void init(EasyRandom random, Parameters parameters);
 
   /**
-   * Retrieves a randomizer for the given field.
+   * 获取指定字段的随机化器。
    *
    * @param field
-   *         the field for which a randomizer was registered
+   *     已注册随机化器的字段。
    * @param context
-   *         the current context.
-   * @return the randomizer registered for the given field
+   *     当前上下文。
+   * @return 为指定字段注册的随机化器。
    */
   Randomizer<?> get(Field field, Context context);
 
   /**
-   * Retrieves a randomizer for a given type.
+   * 获取指定类型的随机化器。
    *
    * @param type
-   *         the type for which a randomizer was registered.
+   *     已注册随机化器的类型。
    * @param context
-   *         the current context.
-   * @return the randomizer registered for the given type.
+   *     当前上下文。
+   * @return 为指定类型注册的随机化器。
    */
   Randomizer<?> get(Class<?> type, Context context);
 }

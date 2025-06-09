@@ -17,26 +17,26 @@ import ltd.qubit.commons.util.range.CloseRange;
 import static ltd.qubit.commons.random.Parameters.DEFAULT_STRING_LENGTH_RANGE;
 
 /**
- * Generate a random {@link String}.
+ * 生成一个随机的{@link String}。
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author 胡海星
  */
 public class StringRandomizer extends AbstractContextAwareRandomizer<String> {
 
   private CloseRange<Integer> lengthRange = DEFAULT_STRING_LENGTH_RANGE;
 
   /**
-   * Create a new {@link StringRandomizer}.
+   * 创建一个新的{@link StringRandomizer}。
    */
   public StringRandomizer() {
     super();
   }
 
   /**
-   * Create a new {@link StringRandomizer}.
+   * 创建一个新的{@link StringRandomizer}。
    *
    * @param maxLength
-   *         of the String to generate
+   *         要生成的字符串的最大长度
    */
   public StringRandomizer(final int maxLength) {
     super();
@@ -45,34 +45,34 @@ public class StringRandomizer extends AbstractContextAwareRandomizer<String> {
   }
 
   /**
-   * Create a new {@link StringRandomizer}.
+   * 创建一个新的{@link StringRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public StringRandomizer(final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link StringRandomizer}.
+   * 创建一个新的{@link StringRandomizer}。
    *
    * @param charset
-   *         to use
+   *         要使用的字符集
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public StringRandomizer(final Charset charset, final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link StringRandomizer}.
+   * 创建一个新的{@link StringRandomizer}。
    *
    * @param maxLength
-   *         of the String to generate
+   *         要生成的字符串的最大长度
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public StringRandomizer(final int maxLength, final long seed) {
     super(seed);
@@ -81,14 +81,14 @@ public class StringRandomizer extends AbstractContextAwareRandomizer<String> {
   }
 
   /**
-   * Create a new {@link StringRandomizer}.
+   * 创建一个新的{@link StringRandomizer}。
    *
    * @param maxLength
-   *         of the String to generate
+   *         要生成的字符串的最大长度
    * @param minLength
-   *         of the String to generate
+   *         要生成的字符串的最小长度
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public StringRandomizer(final int minLength, final int maxLength, final long seed) {
     super(seed);
@@ -101,12 +101,12 @@ public class StringRandomizer extends AbstractContextAwareRandomizer<String> {
   }
 
   /**
-   * Create a new {@link StringRandomizer}.
+   * 创建一个新的{@link StringRandomizer}。
    *
    * @param lengthRange
-   *         the range of the length of the string to be generated.
+   *         要生成的字符串的长度范围。
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public StringRandomizer(final CloseRange<Integer> lengthRange, final long seed) {
     super(seed);
@@ -121,6 +121,12 @@ public class StringRandomizer extends AbstractContextAwareRandomizer<String> {
     this.contextAware = false;
   }
 
+  /**
+   * 创建一个新的{@link StringRandomizer}。
+   *
+   * @param parameters
+   *         随机化参数。
+   */
   public StringRandomizer(final Parameters parameters) {
     super(parameters.getSeed());
     this.lengthRange = parameters.getStringLengthRange();
@@ -131,6 +137,12 @@ public class StringRandomizer extends AbstractContextAwareRandomizer<String> {
     this.lengthRange = parameters.getStringLengthRange();
   }
 
+  /**
+   * 生成一个随机的字符串。
+   *
+   * @return
+   *       一个随机的字符串
+   */
   @Override
   public String getRandomValue() {
     return random.nextLetterString(lengthRange);

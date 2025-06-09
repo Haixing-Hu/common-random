@@ -18,11 +18,11 @@ import ltd.qubit.commons.random.randomizers.number.ByteRandomizer;
 import static java.lang.Math.abs;
 
 /**
- * A base class for collection randomizers.
+ * 集合随机化器的基类。
  *
  * @param <T>
- *         the type of elements in the collection
- * @author Mahmoud Ben Hassine, Haixing Hu
+ *     集合中元素的类型
+ * @author 胡海星
  */
 abstract class AbstractCollectionRandomizer<T> implements ContextAwareRandomizer<Collection<T>> {
 
@@ -30,10 +30,24 @@ abstract class AbstractCollectionRandomizer<T> implements ContextAwareRandomizer
 
   protected final Randomizer<T> delegate;
 
+  /**
+   * 创建一个新的 {@link AbstractCollectionRandomizer}。
+   *
+   * @param delegate
+   *     元素随机化器
+   */
   AbstractCollectionRandomizer(final Randomizer<T> delegate) {
     this(delegate, abs(new ByteRandomizer().getRandomValue()));
   }
 
+  /**
+   * 创建一个新的 {@link AbstractCollectionRandomizer}。
+   *
+   * @param delegate
+   *     元素随机化器
+   * @param size
+   *     要生成的元素数量
+   */
   AbstractCollectionRandomizer(final Randomizer<T> delegate, final int size) {
     if (delegate == null) {
       throw new IllegalArgumentException("delegate must not be null");

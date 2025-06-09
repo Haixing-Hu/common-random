@@ -13,28 +13,33 @@ import java.util.TimeZone;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * Generate a random {@link TimeZone}.
+ * 生成随机{@link TimeZone}的{@link Randomizer}。
  *
- * @author Pascal Schumacher (https://github.com/PascalSchumacher)
+ * @author 胡海星
  */
 public class TimeZoneRandomizer extends AbstractRandomizer<TimeZone> {
 
   /**
-   * Create a new {@link TimeZoneRandomizer}.
+   * 创建一个新的{@link TimeZoneRandomizer}。
    */
   public TimeZoneRandomizer() {
   }
 
   /**
-   * Create a new {@link TimeZoneRandomizer}.
+   * 创建一个新的{@link TimeZoneRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public TimeZoneRandomizer(final long seed) {
     super(seed);
   }
 
+  /**
+   * 生成一个随机的时区。
+   *
+   * @return 一个随机的{@link TimeZone}
+   */
   @Override
   public TimeZone getRandomValue() {
     final String[] timeZoneIds = TimeZone.getAvailableIDs();

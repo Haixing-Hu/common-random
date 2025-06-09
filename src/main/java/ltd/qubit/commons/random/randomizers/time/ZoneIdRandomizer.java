@@ -17,28 +17,33 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * A {@link Randomizer} that generates random {@link ZoneId}.
+ * 生成随机{@link ZoneId}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class ZoneIdRandomizer extends AbstractRandomizer<ZoneId> {
 
   /**
-   * Create a new {@link ZoneIdRandomizer}.
+   * 创建一个新的{@link ZoneIdRandomizer}。
    */
   public ZoneIdRandomizer() {
   }
 
   /**
-   * Create a new {@link ZoneIdRandomizer}.
+   * 创建一个新的{@link ZoneIdRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public ZoneIdRandomizer(final long seed) {
     super(seed);
   }
 
+  /**
+   * 生成一个随机的时区ID。
+   *
+   * @return 一个随机的{@link ZoneId}
+   */
   @Override
   public ZoneId getRandomValue() {
     final List<Map.Entry<String, String>> zoneIds = new ArrayList<>(ZoneId.SHORT_IDS.entrySet());

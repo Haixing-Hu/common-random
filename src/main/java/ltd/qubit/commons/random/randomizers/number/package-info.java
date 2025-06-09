@@ -7,8 +7,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * This package contains number randomizers.
+ * 此包包含数字随机化器。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 package ltd.qubit.commons.random.randomizers.number;

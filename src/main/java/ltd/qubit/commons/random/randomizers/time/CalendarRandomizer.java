@@ -13,31 +13,36 @@ import java.util.Calendar;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * Generate a random {@link Calendar}.
+ * 生成随机{@link Calendar}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class CalendarRandomizer implements Randomizer<Calendar> {
 
   private final DateRandomizer delegate;
 
   /**
-   * Create a new {@link CalendarRandomizer}.
+   * 创建一个新的{@link CalendarRandomizer}。
    */
   public CalendarRandomizer() {
     delegate = new DateRandomizer();
   }
 
   /**
-   * Create a new {@link CalendarRandomizer}.
+   * 创建一个新的{@link CalendarRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public CalendarRandomizer(final long seed) {
     delegate = new DateRandomizer(seed);
   }
 
+  /**
+   * 生成一个随机的日历。
+   *
+   * @return 一个随机的{@link Calendar}
+   */
   @Override
   public Calendar getRandomValue() {
     final Calendar calendar = Calendar.getInstance();

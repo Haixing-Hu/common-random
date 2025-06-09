@@ -52,15 +52,18 @@ import ltd.qubit.commons.random.randomizers.time.ZoneIdRandomizer;
 import ltd.qubit.commons.random.randomizers.time.ZoneOffsetRandomizer;
 
 /**
- * A registry of randomizers for Java 8 JSR 310 types.
+ * 一个用于 Java 8 JSR 310 时间类型的随机化器注册表。
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author Mahmoud Ben Hassine, 胡海星
  */
 @Priority(-4)
 public class TimeRandomizerRegistry implements RandomizerRegistry {
 
   private final Map<Class<?>, Randomizer<?>> randomizers = new HashMap<>();
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void init(final EasyRandom random, final Parameters parameters) {
     final long seed = parameters.getSeed();
@@ -82,11 +85,17 @@ public class TimeRandomizerRegistry implements RandomizerRegistry {
     randomizers.put(ZoneId.class, new ZoneIdRandomizer(seed));
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> get(final Field field, final Context context) {
     return get(field.getType(), context);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> get(final Class<?> type, final Context context) {
     return randomizers.get(type);

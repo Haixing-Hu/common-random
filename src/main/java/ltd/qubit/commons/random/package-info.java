@@ -7,8 +7,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Core implementation of Easy Random.
+ * Easy Random 的核心实现。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 package ltd.qubit.commons.random;

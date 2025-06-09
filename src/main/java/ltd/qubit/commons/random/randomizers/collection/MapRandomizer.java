@@ -19,13 +19,13 @@ import ltd.qubit.commons.random.randomizers.number.ByteRandomizer;
 import static java.lang.Math.abs;
 
 /**
- * A {@link Randomizer} that generates a {@link Map} with random entries.
+ * 一个 {@link Randomizer}，它生成一个具有随机条目的 {@link Map}。
  *
  * @param <K>
- *         the type of keys
+ *     键的类型。
  * @param <V>
- *         the type of values
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *     值的类型。
+ * @author 胡海星
  */
 public class MapRandomizer<K, V> implements ContextAwareRandomizer<Map<K, V>> {
 
@@ -34,30 +34,30 @@ public class MapRandomizer<K, V> implements ContextAwareRandomizer<Map<K, V>> {
   private final Randomizer<V> valueRandomizer;
 
   /**
-   * Create a new {@link MapRandomizer} with a random number of entries.
+   * 创建一个新的 {@link MapRandomizer}，它具有随机数量的条目。
    *
    * @param keyRandomizer
-   *         the randomizer for keys
+   *     键的随机化器。
    * @param valueRandomizer
-   *         the randomizer for values
+   *     值的随机化器。
    */
   public MapRandomizer(final Randomizer<K> keyRandomizer,
-          final Randomizer<V> valueRandomizer) {
+      final Randomizer<V> valueRandomizer) {
     this(keyRandomizer, valueRandomizer, getRandomSize());
   }
 
   /**
-   * Create a new {@link MapRandomizer} with a fixed number of entries.
+   * 创建一个新的 {@link MapRandomizer}，它具有固定数量的条目。
    *
    * @param keyRandomizer
-   *         the randomizer for keys
+   *     键的随机化器。
    * @param valueRandomizer
-   *         the randomizer for values
+   *     值的随机化器。
    * @param size
-   *         the number of entries to generate
+   *     要生成的条目数。
    */
   public MapRandomizer(final Randomizer<K> keyRandomizer,
-          final Randomizer<V> valueRandomizer, final int size) {
+      final Randomizer<V> valueRandomizer, final int size) {
     if (keyRandomizer == null) {
       throw new IllegalArgumentException("keyRandomizer must not be null");
     }
@@ -70,6 +70,12 @@ public class MapRandomizer<K, V> implements ContextAwareRandomizer<Map<K, V>> {
     this.size = size;
   }
 
+  /**
+   * 设置随机化器的上下文。
+   *
+   * @param context
+   *     上下文。
+   */
   @Override
   public void setContext(final Context context) {
     if (keyRandomizer instanceof ContextAwareRandomizer) {
@@ -80,6 +86,12 @@ public class MapRandomizer<K, V> implements ContextAwareRandomizer<Map<K, V>> {
     }
   }
 
+  /**
+   * 生成一个随机的 {@link Map}。
+   *
+   * @return
+   *     一个随机的 {@link Map}。
+   */
   @Override
   public Map<K, V> getRandomValue() {
     final Map<K, V> result = new HashMap<>();

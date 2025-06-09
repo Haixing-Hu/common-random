@@ -53,15 +53,18 @@ import ltd.qubit.commons.random.randomizers.time.SqlTimeRandomizer;
 import ltd.qubit.commons.random.randomizers.time.SqlTimestampRandomizer;
 
 /**
- * Registry for Java built-in types.
+ * Java 内置类型的注册表。
  *
- * @author Rémi Alvergnat (toilal.dev@gmail.com)
+ * @author 胡海星
  */
 @Priority(Integer.MIN_VALUE)
 public class InternalRandomizerRegistry implements RandomizerRegistry {
 
   private final Map<Class<?>, Randomizer<?>> randomizers = new HashMap<>();
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void init(final EasyRandom random, final Parameters parameters) {
     final long seed = parameters.getSeed();
@@ -99,6 +102,9 @@ public class InternalRandomizerRegistry implements RandomizerRegistry {
     randomizers.put(Class.class, new SkipRandomizer());
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> get(final Field field, final Context context) {
     return randomizers.get(field.getType());

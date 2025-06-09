@@ -13,23 +13,23 @@ import java.util.Locale;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * Generate a random {@link Locale}.
+ * 生成一个随机的 {@link Locale}。
  *
- * @author Pascal Schumacher
+ * @author 胡海星
  */
 public class LocaleRandomizer extends AbstractRandomizer<Locale> {
 
   /**
-   * Create a new {@link LocaleRandomizer}.
+   * 创建一个新的 {@link LocaleRandomizer}。
    */
   public LocaleRandomizer() {
   }
 
   /**
-   * Create a new {@link LocaleRandomizer}.
+   * 创建一个新的 {@link LocaleRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public LocaleRandomizer(final long seed) {
     super(seed);

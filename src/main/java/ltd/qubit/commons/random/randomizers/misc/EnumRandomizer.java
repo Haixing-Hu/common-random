@@ -18,36 +18,33 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * A {@link Randomizer} that generates a random value from a given {@link
- * Enum}.
+ * 一个 {@link Randomizer}，可以从给定的 {@link Enum} 中生成一个随机值。
  *
  * @param <E>
- *         the type of elements in the enumeration
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *     枚举中元素的类型
+ * @author 胡海星
  */
 public class EnumRandomizer<E extends Enum<E>> extends AbstractRandomizer<E> {
 
   private final List<E> enumConstants;
 
   /**
-   * Create a new {@link EnumRandomizer}.
+   * 创建一个新的 {@link EnumRandomizer}。
    *
    * @param enumeration
-   *         the enumeration from which this randomizer will generate random
-   *         values
+   *     此随机化器将从中生成随机值的枚举
    */
   public EnumRandomizer(final Class<E> enumeration) {
     this.enumConstants = Arrays.asList(enumeration.getEnumConstants());
   }
 
   /**
-   * Create a new {@link EnumRandomizer}.
+   * 创建一个新的 {@link EnumRandomizer}。
    *
    * @param enumeration
-   *         the enumeration from which this randomizer will generate random
-   *         values
+   *     此随机化器将从中生成随机值的枚举
    * @param seed
-   *         the initial seed
+   *     初始种子
    */
   public EnumRandomizer(final Class<E> enumeration, final long seed) {
     super(seed);
@@ -55,16 +52,14 @@ public class EnumRandomizer<E extends Enum<E>> extends AbstractRandomizer<E> {
   }
 
   /**
-   * Create a new {@link EnumRandomizer}.
+   * 创建一个新的 {@link EnumRandomizer}。
    *
    * @param enumeration
-   *         the enumeration from which this randomizer will generate random
-   *         values
+   *     此随机化器将从中生成随机值的枚举
    * @param excludedValues
-   *         the values to exclude from random picking
+   *     要从随机选择中排除的值
    * @throws IllegalArgumentException
-   *         when excludedValues contains all enumeration values, ie all
-   *         elements from the enumeration are excluded
+   *     当 excludedValues 包含所有枚举值时，即枚举中的所有元素都被排除时
    */
   @SuppressWarnings("varargs")
   @SafeVarargs
@@ -75,10 +70,9 @@ public class EnumRandomizer<E extends Enum<E>> extends AbstractRandomizer<E> {
   }
 
   /**
-   * Get a random value within an enumeration or an enumeration subset (when
-   * values are excluded).
+   * 在枚举或枚举子集中获取随机值（当值被排除时）。
    *
-   * @return a random value within the enumeration
+   * @return 枚举中的随机值
    */
   @Override
   public E getRandomValue() {
@@ -99,9 +93,9 @@ public class EnumRandomizer<E extends Enum<E>> extends AbstractRandomizer<E> {
   }
 
   /**
-   * Get a subset of enumeration.
+   * 获取枚举的子集。
    *
-   * @return the enumeration values minus those excluded.
+   * @return 枚举值减去排除的值。
    */
   @SuppressWarnings("unchecked")
   @SafeVarargs

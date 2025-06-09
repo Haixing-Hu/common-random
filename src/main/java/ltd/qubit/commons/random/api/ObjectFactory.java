@@ -12,25 +12,25 @@ import ltd.qubit.commons.random.Context;
 import ltd.qubit.commons.random.ObjectCreationException;
 
 /**
- * Strategy interface for object creation.
+ * 对象创建策略接口。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  * @since 4.0
  */
 public interface ObjectFactory {
 
   /**
-   * Create a new instance of {@code type} in the given randomization context.
+   * 在给定的随机化上下文中创建{@code type}的新实例。
    *
    * @param type
-   *         to create
+   *     要创建的类型。
    * @param context
-   *         current randomization context
+   *     当前的随机化上下文。
    * @param <T>
-   *         generic type
-   * @return new instance of the given type
+   *     泛型类型。
+   * @return 给定类型的新实例。
    * @throws ObjectCreationException
-   *         when unable to create an instance of the given type
+   *     当无法创建给定类型的实例时抛出。
    */
   <T> T createInstance(final Class<T> type, final Context context)
           throws ObjectCreationException;

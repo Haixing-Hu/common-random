@@ -20,10 +20,10 @@ import static ltd.qubit.commons.random.util.CollectionUtils.randomElementOf;
 import static ltd.qubit.commons.random.util.ReflectionUtils.getPublicConcreteSubTypesOf;
 
 /**
- * Objenesis based factory to create "fancy" objects: immutable java beans,
- * generic types, abstract and interface types.
+ * 基于Objenesis的工厂，用于创建"复杂"对象：不可变的Java Bean、
+ * 泛型类型、抽象类型和接口类型。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 @SuppressWarnings({"unchecked"})
 class ObjenesisObjectFactory implements ObjectFactory {

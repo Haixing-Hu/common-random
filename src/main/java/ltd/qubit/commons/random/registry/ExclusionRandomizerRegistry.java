@@ -25,9 +25,9 @@ import ltd.qubit.commons.random.api.RandomizerRegistry;
 import ltd.qubit.commons.random.randomizers.misc.SkipRandomizer;
 
 /**
- * A {@link RandomizerRegistry} to exclude fields using a {@link Predicate}.
+ * 一个 {@link RandomizerRegistry}，用于使用 {@link Predicate} 排除字段。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 @Priority(Integer.MAX_VALUE)
 public class ExclusionRandomizerRegistry implements RandomizerRegistry {
@@ -71,20 +71,20 @@ public class ExclusionRandomizerRegistry implements RandomizerRegistry {
   }
 
   /**
-   * Add a field predicate.
+   * 添加一个字段谓词。
    *
    * @param predicate
-   *         to add
+   *     要添加的谓词。
    */
   public void addFieldPredicate(final Predicate<Field> predicate) {
     fieldPredicates.add(predicate);
   }
 
   /**
-   * Add a type predicate.
+   * 添加一个类型谓词。
    *
    * @param predicate
-   *         to add
+   *     要添加的谓词。
    */
   public void addTypePredicate(final Predicate<Class<?>> predicate) {
     typePredicates.add(predicate);

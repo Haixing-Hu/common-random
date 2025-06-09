@@ -47,10 +47,9 @@ import static ltd.qubit.commons.random.util.ReflectionUtils.getEmptyImplementati
 import static ltd.qubit.commons.random.util.ReflectionUtils.getPopulatableFields;
 
 /**
- * Extension of {@link java.util.Random} that is able to generate random Java
- * objects.
+ * {@link java.util.Random} 的扩展，能够生成随机的Java对象。
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author 胡海星
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class EasyRandom extends RandomEx {
@@ -77,17 +76,17 @@ public class EasyRandom extends RandomEx {
   private final ObjectFactory objectFactory;
 
   /**
-   * Create a new {@link EasyRandom} instance with default parameters.
+   * 使用默认参数创建一个新的 {@link EasyRandom} 实例。
    */
   public EasyRandom() {
     this(new Parameters());
   }
 
   /**
-   * Create a new {@link EasyRandom} instance.
+   * 创建一个新的 {@link EasyRandom} 实例。
    *
    * @param parameters
-   *     randomization parameters
+   *     随机化参数。
    */
   public EasyRandom(final Parameters parameters) {
     this.parameters = requireNonNull(parameters, "Parameters must not be null");
@@ -105,6 +104,13 @@ public class EasyRandom extends RandomEx {
     fieldPopulator = new FieldPopulator(this);
   }
 
+  /**
+   * 构建随机化器提供者。
+   *
+   * @param parameters
+   *     参数
+   * @return 随机化器提供者
+   */
   private RandomizerProvider buildRandomizerProvider(
       final Parameters parameters) {
     final LinkedHashSet<RandomizerRegistry> registries = setupRegistries(parameters);
@@ -117,62 +123,77 @@ public class EasyRandom extends RandomEx {
     return result;
   }
 
+  /**
+   * 获取此随机生成器的日志记录器。
+   *
+   * @return 此随机生成器的日志记录器。
+   */
   public Logger getLogger() {
     return logger;
   }
 
+  /**
+   * 获取此随机生成器的参数。
+   *
+   * @return 此随机生成器的参数。
+   */
   public final Parameters getParameters() {
     return parameters;
   }
 
+  /**
+   * 获取此随机生成器的随机化器提供者。
+   *
+   * @return 此随机生成器的随机化器提供者。
+   */
   public final RandomizerProvider getRandomizerProvider() {
     return randomizerProvider;
   }
 
   /**
-   * Generate a random instance of the given type.
+   * 生成给定类型的随机实例。
    *
    * @param type
-   *     the type for which an instance will be generated
+   *     将为其生成实例的类型。
    * @param <T>
-   *     the actual type of the target object
-   * @return a random instance of the given type
+   *     目标对象的实际类型。
+   * @return 给定类型的随机实例。
    * @throws ObjectCreationException
-   *     when unable to create a new instance of the given type
+   *     当无法创建给定类型的新实例时。
    */
   public <T> T nextObject(final Class<T> type) {
     return doPopulateBean(type, new Context(type, parameters));
   }
 
   /**
-   * Generate a random instance of the given type.
+   * 生成给定类型的随机实例。
    *
    * @param type
-   *     the type for which an instance will be generated
+   *     将为其生成实例的类型。
    * @param context
-   *     the randomization context.
+   *     随机化上下文。
    * @param <T>
-   *     the actual type of the target object
-   * @return a random instance of the given type
+   *     目标对象的实际类型。
+   * @return 给定类型的随机实例。
    * @throws ObjectCreationException
-   *     when unable to create a new instance of the given type
+   *     当无法创建给定类型的新实例时。
    */
   public <T> T nextObject(final Class<T> type, final Context context) {
     return doPopulateBean(type, context);
   }
 
   /**
-   * Generate a stream of random instances of the given type.
+   * 生成给定类型的随机实例流。
    *
    * @param type
-   *     the type for which instances will be generated
+   *     将为其生成实例的类型。
    * @param streamSize
-   *     the number of instances to generate
+   *     要生成的实例数。
    * @param <T>
-   *     the actual type of the target objects
-   * @return a stream of random instances of the given type
+   *     目标对象的实际类型。
+   * @return 给定类型的随机实例流。
    * @throws ObjectCreationException
-   *     when unable to create a new instance of the given type
+   *     当无法创建给定类型的新实例时。
    */
   public <T> Stream<T> objects(final Class<T> type, final int streamSize) {
     if (streamSize < 0) {
@@ -181,6 +202,19 @@ public class EasyRandom extends RandomEx {
     return Stream.generate(() -> nextObject(type)).limit(streamSize);
   }
 
+  /**
+   * 执行Bean填充。
+   *
+   * @param type
+   *     要填充的类型
+   * @param context
+   *     随机化上下文
+   * @param <T>
+   *     目标类型
+   * @return 填充后的对象
+   * @throws ObjectCreationException
+   *     如果无法创建对象
+   */
   private <T> T doPopulateBean(final Class<T> type, final Context context) {
     logger.debug("Populate bean: class = {}, context = {}", type, context);
     final ExclusionPolicy exclusionPolicy = parameters.getExclusionPolicy();
@@ -225,6 +259,17 @@ public class EasyRandom extends RandomEx {
     }
   }
 
+  /**
+   * 随机化不可内省的类型。
+   *
+   * @param type
+   *     要随机化的类型
+   * @param context
+   *     随机化上下文
+   * @param <T>
+   *     目标类型
+   * @return 随机化的对象
+   */
   private <T> T randomizeNonIntrospectable(final Class<T> type,
       final Context context) {
     if (isEnumType(type)) {
@@ -250,6 +295,13 @@ public class EasyRandom extends RandomEx {
     return null;
   }
 
+  /**
+   * 设置随机化器注册表。
+   *
+   * @param parameters
+   *     参数
+   * @return 随机化器注册表集合
+   */
   private LinkedHashSet<RandomizerRegistry> setupRegistries(final Parameters parameters) {
     final LinkedHashSet<RandomizerRegistry> registries = new LinkedHashSet<>();
     registries.add(parameters.getCustomRandomizerRegistry());
@@ -260,32 +312,71 @@ public class EasyRandom extends RandomEx {
     return registries;
   }
 
+  /**
+   * 加载随机化器注册表。
+   *
+   * @return 随机化器注册表集合
+   */
   private Collection<RandomizerRegistry> loadRegistries() {
     final List<RandomizerRegistry> registries = new ArrayList<>();
     ServiceLoader.load(RandomizerRegistry.class).forEach(registries::add);
     return registries;
   }
 
+  /**
+   * 获取此随机生成器的字段填充器。
+   *
+   * @return 此随机生成器的字段填充器。
+   */
   public final FieldPopulator getFieldPopulator() {
     return fieldPopulator;
   }
 
+  /**
+   * 获取此随机生成器的数组填充器。
+   *
+   * @return 此随机生成器的数组填充器。
+   */
   public final ArrayPopulator getArrayPopulator() {
     return arrayPopulator;
   }
 
+  /**
+   * 获取此随机生成器的集合填充器。
+   *
+   * @return 此随机生成器的集合填充器。
+   */
   public final CollectionPopulator getCollectionPopulator() {
     return collectionPopulator;
   }
 
+  /**
+   * 获取此随机生成器的映射填充器。
+   *
+   * @return 此随机生成器的映射填充器。
+   */
   public final MapPopulator getMapPopulator() {
     return mapPopulator;
   }
 
+  /**
+   * 获取此随机生成器的对象工厂。
+   *
+   * @return 此随机生成器的对象工厂。
+   */
   public final ObjectFactory getObjectFactory() {
     return objectFactory;
   }
 
+  /**
+   * 生成一个指定元素类型的随机列表。
+   *
+   * @param elementType
+   *     列表中元素的类型。
+   * @param <E>
+   *     列表中元素的类型。
+   * @return 指定元素类型的随机列表。
+   */
   public <E> List<E> nextList(final Class<E> elementType) {
     final CloseRange<Integer> range = parameters.getCollectionSizeRange();
     final int size = nextInt(range);
@@ -296,6 +387,15 @@ public class EasyRandom extends RandomEx {
     return result;
   }
 
+  /**
+   * 生成一个指定元素类型的随机集。
+   *
+   * @param elementType
+   *     集中元素的类型。
+   * @param <E>
+   *     集中元素的类型。
+   * @return 指定元素类型的随机集。
+   */
   public <E> Set<E> nextSet(final Class<E> elementType) {
     final CloseRange<Integer> range = parameters.getCollectionSizeRange();
     final int size = nextInt(range);
@@ -310,66 +410,127 @@ public class EasyRandom extends RandomEx {
     return result;
   }
 
+  /**
+   * 生成一个随机的数字字符数组。
+   *
+   * @return 随机的数字字符数组。
+   */
   public final char[] nextDigitChars() {
     final CloseRange<Integer> range = parameters.getCollectionSizeRange();
     final int size = nextInt(range);
     return nextDigitChars(size);
   }
 
+  /**
+   * 生成一个随机的小写字母字符数组。
+   *
+   * @return 随机的小写字母字符数组。
+   */
   public final char[] nextLowercaseLetterChars() {
     final CloseRange<Integer> range = parameters.getCollectionSizeRange();
     final int size = nextInt(range);
     return nextLowercaseLetterChars(size);
   }
 
+  /**
+   * 生成一个随机的大写字母字符数组。
+   *
+   * @return 随机的大写字母字符数组。
+   */
   public final char[] nextUppercaseLetterChars() {
     final CloseRange<Integer> range = parameters.getCollectionSizeRange();
     final int size = nextInt(range);
     return nextUppercaseLetterChars(size);
   }
 
+  /**
+   * 生成一个随机的字母字符数组。
+   *
+   * @return 随机的字母字符数组。
+   */
   public final char[] nextLetterChars() {
     final CloseRange<Integer> range = parameters.getCollectionSizeRange();
     final int size = nextInt(range);
     return nextLetterChars(size);
   }
 
+  /**
+   * 生成一个随机的字母数字字符数组。
+   *
+   * @return 随机的字母数字字符数组。
+   */
   public final char[] nextLetterDigitChars() {
     final CloseRange<Integer> range = parameters.getCollectionSizeRange();
     final int size = nextInt(range);
     return nextLetterDigitChars(size);
   }
 
+  /**
+   * 生成一个随机的数字字符串。
+   *
+   * @return 随机的数字字符串。
+   */
   public final String nextDigitString() {
     final CloseRange<Integer> lengthCloseRange = parameters.getStringLengthRange();
     final int length = nextInt(lengthCloseRange);
     return nextDigitString(length);
   }
 
+  /**
+   * 生成一个随机的小写字母字符串。
+   *
+   * @return 随机的小写字母字符串。
+   */
   public final String nextLowercaseLetterString() {
     final CloseRange<Integer> lengthCloseRange = parameters.getStringLengthRange();
     final int length = nextInt(lengthCloseRange);
     return nextLowercaseLetterString(length);
   }
 
+  /**
+   * 生成一个随机的大写字母字符串。
+   *
+   * @return 随机的大写字母字符串。
+   */
   public final String nextUppercaseLetterString() {
     final CloseRange<Integer> lengthCloseRange = parameters.getStringLengthRange();
     final int length = nextInt(lengthCloseRange);
     return nextUppercaseLetterString(length);
   }
 
+  /**
+   * 生成一个随机的字母字符串。
+   *
+   * @return 随机的字母字符串。
+   */
   public final String nextLetterString() {
     final CloseRange<Integer> lengthCloseRange = parameters.getStringLengthRange();
     final int length = nextInt(lengthCloseRange);
     return nextLetterString(length);
   }
 
+  /**
+   * 生成一个随机的字母数字字符串。
+   *
+   * @return 随机的字母数字字符串。
+   */
   public final String nextLetterDigitString() {
     final CloseRange<Integer> lengthCloseRange = parameters.getStringLengthRange();
     final int length = nextInt(lengthCloseRange);
     return nextLetterDigitString(length);
   }
 
+  /**
+   * 生成指定类型的对象数组。
+   *
+   * @param size
+   *     要生成的数组大小。
+   * @param type
+   *     数组元素的类型。
+   * @param <T>
+   *     数组元素的类型。
+   * @return 指定类型的对象数组。
+   */
   public <T> T[] nextObjectArray(final int size, final Class<T> type) {
     @SuppressWarnings("unchecked")
     final T[] result = (T[]) Array.newInstance(type, size);
@@ -379,6 +540,15 @@ public class EasyRandom extends RandomEx {
     return result;
   }
 
+  /**
+   * 生成指定类型的对象数组。
+   *
+   * @param type
+   *     数组元素的类型。
+   * @param <T>
+   *     数组元素的类型。
+   * @return 指定类型的对象数组。
+   */
   public <T> T[] nextObjectArray(final Class<T> type) {
     final CloseRange<Integer> range = parameters.getCollectionSizeRange();
     final int size = nextInt(range);

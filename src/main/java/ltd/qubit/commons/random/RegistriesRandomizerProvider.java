@@ -26,9 +26,9 @@ import ltd.qubit.commons.random.api.RandomizerRegistry;
 import static ltd.qubit.commons.reflect.FieldUtils.isAnnotationPresent;
 
 /**
- * Central class to get registered randomizers by Field or by Type.
+ * 通过字段或类型获取已注册的随机化器的中心类。
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author 胡海星
  */
 public class RegistriesRandomizerProvider implements RandomizerProvider {
 
@@ -37,6 +37,9 @@ public class RegistriesRandomizerProvider implements RandomizerProvider {
   private final Map<Field, Optional<Randomizer<?>>> byFieldCache;
   private final Map<Class<?>, Optional<Randomizer<?>>> byTypeCache;
 
+  /**
+   * 创建一个新的 {@link RegistriesRandomizerProvider}。
+   */
   public RegistriesRandomizerProvider() {
     registries = new ArrayList<>();
     priorityComparator = new PriorityComparator();
@@ -44,6 +47,9 @@ public class RegistriesRandomizerProvider implements RandomizerProvider {
     byTypeCache = new ConcurrentHashMap<>();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public RegistriesRandomizerProvider clone() {
     final RegistriesRandomizerProvider result = new RegistriesRandomizerProvider();
@@ -51,6 +57,9 @@ public class RegistriesRandomizerProvider implements RandomizerProvider {
     return result;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> getByField(final Field field, final Context context) {
     // Field with @Nullable annotation may have different Randomizer with 50% probability.
@@ -68,6 +77,9 @@ public class RegistriesRandomizerProvider implements RandomizerProvider {
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @SuppressWarnings("unchecked")
   @Override
   public <T> Randomizer<T> getByType(final Class<T> type, final Context context) {
@@ -79,6 +91,9 @@ public class RegistriesRandomizerProvider implements RandomizerProvider {
     return (Randomizer<T>) result.orElse(null);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public RegistriesRandomizerProvider addRegistries(final Set<RandomizerRegistry> registries) {
     this.registries.addAll(registries);
@@ -88,6 +103,9 @@ public class RegistriesRandomizerProvider implements RandomizerProvider {
     return this;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public RegistriesRandomizerProvider removeRegistry(
       final Class<? extends RandomizerRegistry> registryClass) {

@@ -11,23 +11,23 @@ package ltd.qubit.commons.random.randomizers.misc;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * Generate a random {@link Boolean}.
+ * 生成一个随机的 {@link Boolean}.
  *
- * @author Mahmoud Ben Hassine
+ * @author 胡海星
  */
 public class BooleanRandomizer extends AbstractRandomizer<Boolean> {
 
   /**
-   * Create a new {@link BooleanRandomizer}.
+   * 创建一个新的 {@link BooleanRandomizer}.
    */
   public BooleanRandomizer() {
   }
 
   /**
-   * Create a new {@link BooleanRandomizer}.
+   * 创建一个新的 {@link BooleanRandomizer}.
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public BooleanRandomizer(final long seed) {
     super(seed);

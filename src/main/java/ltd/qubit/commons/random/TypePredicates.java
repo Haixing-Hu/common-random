@@ -13,59 +13,56 @@ import java.lang.reflect.Modifier;
 import java.util.function.Predicate;
 
 /**
- * Common predicates to identify types. Usually used in combination to define a
- * collection of types. For example:
+ * 用于识别类型的常用谓词。通常组合使用来定义一组类型。例如：
  *
  * <pre>
  *     Predicate&lt;Class&lt;?&gt;&gt; predicate = inPackage("java.util")
  *                                                  .or(inPackage("com.sun"));
  * </pre>
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class TypePredicates {
 
   /**
-   * Create a predicate to check that a type has a given name.
+   * 创建一个谓词来检查类型是否具有给定的名称。
    *
    * @param name
-   *     name on the type
-   * @return Predicate to check that a type has a given name.
+   *     类型的名称
+   * @return 检查类型是否具有给定名称的谓词。
    */
   public static Predicate<Class<?>> named(final String name) {
     return clazz -> clazz.getName().equals(name);
   }
 
   /**
-   * Create a predicate to check that a class has a certain type.
+   * 创建一个谓词来检查类是否具有特定类型。
    *
    * @param type
-   *     of the class to check
-   * @return Predicate to check that a class has a certain type
+   *     要检查的类的类型
+   * @return 检查类是否具有特定类型的谓词
    */
   public static Predicate<Class<?>> ofType(final Class<?> type) {
     return clazz -> clazz.equals(type);
   }
 
   /**
-   * Create a predicate to check that a type is defined in a given package.
+   * 创建一个谓词来检查类型是否定义在给定的包中。
    *
    * @param packageNamePrefix
-   *     prefix of the package name
-   * @return Predicate to check that a type is defined in a given package.
+   *     包名的前缀
+   * @return 检查类型是否定义在给定包中的谓词。
    */
   public static Predicate<Class<?>> inPackage(final String packageNamePrefix) {
     return clazz -> clazz.getPackage().getName().startsWith(packageNamePrefix);
   }
 
   /**
-   * Create a predicate to check that a type is annotated with one of the given
-   * annotations.
+   * 创建一个谓词来检查类型是否使用给定注解之一进行了注解。
    *
    * @param annotations
-   *     present on the type
-   * @return Predicate to check that a type is annotated with one of the given
-   *     annotations.
+   *     类型上存在的注解
+   * @return 检查类型是否使用给定注解之一进行了注解的谓词。
    */
   @SafeVarargs
   public static Predicate<Class<?>> isAnnotatedWith(
@@ -81,67 +78,67 @@ public class TypePredicates {
   }
 
   /**
-   * Create a predicate to check if a type is an interface.
+   * 创建一个谓词来检查类型是否为接口。
    *
-   * @return a predicate to check if a type is an interface
+   * @return 检查类型是否为接口的谓词
    */
   public static Predicate<Class<?>> isInterface() {
     return Class::isInterface;
   }
 
   /**
-   * Create a predicate to check if a type is primitive.
+   * 创建一个谓词来检查类型是否为基本类型。
    *
-   * @return a predicate to check if a type is primitive
+   * @return 检查类型是否为基本类型的谓词
    */
   public static Predicate<Class<?>> isPrimitive() {
     return Class::isPrimitive;
   }
 
   /**
-   * Create a predicate to check if a class is abstract.
+   * 创建一个谓词来检查类是否为抽象类。
    *
-   * @return a predicate to check if a class is abstract
+   * @return 检查类是否为抽象类的谓词
    */
   public static Predicate<Class<?>> isAbstract() {
     return hasModifiers(Modifier.ABSTRACT);
   }
 
   /**
-   * Create a predicate to check that a type has a given set of modifiers.
+   * 创建一个谓词来检查类型是否具有给定的修饰符集合。
    *
    * @param modifiers
-   *     of the type to check
-   * @return Predicate to check that a type has a given set of modifiers
+   *     要检查的类型的修饰符
+   * @return 检查类型是否具有给定修饰符集合的谓词
    */
   public static Predicate<Class<?>> hasModifiers(final Integer modifiers) {
     return clazz -> (modifiers & clazz.getModifiers()) == modifiers;
   }
 
   /**
-   * Create a predicate to check if a type is an enumeration.
+   * 创建一个谓词来检查类型是否为枚举。
    *
-   * @return a predicate to check if a type is an enumeration
+   * @return 检查类型是否为枚举的谓词
    */
   public static Predicate<Class<?>> isEnum() {
     return Class::isEnum;
   }
 
   /**
-   * Create a predicate to check if a type is an array.
+   * 创建一个谓词来检查类型是否为数组。
    *
-   * @return a predicate to check if a type is an array
+   * @return 检查类型是否为数组的谓词
    */
   public static Predicate<Class<?>> isArray() {
     return Class::isArray;
   }
 
   /**
-   * Create a predicate to check if a type is is assignable from another type.
+   * 创建一个谓词来检查类型是否可以从另一个类型赋值。
    *
    * @param type
-   *     to check
-   * @return a predicate to check if a type is is assignable from another type.
+   *     要检查的类型
+   * @return 检查类型是否可以从另一个类型赋值的谓词。
    */
   public static Predicate<Class<?>> isAssignableFrom(final Class<?> type) {
     return clazz -> clazz.isAssignableFrom(type);

@@ -19,38 +19,44 @@ import ltd.qubit.commons.util.range.CloseRange;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Generate a random {@link Year} in the given range.
+ * 在给定范围内生成一个随机的{@link Year}。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class YearRangeRandomizer extends AbstractRangeRandomizer<Year> {
 
   /**
-   * Create a new {@link YearRangeRandomizer}.
+   * 创建一个新的{@link YearRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    */
   public YearRangeRandomizer(final Year min, final Year max) {
     super(min, max);
   }
 
   /**
-   * Create a new {@link YearRangeRandomizer}.
+   * 创建一个新的{@link YearRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public YearRangeRandomizer(final Year min, final Year max, final long seed) {
     super(min, max, seed);
   }
 
+  /**
+   * 创建一个新的{@link YearRangeRandomizer}。
+   *
+   * @param parameters
+   *         随机化参数。
+   */
   public YearRangeRandomizer(final Parameters parameters) {
     super(parameters.getSeed());
     setParameters(parameters);

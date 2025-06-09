@@ -15,33 +15,33 @@ import ltd.qubit.commons.util.range.CloseRange;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Generate a random {@link Integer} in the given range.
+ * 在给定范围内生成一个随机的{@link Integer}。
  *
- * @author Rémi Alvergnat, Haixing Hu
+ * @author 胡海星
  */
 public class IntegerRangeRandomizer extends AbstractRangeRandomizer<Integer> {
 
   /**
-   * Create a new {@link IntegerRangeRandomizer}.
+   * 创建一个新的{@link IntegerRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    */
   public IntegerRangeRandomizer(final Integer min, final Integer max) {
     super(min, max);
   }
 
   /**
-   * Create a new {@link IntegerRangeRandomizer}.
+   * 创建一个新的{@link IntegerRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public IntegerRangeRandomizer(final Integer min, final Integer max,
           final long seed) {
@@ -49,22 +49,22 @@ public class IntegerRangeRandomizer extends AbstractRangeRandomizer<Integer> {
   }
 
   /**
-   * Create a new {@link IntegerRangeRandomizer}.
+   * 创建一个新的{@link IntegerRangeRandomizer}。
    *
    * @param range
-   *         the range.
+   *         范围。
    */
   public IntegerRangeRandomizer(final CloseRange<Integer> range) {
     super(range);
   }
 
   /**
-   * Create a new {@link IntegerRangeRandomizer}.
+   * 创建一个新的{@link IntegerRangeRandomizer}。
    *
    * @param range
-   *         the range.
+   *         范围。
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public IntegerRangeRandomizer(final CloseRange<Integer> range, final long seed) {
     super(range, seed);

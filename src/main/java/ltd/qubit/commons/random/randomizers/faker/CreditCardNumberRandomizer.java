@@ -13,40 +13,45 @@ import java.util.Locale;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random credit card numbers.
+ * 生成随机信用卡号码的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class CreditCardNumberRandomizer extends FakerBasedRandomizer<String> {
 
   /**
-   * Create a new {@link CreditCardNumberRandomizer}.
+   * 创建一个新的{@link CreditCardNumberRandomizer}。
    */
   public CreditCardNumberRandomizer() {
   }
 
   /**
-   * Create a new {@link CreditCardNumberRandomizer}.
+   * 创建一个新的{@link CreditCardNumberRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    */
   public CreditCardNumberRandomizer(final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link CreditCardNumberRandomizer}.
+   * 创建一个新的{@link CreditCardNumberRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    * @param locale
-   *         the locale to use
+   *         要使用的区域设置
    */
   public CreditCardNumberRandomizer(final long seed, final Locale locale) {
     super(seed, locale);
   }
 
+  /**
+   * 生成一个随机的信用卡号码。
+   *
+   * @return 一个随机的信用卡号码
+   */
   @Override
   public String getRandomValue() {
     return faker.business().creditCardNumber();

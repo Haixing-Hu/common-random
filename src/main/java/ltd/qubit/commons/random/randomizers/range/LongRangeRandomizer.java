@@ -14,33 +14,33 @@ import ltd.qubit.commons.random.randomizers.AbstractRangeRandomizer;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Generate a random {@link Long} in the given range.
+ * 在给定范围内生成一个随机的{@link Long}。
  *
- * @author Rémi Alvergna, Haixing Hu
+ * @author 胡海星
  */
 public class LongRangeRandomizer extends AbstractRangeRandomizer<Long> {
 
   /**
-   * Create a new {@link LongRangeRandomizer}.
+   * 创建一个新的{@link LongRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    */
   public LongRangeRandomizer(final Long min, final Long max) {
     super(min, max);
   }
 
   /**
-   * Create a new {@link LongRangeRandomizer}.
+   * 创建一个新的{@link LongRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public LongRangeRandomizer(final Long min, final Long max, final long seed) {
     super(min, max, seed);

@@ -11,28 +11,33 @@ package ltd.qubit.commons.random.randomizers.number;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * Generate a random {@link Float}.
+ * 生成一个随机的{@link Float}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class FloatRandomizer extends AbstractRandomizer<Float> {
 
   /**
-   * Create a new {@link FloatRandomizer}.
+   * 创建一个新的{@link FloatRandomizer}。
    */
   public FloatRandomizer() {
   }
 
   /**
-   * Create a new {@link FloatRandomizer}.
+   * 创建一个新的{@link FloatRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public FloatRandomizer(final long seed) {
     super(seed);
   }
 
+  /**
+   * 生成一个随机的{@link Float}。
+   *
+   * @return 一个随机的{@link Float}
+   */
   @Override
   public Float getRandomValue() {
     return random.nextFloat();

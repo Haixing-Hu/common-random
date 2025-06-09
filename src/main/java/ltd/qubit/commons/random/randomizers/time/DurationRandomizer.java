@@ -16,9 +16,9 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.range.IntegerRangeRandomizer;
 
 /**
- * A {@link Randomizer} that generates random {@link Duration}.
+ * 生成随机{@link Duration}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class DurationRandomizer implements Randomizer<Duration> {
 
@@ -29,41 +29,41 @@ public class DurationRandomizer implements Randomizer<Duration> {
   private final TemporalUnit unit;
 
   /**
-   * Create a new {@link DurationRandomizer}. Generated {@link Duration} objects
-   * will use {@link ChronoUnit#HOURS}.
+   * 创建一个新的{@link DurationRandomizer}。生成的{@link Duration}对象
+   * 将使用{@link ChronoUnit#HOURS}。
    */
   public DurationRandomizer() {
     this(ChronoUnit.HOURS);
   }
 
   /**
-   * Create a new {@link DurationRandomizer}.
+   * 创建一个新的{@link DurationRandomizer}。
    *
    * @param unit
-   *         the temporal unit for created durations
+   *         创建时长的时间单位
    */
   public DurationRandomizer(final TemporalUnit unit) {
     this(new IntegerRangeRandomizer(MIN_AMOUNT, MAX_AMOUNT), unit);
   }
 
   /**
-   * Create a new {@link DurationRandomizer}. Generated {@link Duration} objects
-   * will use {@link ChronoUnit#HOURS}.
+   * 创建一个新的{@link DurationRandomizer}。生成的{@link Duration}对象
+   * 将使用{@link ChronoUnit#HOURS}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public DurationRandomizer(final long seed) {
     this(seed, ChronoUnit.HOURS);
   }
 
   /**
-   * Create a new {@link DurationRandomizer}.
+   * 创建一个新的{@link DurationRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    * @param unit
-   *         the temporal unit for created durations
+   *         创建时长的时间单位
    */
   public DurationRandomizer(final long seed, final TemporalUnit unit) {
     this(new IntegerRangeRandomizer(MIN_AMOUNT, MAX_AMOUNT, seed), unit);
@@ -75,12 +75,26 @@ public class DurationRandomizer implements Randomizer<Duration> {
     this.unit = requireValid(unit);
   }
 
+  /**
+   * 生成一个随机的时间长度。
+   *
+   * @return 一个随机的{@link Duration}
+   */
   @Override
   public Duration getRandomValue() {
     final int randomAmount = amountRandomizer.getRandomValue();
     return Duration.of(randomAmount, unit);
   }
 
+  /**
+   * 验证时间单位是否有效。
+   *
+   * @param unit
+   *         要验证的时间单位
+   * @return 有效的时间单位
+   * @throws IllegalArgumentException
+   *         如果时间单位无效
+   */
   private static TemporalUnit requireValid(final TemporalUnit unit) {
     if (unit.isDurationEstimated() && unit != ChronoUnit.DAYS) {
       throw new IllegalArgumentException("Temporal unit " + unit

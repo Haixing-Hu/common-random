@@ -13,40 +13,45 @@ import java.util.Locale;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random last names.
+ * 生成随机姓氏的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class LastNameRandomizer extends FakerBasedRandomizer<String> {
 
   /**
-   * Create a new {@link LastNameRandomizer}.
+   * 创建一个新的{@link LastNameRandomizer}。
    */
   public LastNameRandomizer() {
   }
 
   /**
-   * Create a new {@link LastNameRandomizer}.
+   * 创建一个新的{@link LastNameRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    */
   public LastNameRandomizer(final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link LastNameRandomizer}.
+   * 创建一个新的{@link LastNameRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    * @param locale
-   *         the locale to use
+   *         要使用的区域设置
    */
   public LastNameRandomizer(final long seed, final Locale locale) {
     super(seed, locale);
   }
 
+  /**
+   * 生成一个随机的姓氏。
+   *
+   * @return 一个随机的姓氏
+   */
   @Override
   public String getRandomValue() {
     return faker.name().lastName();

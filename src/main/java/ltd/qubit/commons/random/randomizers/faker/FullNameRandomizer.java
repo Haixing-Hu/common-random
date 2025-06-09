@@ -13,40 +13,45 @@ import java.util.Locale;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random full names.
+ * 生成随机全名的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class FullNameRandomizer extends FakerBasedRandomizer<String> {
 
   /**
-   * Create a new {@link FullNameRandomizer}.
+   * 创建一个新的{@link FullNameRandomizer}。
    */
   public FullNameRandomizer() {
   }
 
   /**
-   * Create a new {@link FullNameRandomizer}.
+   * 创建一个新的{@link FullNameRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    */
   public FullNameRandomizer(final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link FullNameRandomizer}.
+   * 创建一个新的{@link FullNameRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    * @param locale
-   *         the locale to use
+   *         要使用的区域设置
    */
   public FullNameRandomizer(final long seed, final Locale locale) {
     super(seed, locale);
   }
 
+  /**
+   * 生成一个随机的全名。
+   *
+   * @return 一个随机的全名
+   */
   @Override
   public String getRandomValue() {
     return faker.name().fullName();

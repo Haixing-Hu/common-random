@@ -28,19 +28,28 @@ import ltd.qubit.commons.random.randomizers.range.ShortRangeRandomizer;
 import static ltd.qubit.commons.reflect.FieldUtils.getAnnotation;
 
 /**
- * The annotation handler for the {@link Max} and {@link Min} annotations.
+ * {@link Max} 和 {@link Min} 注解的注解处理器。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 
 public class MinMaxAnnotationHandler implements AnnotationHandler {
 
   private final Random random;
 
+  /**
+   * 构造一个 {@link MinMaxAnnotationHandler}。
+   *
+   * @param seed
+   *     用于生成随机数的种子。
+   */
   public MinMaxAnnotationHandler(final long seed) {
     random = new Random(seed);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> getRandomizer(final Field field, final Context context) {
     final Class<?> fieldType = field.getType();

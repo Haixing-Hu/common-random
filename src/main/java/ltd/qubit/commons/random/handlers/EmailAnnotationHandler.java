@@ -18,18 +18,27 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.faker.EmailRandomizer;
 
 /**
- * The annotation handler for the {@link Email} annotation.
+ * {@link Email} 注解的注解处理器。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class EmailAnnotationHandler implements AnnotationHandler {
 
   private final Random random;
 
+  /**
+   * 构造一个 {@link EmailAnnotationHandler}。
+   *
+   * @param seed
+   *     用于生成随机数的种子。
+   */
   public EmailAnnotationHandler(final long seed) {
     random = new Random(seed);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> getRandomizer(final Field field, final Context context) {
     return new EmailRandomizer(random.nextLong());

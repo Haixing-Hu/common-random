@@ -7,8 +7,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * This package contains java.net types randomizers.
+ * 此包包含 java.net 类型的随机化器。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 package ltd.qubit.commons.random.randomizers.net;

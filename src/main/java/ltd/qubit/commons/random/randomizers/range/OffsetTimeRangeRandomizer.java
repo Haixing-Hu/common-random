@@ -24,40 +24,46 @@ import static java.util.Objects.requireNonNull;
 import static ltd.qubit.commons.random.Parameters.DEFAULT_DATES_RANGE;
 
 /**
- * Generate a random {@link OffsetTime} in the given range.
+ * 在给定范围内生成一个随机的{@link OffsetTime}。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class OffsetTimeRangeRandomizer extends
     AbstractRangeRandomizer<OffsetTime> {
 
   /**
-   * Create a new {@link OffsetTimeRangeRandomizer}.
+   * 创建一个新的{@link OffsetTimeRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    */
   public OffsetTimeRangeRandomizer(final OffsetTime min, final OffsetTime max) {
     super(min, max);
   }
 
   /**
-   * Create a new {@link OffsetTimeRangeRandomizer}.
+   * 创建一个新的{@link OffsetTimeRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public OffsetTimeRangeRandomizer(final OffsetTime min, final OffsetTime max,
           final long seed) {
     super(min, max, seed);
   }
 
+  /**
+   * 创建一个新的{@link OffsetTimeRangeRandomizer}。
+   *
+   * @param parameters
+   *         随机化参数。
+   */
   public OffsetTimeRangeRandomizer(final Parameters parameters) {
     super(parameters.getSeed());
     setParameters(parameters);

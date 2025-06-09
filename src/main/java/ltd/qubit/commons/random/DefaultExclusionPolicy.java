@@ -17,23 +17,20 @@ import ltd.qubit.commons.random.api.ExclusionPolicy;
 import static ltd.qubit.commons.reflect.FieldUtils.isStatic;
 
 /**
- * Component that encapsulates the logic of field/type exclusion in a given
- * randomization context. This class implements exclusion rules in the
- * predefined order.
+ * 该组件封装了在给定随机化上下文中排除字段/类型的逻辑。此类按预定义顺序实现排除规则。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class DefaultExclusionPolicy implements ExclusionPolicy {
 
   /**
-   * Given the current randomization context, should the field be excluded from
-   * being populated ?
+   * 根据当前的随机化上下文，是否应将该字段排除在填充之外？
    *
    * @param field
-   *         the field to check
+   *     要检查的字段
    * @param context
-   *         the current randomization context
-   * @return true if the field should be excluded, false otherwise
+   *     当前的随机化上下文
+   * @return 如果该字段应该被排除，则返回 true，否则返回 false
    */
   public boolean shouldBeExcluded(final Field field, final Context context) {
     if (isStatic(field)) {
@@ -50,14 +47,13 @@ public class DefaultExclusionPolicy implements ExclusionPolicy {
   }
 
   /**
-   * Given the current randomization context, should the type be excluded from
-   * being populated ?
+   * 根据当前的随机化上下文，是否应将该类型排除在填充之外？
    *
    * @param type
-   *         the type to check
+   *     要检查的类型
    * @param context
-   *         the current randomization context
-   * @return true if the type should be excluded, false otherwise
+   *     当前的随机化上下文
+   * @return 如果该类型应该被排除，则返回 true，否则返回 false
    */
   public boolean shouldBeExcluded(final Class<?> type, final Context context) {
     final Set<Predicate<Class<?>>> predicates = context.getParameters()

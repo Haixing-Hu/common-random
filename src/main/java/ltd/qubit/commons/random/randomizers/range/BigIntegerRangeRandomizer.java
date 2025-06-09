@@ -14,35 +14,35 @@ import ltd.qubit.commons.random.Parameters;
 import ltd.qubit.commons.random.randomizers.AbstractContextAwareRandomizer;
 
 /**
- * Generate a random {@link BigInteger} in the given range.
+ * 在给定范围内生成一个随机的{@link BigInteger}。
  *
- * @author Rémi Alvergnat, Haixing Hu
+ * @author Rémi Alvergnat, 胡海星
  */
 public class BigIntegerRangeRandomizer extends AbstractContextAwareRandomizer<BigInteger> {
 
   private final IntegerRangeRandomizer delegate;
 
   /**
-   * Create a new {@link BigIntegerRangeRandomizer}.
+   * 创建一个新的{@link BigIntegerRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    */
   public BigIntegerRangeRandomizer(final Integer min, final Integer max) {
     delegate = new IntegerRangeRandomizer(min, max);
   }
 
   /**
-   * Create a new {@link BigIntegerRangeRandomizer}.
+   * 创建一个新的{@link BigIntegerRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public BigIntegerRangeRandomizer(final Integer min, final Integer max,
           final long seed) {

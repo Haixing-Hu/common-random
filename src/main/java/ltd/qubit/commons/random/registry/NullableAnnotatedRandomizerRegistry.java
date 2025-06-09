@@ -22,27 +22,35 @@ import ltd.qubit.commons.random.handlers.AnnotationHandler;
 import ltd.qubit.commons.random.handlers.NullableAnnotationHandler;
 
 /**
- * A registry of randomizers to support fields annotated with the {@link
- * Nullable} annotation.
+ * 一个随机化器注册表，用于支持使用 {@link Nullable} 注解的字段。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 @Priority(Integer.MAX_VALUE - 2)
 public class NullableAnnotatedRandomizerRegistry implements RandomizerRegistry {
 
   private AnnotationHandler handler;
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void init(final EasyRandom random, final Parameters parameters) {
     final long seed = parameters.getSeed();
     handler = new NullableAnnotationHandler(seed);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> get(final Field field, final Context context) {
     return handler.getRandomizer(field, context);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> get(final Class<?> fieldType, final Context context) {
     return null;

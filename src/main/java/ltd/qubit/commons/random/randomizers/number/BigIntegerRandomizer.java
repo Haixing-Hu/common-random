@@ -13,31 +13,36 @@ import java.math.BigInteger;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * Generate a random {@link BigInteger}.
+ * 生成一个随机的{@link BigInteger}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class BigIntegerRandomizer extends AbstractRandomizer<BigInteger> {
 
   private static final int NUM_BITS = 128;
 
   /**
-   * Create a new {@link BigIntegerRandomizer}.
+   * 创建一个新的{@link BigIntegerRandomizer}。
    */
   public BigIntegerRandomizer() {
     super();
   }
 
   /**
-   * Create a new {@link BigIntegerRandomizer}.
+   * 创建一个新的{@link BigIntegerRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public BigIntegerRandomizer(final long seed) {
     super(seed);
   }
 
+  /**
+   * 生成一个随机的{@link BigInteger}。
+   *
+   * @return 一个随机的{@link BigInteger}
+   */
   @Override
   public BigInteger getRandomValue() {
     return new BigInteger(NUM_BITS, random);

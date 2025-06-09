@@ -14,24 +14,23 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 /**
- * Common predicates to identify fields. Usually used in combination to define a
- * field in an object graph. For example:
+ * 用于识别字段的常见谓词。通常用于组合定义对象图中的字段。例如：
  *
  * <pre>
  *  Predicate&lt;Field&gt; predicate = named("name").and(ofType(String.class))
  *                                                  .and(inClass(Person.class));
  * </pre>
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class FieldPredicates {
 
   /**
-   * Create a predicate to check that a field has a certain name pattern.
+   * 创建一个谓词来检查字段是否具有特定的名称模式。
    *
    * @param name
-   *     pattern of the field name to check
-   * @return Predicate to check that a field has a certain name pattern
+   *     要检查的字段名称的模式
+   * @return 用于检查字段是否具有特定名称模式的谓词
    */
   public static Predicate<Field> named(final String name) {
     final Pattern pattern = Pattern.compile(name);
@@ -39,35 +38,33 @@ public class FieldPredicates {
   }
 
   /**
-   * Create a predicate to check that a field has a certain type.
+   * 创建一个谓词来检查字段是否具有特定的类型。
    *
    * @param type
-   *     of the field to check
-   * @return Predicate to check that a field has a certain type
+   *     要检查的字段的类型
+   * @return 用于检查字段是否具有特定类型的谓词
    */
   public static Predicate<Field> ofType(final Class<?> type) {
     return field -> field.getType().equals(type);
   }
 
   /**
-   * Create a predicate to check that a field is defined in a given class.
+   * 创建一个谓词来检查字段是否在给定的类中定义。
    *
    * @param clazz
-   *     enclosing type of the field to check
-   * @return Predicate to check that a field is defined in a given class.
+   *     要检查的字段的封闭类型
+   * @return 用于检查字段是否在给定类中定义的谓词
    */
   public static Predicate<Field> inClass(final Class<?> clazz) {
     return field -> field.getDeclaringClass().equals(clazz);
   }
 
   /**
-   * Create a predicate to check that a field is annotated with one of the given
-   * annotations.
+   * 创建一个谓词，检查字段是否被给定的注解之一所注解。
    *
    * @param annotations
-   *     present on the field
-   * @return Predicate to check that a field is annotated with one of the given
-   *     annotations.
+   *     字段上存在的注解
+   * @return 谓词，用于检查字段是否被给定的注解之一所注解
    */
   @SafeVarargs
   public static Predicate<Field> isAnnotatedWith(
@@ -83,11 +80,11 @@ public class FieldPredicates {
   }
 
   /**
-   * Create a predicate to check that a field has a given set of modifiers.
+   * 创建一个谓词来检查字段是否具有一组给定的修饰符。
    *
    * @param modifiers
-   *     of the field to check
-   * @return Predicate to check that a field has a given set of modifiers
+   *     要检查的字段的修饰符
+   * @return 用于检查字段是否具有一组给定修饰符的谓词
    */
   public static Predicate<Field> hasModifiers(final Integer modifiers) {
     return field -> (modifiers & field.getModifiers()) == modifiers;

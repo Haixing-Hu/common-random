@@ -25,11 +25,10 @@ import static ltd.qubit.commons.reflect.FieldUtils.isFinal;
 import static ltd.qubit.commons.reflect.FieldUtils.isTransient;
 
 /**
- * Context object for a single call on {@link EasyRandom#nextObject(Class)}. It
- * contains a map acting as a cache of populated beans to avoid infinite
- * recursion.
+ * 对{@link EasyRandom#nextObject(Class)}的单次调用的上下文对象。
+ * 它包含一个映射，充当已填充Bean的缓存，以避免无限递归。
  *
- * @author Rémi Alvergnat (toilal.dev@gmail.com)
+ * @author 胡海星
  */
 public class Context {
 
@@ -43,6 +42,14 @@ public class Context {
 
   private Object rootObject;
 
+  /**
+   * 创建一个新的 {@link Context}。
+   *
+   * @param type
+   *     要创建的对象的类型。
+   * @param parameters
+   *     EasyRandom 参数。
+   */
   public Context(final Class<?> type, final Parameters parameters) {
     this.type = type;
     populatedBeans = new IdentityHashMap<>();
@@ -110,10 +117,20 @@ public class Context {
     }
   }
 
+  /**
+   * 获取此上下文中正在填充的目标对象的类型。
+   *
+   * @return 目标对象的类型。
+   */
   public Class<?> getTargetType() {
     return type;
   }
 
+  /**
+   * 获取当前作用域中的对象实例。
+   *
+   * @return 当前作用域中的对象实例。
+   */
   public Object getCurrentObject() {
     if (stack.empty()) {
       return rootObject;
@@ -122,6 +139,11 @@ public class Context {
     }
   }
 
+  /**
+   * 获取当前正在填充的字段。
+   *
+   * @return 当前正在填充的字段。
+   */
   public Field getCurrentField() {
     if (stack.empty()) {
       return null;
@@ -130,22 +152,53 @@ public class Context {
     }
   }
 
+  /**
+   * 获取当前字段的路径。
+   *
+   * @return 当前字段的路径。
+   */
   public String getCurrentFieldPath() {
     return String.join(".", getStackedFieldNames());
   }
 
+  /**
+   * 获取当前随机化深度。
+   *
+   * @return 当前随机化深度。
+   */
   public int getCurrentRandomizationDepth() {
     return stack.size();
   }
 
+  /**
+   * 获取根对象。
+   *
+   * @return 根对象。
+   */
   public Object getRootObject() {
     return this.rootObject;
   }
 
+  /**
+   * 获取Easy Random参数。
+   *
+   * @return Easy Random参数。
+   */
   public Parameters getParameters() {
     return parameters;
   }
 
+  /**
+   * 检查是否应填充字段。
+   *
+   * @param obj
+   *     要检查的字段所在的对象。
+   * @param field
+   *     要检查的字段。
+   * @return 如果应填充字段，则为true，否则为false。
+   * @throws IllegalAccessException
+   *     如果字段不可访问。
+   */
   public boolean shouldFieldBePopulated(final Object obj, final Field field)
           throws IllegalAccessException {
     final ExclusionPolicy exclusionPolicy = parameters.getExclusionPolicy();

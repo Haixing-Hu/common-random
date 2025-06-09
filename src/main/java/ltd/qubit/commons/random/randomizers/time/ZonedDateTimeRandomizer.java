@@ -20,32 +20,37 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * A {@link Randomizer} that generates random {@link ZonedDateTime}.
+ * 生成随机{@link ZonedDateTime}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class ZonedDateTimeRandomizer extends AbstractRandomizer<ZonedDateTime> {
 
   private LocalDateTimeRandomizer localDateTimeRandomizer;
 
   /**
-   * Create a new {@link ZonedDateTimeRandomizer}.
+   * 创建一个新的{@link ZonedDateTimeRandomizer}。
    */
   public ZonedDateTimeRandomizer() {
     localDateTimeRandomizer = new LocalDateTimeRandomizer();
   }
 
   /**
-   * Create a new {@link ZonedDateTimeRandomizer}.
+   * 创建一个新的{@link ZonedDateTimeRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public ZonedDateTimeRandomizer(final long seed) {
     super(seed);
     localDateTimeRandomizer = new LocalDateTimeRandomizer(seed);
   }
 
+  /**
+   * 生成一个随机的带时区的日期时间。
+   *
+   * @return 一个随机的{@link ZonedDateTime}
+   */
   @Override
   public ZonedDateTime getRandomValue() {
     final LocalDateTime randomLocalDateTime = localDateTimeRandomizer.getRandomValue();
@@ -59,6 +64,12 @@ public class ZonedDateTimeRandomizer extends AbstractRandomizer<ZonedDateTime> {
     return ZoneId.of(ids.get(random.nextInt(ids.size())));
   }
 
+  /**
+   * 设置{@link LocalDateTimeRandomizer}。
+   *
+   * @param localDateTimeRandomizer
+   *         要设置的{@link LocalDateTimeRandomizer}
+   */
   public void setLocalDateTimeRandomizer(final LocalDateTimeRandomizer localDateTimeRandomizer) {
     this.localDateTimeRandomizer = localDateTimeRandomizer;
   }

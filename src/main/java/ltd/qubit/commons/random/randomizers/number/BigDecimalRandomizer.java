@@ -12,55 +12,63 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * Generate a random {@link BigDecimal}.
+ * 生成一个随机的{@link BigDecimal}。
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author 胡海星
  */
 public class BigDecimalRandomizer extends ScalableRandomizer<BigDecimal> {
 
   private final DoubleRandomizer delegate;
 
   /**
-   * Create a new {@link BigDecimalRandomizer}.
+   * 创建一个新的{@link BigDecimalRandomizer}。
    */
   public BigDecimalRandomizer() {
     delegate = new DoubleRandomizer();
   }
 
   /**
-   * Create a new {@link BigDecimalRandomizer}.
+   * 创建一个新的{@link BigDecimalRandomizer}。
    *
    * @param seed
-   *         initial seed of the random number generator.
+   *         随机数生成器的初始种子。
    */
   public BigDecimalRandomizer(final long seed) {
     delegate = new DoubleRandomizer(seed);
   }
 
   /**
-   * Create a new {@link BigDecimalRandomizer}. The default rounding mode is
-   * {@link RoundingMode#HALF_UP}.
+   * 创建一个新的{@link BigDecimalRandomizer}。默认的舍入模式是
+   * {@link RoundingMode#HALF_UP}。
    *
    * @param scale
-   *         scale of the {@code BigDecimal} value to be returned.
+   *         要返回的{@code BigDecimal}值的小数位数。
    */
   public BigDecimalRandomizer(final Integer scale) {
     delegate = new DoubleRandomizer();
     this.scale = scale;
   }
 
+  /**
+   * 创建一个新的{@link BigDecimalRandomizer}。
+   *
+   * @param seed
+   *         随机数生成器的初始种子。
+   * @param scale
+   *         要返回的{@code BigDecimal}值的小数位数。
+   */
   public BigDecimalRandomizer(final long seed, final Integer scale) {
     delegate = new DoubleRandomizer(seed);
     this.scale = scale;
   }
 
   /**
-   * Create a new {@link BigDecimalRandomizer}.
+   * 创建一个新的{@link BigDecimalRandomizer}。
    *
    * @param scale
-   *         scale of the {@code BigDecimal} value to be returned.
+   *         要返回的{@code BigDecimal}值的小数位数。
    * @param roundingMode
-   *         rounding mode of the {@code BigDecimal} value to be returned.
+   *         要返回的{@code BigDecimal}值的舍入模式。
    */
   public BigDecimalRandomizer(final Integer scale, final RoundingMode roundingMode) {
     this(scale);
@@ -68,14 +76,14 @@ public class BigDecimalRandomizer extends ScalableRandomizer<BigDecimal> {
   }
 
   /**
-   * Create a new {@link BigDecimalRandomizer}.
+   * 创建一个新的{@link BigDecimalRandomizer}。
    *
    * @param seed
-   *         initial seed of the random number generator.
+   *         随机数生成器的初始种子。
    * @param scale
-   *         scale of the {@code BigDecimal} value to be returned.
+   *         要返回的{@code BigDecimal}值的小数位数。
    * @param roundingMode
-   *         rounding mode of the {@code BigDecimal} value to be returned.
+   *         要返回的{@code BigDecimal}值的舍入模式。
    */
   public BigDecimalRandomizer(final long seed, final Integer scale,
           final RoundingMode roundingMode) {
@@ -84,6 +92,9 @@ public class BigDecimalRandomizer extends ScalableRandomizer<BigDecimal> {
     this.roundingMode = roundingMode;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public BigDecimal getRandomValue() {
     BigDecimal randomValue = BigDecimal.valueOf(delegate.getRandomValue());

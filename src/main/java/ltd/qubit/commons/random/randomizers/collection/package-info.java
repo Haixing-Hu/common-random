@@ -7,8 +7,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * This package contains collection randomizers.
+ * 此包包含集合随机化器。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 package ltd.qubit.commons.random.randomizers.collection;

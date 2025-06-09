@@ -13,40 +13,45 @@ import java.util.Locale;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random cities.
+ * 生成随机城市的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class CityRandomizer extends FakerBasedRandomizer<String> {
 
   /**
-   * Create a new {@link CityRandomizer}.
+   * 创建一个新的{@link CityRandomizer}。
    */
   public CityRandomizer() {
   }
 
   /**
-   * Create a new {@link CityRandomizer}.
+   * 创建一个新的{@link CityRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    */
   public CityRandomizer(final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link CityRandomizer}.
+   * 创建一个新的{@link CityRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    * @param locale
-   *         the locale to use
+   *         要使用的区域设置
    */
   public CityRandomizer(final long seed, final Locale locale) {
     super(seed, locale);
   }
 
+  /**
+   * 生成一个随机的城市名称。
+   *
+   * @return 一个随机的城市名称
+   */
   @Override
   public String getRandomValue() {
     return faker.address().city();

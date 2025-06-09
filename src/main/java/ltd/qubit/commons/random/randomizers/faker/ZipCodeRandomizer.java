@@ -13,40 +13,45 @@ import java.util.Locale;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random zip codes.
+ * 生成随机邮政编码的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class ZipCodeRandomizer extends FakerBasedRandomizer<String> {
 
   /**
-   * Create a new {@link ZipCodeRandomizer}.
+   * 创建一个新的{@link ZipCodeRandomizer}。
    */
   public ZipCodeRandomizer() {
   }
 
   /**
-   * Create a new {@link ZipCodeRandomizer}.
+   * 创建一个新的{@link ZipCodeRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    */
   public ZipCodeRandomizer(final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link ZipCodeRandomizer}.
+   * 创建一个新的{@link ZipCodeRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    * @param locale
-   *         the locale to use
+   *         要使用的区域设置
    */
   public ZipCodeRandomizer(final long seed, final Locale locale) {
     super(seed, locale);
   }
 
+  /**
+   * 生成一个随机的邮政编码。
+   *
+   * @return 一个随机的邮政编码
+   */
   @Override
   public String getRandomValue() {
     return faker.address().zipCode();

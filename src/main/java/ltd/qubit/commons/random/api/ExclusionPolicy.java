@@ -13,34 +13,32 @@ import java.lang.reflect.Field;
 import ltd.qubit.commons.random.Context;
 
 /**
- * Strategy interface for field/type exclusion.
+ * 字段/类型排除策略接口。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  * @since 4.0
  */
 public interface ExclusionPolicy {
 
   /**
-   * Given the current randomization context, should the field be excluded from
-   * being randomized?
+   * 在给定的随机化上下文中，是否应排除该字段的随机化？
    *
    * @param field
-   *         the field to check
+   *     要检查的字段。
    * @param context
-   *         the current randomization context
-   * @return true if the field should be excluded, false otherwise
+   *     当前的随机化上下文。
+   * @return 如果应排除该字段，则返回 {@code true}，否则返回 {@code false}。
    */
   boolean shouldBeExcluded(Field field, Context context);
 
   /**
-   * Given the current randomization context, should the type be excluded from
-   * being randomized?
+   * 在给定的随机化上下文中，是否应排除该类型的随机化？
    *
    * @param type
-   *         the type to check
+   *     要检查的类型。
    * @param context
-   *         the current randomization context
-   * @return true if the type should be excluded, false otherwise
+   *     当前的随机化上下文。
+   * @return 如果应排除该类型，则返回 {@code true}，否则返回 {@code false}。
    */
   boolean shouldBeExcluded(Class<?> type, Context context);
 

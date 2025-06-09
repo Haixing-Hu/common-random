@@ -16,9 +16,9 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.misc.EnumRandomizer;
 
 /**
- * A {@link Randomizer} that generates random {@link LocalDate}.
+ * 生成随机{@link LocalDate}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class LocalDateRandomizer implements Randomizer<LocalDate> {
 
@@ -27,7 +27,7 @@ public class LocalDateRandomizer implements Randomizer<LocalDate> {
   private final DayRandomizer dayRandomizer;
 
   /**
-   * Create a new {@link LocalDateRandomizer}.
+   * 创建一个新的{@link LocalDateRandomizer}。
    */
   public LocalDateRandomizer() {
     yearRandomizer = new YearRandomizer();
@@ -36,10 +36,10 @@ public class LocalDateRandomizer implements Randomizer<LocalDate> {
   }
 
   /**
-   * Create a new {@link LocalDateRandomizer}.
+   * 创建一个新的{@link LocalDateRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public LocalDateRandomizer(final long seed) {
     yearRandomizer = new YearRandomizer(seed);
@@ -47,6 +47,11 @@ public class LocalDateRandomizer implements Randomizer<LocalDate> {
     dayRandomizer = new DayRandomizer(seed);
   }
 
+  /**
+   * 生成一个随机的本地日期。
+   *
+   * @return 一个随机的{@link LocalDate}
+   */
   @Override
   public LocalDate getRandomValue() {
     final Year randomYear = yearRandomizer.getRandomValue();

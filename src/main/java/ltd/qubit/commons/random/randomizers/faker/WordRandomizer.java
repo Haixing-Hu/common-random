@@ -13,40 +13,45 @@ import java.util.Locale;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random words.
+ * 生成随机单词的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class WordRandomizer extends FakerBasedRandomizer<String> {
 
   /**
-   * Create a new {@link WordRandomizer}.
+   * 创建一个新的{@link WordRandomizer}。
    */
   public WordRandomizer() {
   }
 
   /**
-   * Create a new {@link WordRandomizer}.
+   * 创建一个新的{@link WordRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    */
   public WordRandomizer(final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link WordRandomizer}.
+   * 创建一个新的{@link WordRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    * @param locale
-   *         the locale to use
+   *         要使用的区域设置
    */
   public WordRandomizer(final long seed, final Locale locale) {
     super(seed, locale);
   }
 
+  /**
+   * 生成一个随机的单词。
+   *
+   * @return 一个随机的单词
+   */
   @Override
   public String getRandomValue() {
     return faker.lorem().word();

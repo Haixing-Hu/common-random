@@ -20,18 +20,35 @@ import static ltd.qubit.commons.lang.ClassUtils.isArrayType;
 import static ltd.qubit.commons.random.util.RandomUtils.getRandomCollectionSize;
 
 /**
- * Random array populator.
+ * 随机数组填充器。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class ArrayPopulator {
 
   private final EasyRandom random;
 
+  /**
+   * 创建一个新的{@link ArrayPopulator}。
+   *
+   * @param random
+   *     {@link EasyRandom}实例。
+   */
   public ArrayPopulator(final EasyRandom random) {
     this.random = random;
   }
 
+  /**
+   * 生成并填充指定类型的随机数组。
+   *
+   * @param fieldType
+   *     要填充的数组的类型。
+   * @param context
+   *     当前上下文。
+   * @param sizeRange
+   *     大小范围。
+   * @return 填充后的数组。
+   */
   public Object populate(final Class<?> fieldType, final Context context,
           @Nullable final CloseRange<Integer> sizeRange) {
     if (! isArrayType(fieldType)) {
@@ -47,6 +64,15 @@ public class ArrayPopulator {
     return result;
   }
 
+  /**
+   * 获取此填充器的随机化器。
+   *
+   * @param fieldType
+   *     要填充的字段的类型。
+   * @param sizeRange
+   *     大小范围。
+   * @return 此填充器的随机化器。
+   */
   public Randomizer<?> getRandomizer(final Class<?> fieldType,
           @Nullable final CloseRange<Integer> sizeRange) {
     return new AbstractContextAwareRandomizer<Object>() {

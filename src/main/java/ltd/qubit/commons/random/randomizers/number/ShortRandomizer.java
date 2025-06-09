@@ -11,28 +11,33 @@ package ltd.qubit.commons.random.randomizers.number;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * Generate a random {@link Short}.
+ * 生成一个随机的{@link Short}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class ShortRandomizer extends AbstractRandomizer<Short> {
 
   /**
-   * Create a new {@link ShortRandomizer}.
+   * 创建一个新的{@link ShortRandomizer}。
    */
   public ShortRandomizer() {
   }
 
   /**
-   * Create a new {@link ShortRandomizer}.
+   * 创建一个新的{@link ShortRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public ShortRandomizer(final long seed) {
     super(seed);
   }
 
+  /**
+   * 生成一个随机的 {@link Short}。
+   *
+   * @return 一个随机的 {@link Short}
+   */
   @Override
   public Short getRandomValue() {
     return (short) random.nextInt();

@@ -14,39 +14,42 @@ import java.util.Queue;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates a queue of random values using a delegate
- * {@link Randomizer}.
+ * 一个 {@link Randomizer}，它使用委托的 {@link Randomizer} 生成一个随机值的队列。
  *
  * @param <T>
- *         the type of elements in the queue
- * @author Mahmoud Ben Hassine, Haixing Hu
+ *     队列中元素的类型。
+ * @author 胡海星
  */
 public class QueueRandomizer<T> extends AbstractCollectionRandomizer<T> {
 
   /**
-   * Create a new {@link QueueRandomizer} that will generate a queue with a
-   * random number of elements.
+   * 创建一个新的 {@link QueueRandomizer}，它将生成一个具有随机数量元素的队列。
    *
    * @param delegate
-   *         the delegate {@link Randomizer} used to generate elements
+   *     用于生成元素的委托 {@link Randomizer}。
    */
   public QueueRandomizer(final Randomizer<T> delegate) {
     super(delegate);
   }
 
   /**
-   * Create a new {@link QueueRandomizer} that will generate a queue with a
-   * fixed number of elements.
+   * 创建一个新的 {@link QueueRandomizer}，它将生成一个具有固定数量元素的队列。
    *
    * @param delegate
-   *         The delegate {@link Randomizer} used to generate elements
+   *     用于生成元素的委托 {@link Randomizer}。
    * @param nbElements
-   *         The number of elements to generate
+   *     要生成的元素数量。
    */
   public QueueRandomizer(final Randomizer<T> delegate, final int nbElements) {
     super(delegate, nbElements);
   }
 
+  /**
+   * 生成一个随机的 {@link Queue}。
+   *
+   * @return
+   *     一个随机的 {@link Queue}。
+   */
   @Override
   public Queue<T> getRandomValue() {
     final Queue<T> result = new LinkedList<>();

@@ -29,19 +29,27 @@ import ltd.qubit.commons.random.randomizers.text.StringDelegatingRandomizer;
 import static ltd.qubit.commons.reflect.FieldUtils.getAnnotation;
 
 /**
- * The annotation handler for the {@link DecimalMax} and {@link DecimalMin}
- * annotations.
+ * {@link DecimalMax} 和 {@link DecimalMin} 注解的注解处理器。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class DecimalMinMaxAnnotationHandler implements AnnotationHandler {
 
   private final Random random;
 
+  /**
+   * 构造一个 {@link DecimalMinMaxAnnotationHandler}。
+   *
+   * @param seed
+   *     用于生成随机数的种子。
+   */
   public DecimalMinMaxAnnotationHandler(final long seed) {
     random = new Random(seed);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> getRandomizer(final Field field, final Context context) {
     final Class<?> fieldType = field.getType();

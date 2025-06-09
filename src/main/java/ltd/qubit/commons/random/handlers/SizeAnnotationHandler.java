@@ -25,9 +25,9 @@ import static ltd.qubit.commons.lang.ClassUtils.isMapType;
 import static ltd.qubit.commons.reflect.FieldUtils.getAnnotation;
 
 /**
- * An annotation handler for the {@link Size} annotation.
+ * {@link Size} 注解的注解处理器。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class SizeAnnotationHandler implements AnnotationHandler {
 
@@ -35,6 +35,16 @@ public class SizeAnnotationHandler implements AnnotationHandler {
   private final Parameters parameters;
   private final EasyRandom random;
 
+  /**
+   * 构造一个 {@link SizeAnnotationHandler}。
+   *
+   * @param seed
+   *     用于生成随机数的种子。
+   * @param random
+   *     {@link EasyRandom} 的实例。
+   * @param parameters
+   *     {@link Parameters} 的实例。
+   */
   public SizeAnnotationHandler(final long seed, final EasyRandom random,
           final Parameters parameters) {
     this.seed = seed;
@@ -42,6 +52,9 @@ public class SizeAnnotationHandler implements AnnotationHandler {
     this.parameters = parameters;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   @SuppressWarnings({"unchecked", "rawtypes"})
   public Randomizer<?> getRandomizer(final Field field, final Context context) {
@@ -59,6 +72,13 @@ public class SizeAnnotationHandler implements AnnotationHandler {
     return null;
   }
 
+  /**
+   * 从字段的 {@link Size} 注解中获取大小范围。
+   *
+   * @param field
+   *     要获取大小范围的字段。
+   * @return 字段的 {@link Size} 注解指定的大小范围。
+   */
   private CloseRange<Integer> getSizeRange(final Field field) {
     final Size sizeAnnotation = getAnnotation(field, Size.class);
     final Integer defaultMax = parameters.getCollectionSizeRange().getMax();

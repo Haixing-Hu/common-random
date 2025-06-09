@@ -16,9 +16,9 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.misc.EnumRandomizer;
 
 /**
- * A {@link Randomizer} that generates random {@link YearMonth}.
+ * 生成随机{@link YearMonth}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class YearMonthRandomizer implements Randomizer<YearMonth> {
 
@@ -26,7 +26,7 @@ public class YearMonthRandomizer implements Randomizer<YearMonth> {
   private final EnumRandomizer<Month> monthRandomizer;
 
   /**
-   * Create a new {@link YearMonthRandomizer}.
+   * 创建一个新的{@link YearMonthRandomizer}。
    */
   public YearMonthRandomizer() {
     yearRandomizer = new YearRandomizer();
@@ -34,16 +34,21 @@ public class YearMonthRandomizer implements Randomizer<YearMonth> {
   }
 
   /**
-   * Create a new {@link YearMonthRandomizer}.
+   * 创建一个新的{@link YearMonthRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public YearMonthRandomizer(final long seed) {
     yearRandomizer = new YearRandomizer(seed);
     monthRandomizer = new EnumRandomizer<>(Month.class, seed);
   }
 
+  /**
+   * 生成一个随机的年月。
+   *
+   * @return 一个随机的{@link YearMonth}
+   */
   @Override
   public YearMonth getRandomValue() {
     final Year randomYear = yearRandomizer.getRandomValue();

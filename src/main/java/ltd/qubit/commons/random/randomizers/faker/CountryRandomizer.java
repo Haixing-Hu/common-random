@@ -13,40 +13,46 @@ import java.util.Locale;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random countries.
+ * 一个 {@link Randomizer}，可以生成随机的国家。
  *
- * @author Mahmoud Ben Hassine
+ * @author 胡海星
  */
 public class CountryRandomizer extends FakerBasedRandomizer<String> {
 
   /**
-   * Create a new {@link CountryRandomizer}.
+   * 创建一个新的 {@link CountryRandomizer}。
    */
   public CountryRandomizer() {
   }
 
   /**
-   * Create a new {@link CountryRandomizer}.
+   * 创建一个新的 {@link CountryRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *     初始种子。
    */
   public CountryRandomizer(final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link CountryRandomizer}.
+   * 创建一个新的 {@link CountryRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *     初始种子。
    * @param locale
-   *         the locale to use
+   *     要使用的区域设置。
    */
   public CountryRandomizer(final long seed, final Locale locale) {
     super(seed, locale);
   }
 
+  /**
+   * 生成一个随机的国家。
+   *
+   * @return
+   *     一个随机的国家。
+   */
   @Override
   public String getRandomValue() {
     return faker.address().country();

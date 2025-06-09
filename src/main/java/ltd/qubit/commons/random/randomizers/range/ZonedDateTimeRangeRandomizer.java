@@ -22,19 +22,19 @@ import ltd.qubit.commons.util.range.CloseRange;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Generate a random {@link ZonedDateTime} in the given range.
+ * 在给定范围内生成一个随机的{@link ZonedDateTime}。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class ZonedDateTimeRangeRandomizer extends AbstractRangeRandomizer<ZonedDateTime> {
 
   /**
-   * Create a new {@link ZonedDateTimeRangeRandomizer}.
+   * 创建一个新的{@link ZonedDateTimeRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    */
   public ZonedDateTimeRangeRandomizer(final ZonedDateTime min,
           final ZonedDateTime max) {
@@ -42,20 +42,26 @@ public class ZonedDateTimeRangeRandomizer extends AbstractRangeRandomizer<ZonedD
   }
 
   /**
-   * Create a new {@link ZonedDateTimeRangeRandomizer}.
+   * 创建一个新的{@link ZonedDateTimeRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public ZonedDateTimeRangeRandomizer(final ZonedDateTime min,
           final ZonedDateTime max, final long seed) {
     super(min, max, seed);
   }
 
+  /**
+   * 创建一个新的{@link ZonedDateTimeRangeRandomizer}。
+   *
+   * @param parameters
+   *         随机化参数。
+   */
   public ZonedDateTimeRangeRandomizer(final Parameters parameters) {
     super(parameters.getSeed());
     setParameters(parameters);

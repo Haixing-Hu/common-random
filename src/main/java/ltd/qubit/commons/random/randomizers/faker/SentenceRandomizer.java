@@ -13,40 +13,46 @@ import java.util.Locale;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random sentences.
+ * 一个 {@link Randomizer}，可以生成随机的句子。
  *
- * @author Mahmoud Ben Hassine
+ * @author 胡海星
  */
 public class SentenceRandomizer extends FakerBasedRandomizer<String> {
 
   /**
-   * Create a new {@link SentenceRandomizer}.
+   * 创建一个新的 {@link SentenceRandomizer}。
    */
   public SentenceRandomizer() {
   }
 
   /**
-   * Create a new {@link SentenceRandomizer}.
+   * 创建一个新的 {@link SentenceRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *     初始种子。
    */
   public SentenceRandomizer(final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link SentenceRandomizer}.
+   * 创建一个新的 {@link SentenceRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *     初始种子。
    * @param locale
-   *         the locale to use
+   *     要使用的区域设置。
    */
   public SentenceRandomizer(final long seed, final Locale locale) {
     super(seed, locale);
   }
 
+  /**
+   * 生成一个随机的句子。
+   *
+   * @return
+   *     一个随机的句子。
+   */
   @Override
   public String getRandomValue() {
     return faker.lorem().sentence();

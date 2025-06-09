@@ -25,16 +25,25 @@ import ltd.qubit.commons.random.randomizers.misc.NullRandomizer;
 import static ltd.qubit.commons.reflect.FieldUtils.isAnnotationPresent;
 
 /**
- * A annotation handler for the {@link Nullable} annotation.
+ * {@link Nullable} 注解的注解处理器。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class NullableAnnotationHandler implements AnnotationHandler {
 
+  /**
+   * 默认的空值百分比。
+   */
   public static final int DEFAULT_NULL_PERCENT = 50;
 
+  /**
+   * 百分之百的百分比值。
+   */
   public static final int FULL_PERCENT = 100;
 
+  /**
+   * 默认的空值比例。
+   */
   public static final double DEFAULT_NULL_RATIO = DEFAULT_NULL_PERCENT / 100.0;
 
   private static final long INTEGER_RANGE = (long) Integer.MAX_VALUE - (long) Integer.MIN_VALUE;
@@ -43,14 +52,31 @@ public class NullableAnnotationHandler implements AnnotationHandler {
   private final Random random;
   private final int nullPercent;
 
+  /**
+   * 构造一个 {@link NullableAnnotationHandler}，使用默认的空值百分比。
+   */
   public NullableAnnotationHandler() {
     this(System.currentTimeMillis(), DEFAULT_NULL_PERCENT);
   }
 
+  /**
+   * 构造一个 {@link NullableAnnotationHandler}，使用指定的种子和默认的空值百分比。
+   *
+   * @param seed
+   *     用于生成随机数的种子。
+   */
   public NullableAnnotationHandler(final long seed) {
     this(seed, DEFAULT_NULL_PERCENT);
   }
 
+  /**
+   * 构造一个 {@link NullableAnnotationHandler}。
+   *
+   * @param seed
+   *     用于生成随机数的种子。
+   * @param nullPercent
+   *     生成空值的百分比，范围从0到100。
+   */
   public NullableAnnotationHandler(final long seed, final int nullPercent) {
     this.random = new Random(seed);
     if (nullPercent < 0 || nullPercent > FULL_PERCENT) {
@@ -60,11 +86,19 @@ public class NullableAnnotationHandler implements AnnotationHandler {
     this.nullPercent = nullPercent;
   }
 
+  /**
+   * 判断是否应该生成空值。
+   *
+   * @return 如果应该生成空值，则返回 {@code true}；否则返回 {@code false}。
+   */
   private boolean shouldGenerateNull() {
     final int v = random.nextInt(FULL_PERCENT);
     return (v < nullPercent);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> getRandomizer(final Field field, final Context context) {
     if (isAnnotationPresent(field, Nullable.class)) {

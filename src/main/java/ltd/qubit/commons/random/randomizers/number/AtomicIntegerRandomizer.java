@@ -13,31 +13,36 @@ import java.util.concurrent.atomic.AtomicInteger;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * Generate a random {@link AtomicInteger}.
+ * 生成一个随机的{@link AtomicInteger}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class AtomicIntegerRandomizer implements Randomizer<AtomicInteger> {
 
   private final IntegerRandomizer delegate;
 
   /**
-   * Create a new {@link AtomicIntegerRandomizer}.
+   * 创建一个新的{@link AtomicIntegerRandomizer}。
    */
   public AtomicIntegerRandomizer() {
     delegate = new IntegerRandomizer();
   }
 
   /**
-   * Create a new {@link AtomicIntegerRandomizer}.
+   * 创建一个新的{@link AtomicIntegerRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public AtomicIntegerRandomizer(final long seed) {
     delegate = new IntegerRandomizer(seed);
   }
 
+  /**
+   * 生成一个随机的{@link AtomicInteger}。
+   *
+   * @return 一个随机的{@link AtomicInteger}
+   */
   @Override
   public AtomicInteger getRandomValue() {
     return new AtomicInteger(delegate.getRandomValue());

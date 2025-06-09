@@ -15,9 +15,9 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.misc.EnumRandomizer;
 
 /**
- * A {@link Randomizer} that generates random {@link MonthDay}.
+ * 生成随机{@link MonthDay}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class MonthDayRandomizer implements Randomizer<MonthDay> {
 
@@ -25,7 +25,7 @@ public class MonthDayRandomizer implements Randomizer<MonthDay> {
   private final DayRandomizer dayRandomizer;
 
   /**
-   * Create a new {@link MonthDayRandomizer}.
+   * 创建一个新的{@link MonthDayRandomizer}。
    */
   public MonthDayRandomizer() {
     monthRandomizer = new EnumRandomizer<>(Month.class);
@@ -33,16 +33,21 @@ public class MonthDayRandomizer implements Randomizer<MonthDay> {
   }
 
   /**
-   * Create a new {@link MonthDayRandomizer}.
+   * 创建一个新的{@link MonthDayRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public MonthDayRandomizer(final long seed) {
     monthRandomizer = new EnumRandomizer<>(Month.class, seed);
     dayRandomizer = new DayRandomizer(seed);
   }
 
+  /**
+   * 生成一个随机的月日。
+   *
+   * @return 一个随机的{@link MonthDay}
+   */
   @Override
   public MonthDay getRandomValue() {
     final Month randomMonth = monthRandomizer.getRandomValue();

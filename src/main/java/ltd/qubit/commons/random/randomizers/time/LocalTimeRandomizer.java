@@ -13,9 +13,9 @@ import java.time.LocalTime;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random {@link LocalTime}.
+ * 生成随机{@link LocalTime}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class LocalTimeRandomizer implements Randomizer<LocalTime> {
 
@@ -23,7 +23,7 @@ public class LocalTimeRandomizer implements Randomizer<LocalTime> {
   private final MinuteRandomizer minuteRandomizer;
 
   /**
-   * Create a new {@link LocalTimeRandomizer}.
+   * 创建一个新的{@link LocalTimeRandomizer}。
    */
   public LocalTimeRandomizer() {
     hourRandomizer = new HourRandomizer();
@@ -31,16 +31,21 @@ public class LocalTimeRandomizer implements Randomizer<LocalTime> {
   }
 
   /**
-   * Create a new {@link LocalTimeRandomizer}.
+   * 创建一个新的{@link LocalTimeRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public LocalTimeRandomizer(final long seed) {
     hourRandomizer = new HourRandomizer(seed);
     minuteRandomizer = new MinuteRandomizer(seed);
   }
 
+  /**
+   * 生成一个随机的本地时间。
+   *
+   * @return 一个随机的{@link LocalTime}
+   */
   @Override
   public LocalTime getRandomValue() {
     final int randomHour = hourRandomizer.getRandomValue();

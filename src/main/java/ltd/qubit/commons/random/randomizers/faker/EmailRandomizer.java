@@ -13,51 +13,51 @@ import java.util.Locale;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random emails.
+ * 生成随机电子邮件的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class EmailRandomizer extends FakerBasedRandomizer<String> {
 
   private boolean safe;
 
   /**
-   * Create a new {@link EmailRandomizer}.
+   * 创建一个新的{@link EmailRandomizer}。
    */
   public EmailRandomizer() {
   }
 
   /**
-   * Create a new {@link EmailRandomizer}.
+   * 创建一个新的{@link EmailRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    */
   public EmailRandomizer(final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link EmailRandomizer}.
+   * 创建一个新的{@link EmailRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    * @param locale
-   *         the locale to use
+   *         要使用的区域设置
    */
   public EmailRandomizer(final long seed, final Locale locale) {
     super(seed, locale);
   }
 
   /**
-   * Create a new {@link EmailRandomizer}.
+   * 创建一个新的{@link EmailRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    * @param locale
-   *         the locale to use
+   *         要使用的区域设置
    * @param safe
-   *         true to generate safe emails (invalid domains), false otherwise
+   *         true表示生成安全的电子邮件（无效域名），false表示其他情况
    */
   public EmailRandomizer(final long seed, final Locale locale,
           final boolean safe) {
@@ -65,6 +65,11 @@ public class EmailRandomizer extends FakerBasedRandomizer<String> {
     this.safe = safe;
   }
 
+  /**
+   * 生成一个随机的电子邮件地址。
+   *
+   * @return 一个随机的电子邮件地址
+   */
   @Override
   public String getRandomValue() {
     return safe ? faker.internet().safeEmailAddress()

@@ -64,17 +64,23 @@ import ltd.qubit.commons.random.handlers.SizeAnnotationHandler;
 import static ltd.qubit.commons.reflect.FieldUtils.isAnnotationPresent;
 
 /**
- * A registry of randomizers to support fields annotated with the
- * <a href="http://beanvalidation.org/">JSR 349</a> annotations.
+ * 一个随机化器注册表，用于支持使用
+ * <a href="http://beanvalidation.org/">JSR 349</a> 注解的字段。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 @Priority(-2)
 public class BeanValidationRandomizerRegistry implements RandomizerRegistry {
 
+  /**
+   * 注解处理器映射表。
+   */
   protected Map<Class<? extends Annotation>, AnnotationHandler>
           handlers = new HashMap<>();
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void init(final EasyRandom random, final Parameters parameters) {
     final long seed = parameters.getSeed();
@@ -101,6 +107,9 @@ public class BeanValidationRandomizerRegistry implements RandomizerRegistry {
     handlers.put(Email.class, new EmailAnnotationHandler(seed));
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> get(final Field field, final Context context) {
     for (final Map.Entry<Class<? extends Annotation>, AnnotationHandler> entry
@@ -114,6 +123,9 @@ public class BeanValidationRandomizerRegistry implements RandomizerRegistry {
     return null;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> get(final Class<?> fieldType, final Context context) {
     return null;

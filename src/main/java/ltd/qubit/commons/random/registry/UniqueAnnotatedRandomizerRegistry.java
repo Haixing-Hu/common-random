@@ -36,10 +36,9 @@ import static ltd.qubit.commons.reflect.FieldUtils.getAnnotation;
 import static ltd.qubit.commons.reflect.FieldUtils.isAnnotationPresent;
 
 /**
- * A registry of randomizers to support fields annotated with the {@link Unique}
- * annotation.
+ * 一个随机化器注册表，用于支持使用 {@link Unique} 注解的字段。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 @Priority(Integer.MAX_VALUE - 3)
 public class UniqueAnnotatedRandomizerRegistry implements RandomizerRegistry {
@@ -50,6 +49,9 @@ public class UniqueAnnotatedRandomizerRegistry implements RandomizerRegistry {
   private Map<String, Set<Object>> cacheMap;
   private RandomizerProvider provider;
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void init(final EasyRandom random, final Parameters parameters) {
     this.random = requireNonNull(random, "random cannot be null");
@@ -59,6 +61,11 @@ public class UniqueAnnotatedRandomizerRegistry implements RandomizerRegistry {
     // random.getRandomizerProvider() may returns null here.
   }
 
+  /**
+   * 获取此注册表使用的特殊随机化器提供者。
+   *
+   * @return 此注册表使用的特殊随机化器提供者。
+   */
   private RandomizerProvider getRandomizerProvider() {
     if (this.provider == null) {
       this.provider = random.getRandomizerProvider()
@@ -69,6 +76,9 @@ public class UniqueAnnotatedRandomizerRegistry implements RandomizerRegistry {
     return this.provider;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> get(final Field field, final Context context) {
     final boolean applied;
@@ -100,11 +110,23 @@ public class UniqueAnnotatedRandomizerRegistry implements RandomizerRegistry {
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> get(final Class<?> fieldType, final Context context) {
     return null;
   }
 
+  /**
+   * 获取用于缓存唯一值的集合。
+   *
+   * @param field
+   *     要获取缓存的字段。
+   * @param respectTo
+   *     一个字符串数组，表示此唯一字段依赖于哪些其他字段。
+   * @return 用于缓存唯一值的集合。
+   */
   private synchronized Set<Object> getCache(final Field field,
       @Nullable final String[] respectTo) {
     final String key = buildKey(field, respectTo);
@@ -112,6 +134,15 @@ public class UniqueAnnotatedRandomizerRegistry implements RandomizerRegistry {
     return cacheMap.computeIfAbsent(key, k -> new HashSet<>());
   }
 
+  /**
+   * 为指定的字段及其依赖项构建缓存键。
+   *
+   * @param field
+   *     要为其构建缓存键的字段。
+   * @param respectTo
+   *     一个字符串数组，表示此唯一字段依赖于哪些其他字段。
+   * @return 为该字段及其依赖项构建的缓存键。
+   */
   private static String buildKey(final Field field,
       @Nullable final String[] respectTo) {
     final String builder = field.getDeclaringClass().getName() + '.'

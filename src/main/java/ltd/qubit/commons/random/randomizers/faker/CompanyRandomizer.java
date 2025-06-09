@@ -13,40 +13,45 @@ import java.util.Locale;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random companies.
+ * 生成随机公司名称的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class CompanyRandomizer extends FakerBasedRandomizer<String> {
 
   /**
-   * Create a new {@link CompanyRandomizer}.
+   * 创建一个新的{@link CompanyRandomizer}。
    */
   public CompanyRandomizer() {
   }
 
   /**
-   * Create a new {@link CompanyRandomizer}.
+   * 创建一个新的{@link CompanyRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    */
   public CompanyRandomizer(final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link CompanyRandomizer}.
+   * 创建一个新的{@link CompanyRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    * @param locale
-   *         the locale to use
+   *         要使用的区域设置
    */
   public CompanyRandomizer(final long seed, final Locale locale) {
     super(seed, locale);
   }
 
+  /**
+   * 生成一个随机的公司名称。
+   *
+   * @return 一个随机的公司名称
+   */
   @Override
   public String getRandomValue() {
     return faker.company().name();

@@ -13,13 +13,15 @@ import java.util.Comparator;
 import ltd.qubit.commons.annotation.Priority;
 
 /**
- * Compare objects annotated with {@link Priority} annotation in the ascending
- * order.
+ * 按升序比较使用{@link Priority}注解的组件。
  *
- * @author Rémi Alvergnat (toilal.dev@gmail.com)
+ * @author 胡海星
  */
 public class PriorityComparator implements Comparator<Object> {
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public int compare(final Object o1, final Object o2) {
     final int p1 = getPriority(o1);

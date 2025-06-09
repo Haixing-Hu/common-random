@@ -16,9 +16,9 @@ import java.time.ZoneOffset;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random {@link OffsetDateTime}.
+ * 生成随机{@link OffsetDateTime}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class OffsetDateTimeRandomizer implements Randomizer<OffsetDateTime> {
 
@@ -27,7 +27,7 @@ public class OffsetDateTimeRandomizer implements Randomizer<OffsetDateTime> {
   private ZoneOffsetRandomizer zoneOffsetRandomizer;
 
   /**
-   * Create a new {@link OffsetDateTimeRandomizer}.
+   * 创建一个新的{@link OffsetDateTimeRandomizer}。
    */
   public OffsetDateTimeRandomizer() {
     localDateRandomizer = new LocalDateRandomizer();
@@ -36,10 +36,10 @@ public class OffsetDateTimeRandomizer implements Randomizer<OffsetDateTime> {
   }
 
   /**
-   * Create a new {@link OffsetDateTimeRandomizer}.
+   * 创建一个新的{@link OffsetDateTimeRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public OffsetDateTimeRandomizer(final long seed) {
     localDateRandomizer = new LocalDateRandomizer(seed);
@@ -47,6 +47,11 @@ public class OffsetDateTimeRandomizer implements Randomizer<OffsetDateTime> {
     zoneOffsetRandomizer = new ZoneOffsetRandomizer(seed);
   }
 
+  /**
+   * 生成一个随机的带偏移量的日期时间。
+   *
+   * @return 一个随机的{@link OffsetDateTime}
+   */
   @Override
   public OffsetDateTime getRandomValue() {
     final LocalDate randomLocalDate = localDateRandomizer.getRandomValue();
@@ -55,14 +60,32 @@ public class OffsetDateTimeRandomizer implements Randomizer<OffsetDateTime> {
     return OffsetDateTime.of(randomLocalDate, randomLocalTime, randomZoneOffset);
   }
 
+  /**
+   * 设置{@link LocalDateRandomizer}。
+   *
+   * @param localDateRandomizer
+   *         要设置的{@link LocalDateRandomizer}
+   */
   public void setLocalDateRandomizer(final LocalDateRandomizer localDateRandomizer) {
     this.localDateRandomizer = localDateRandomizer;
   }
 
+  /**
+   * 设置{@link LocalTimeRandomizer}。
+   *
+   * @param localTimeRandomizer
+   *         要设置的{@link LocalTimeRandomizer}
+   */
   public void setLocalTimeRandomizer(final LocalTimeRandomizer localTimeRandomizer) {
     this.localTimeRandomizer = localTimeRandomizer;
   }
 
+  /**
+   * 设置{@link ZoneOffsetRandomizer}。
+   *
+   * @param zoneOffsetRandomizer
+   *         要设置的{@link ZoneOffsetRandomizer}
+   */
   public void setZoneOffsetRandomizer(final ZoneOffsetRandomizer zoneOffsetRandomizer) {
     this.zoneOffsetRandomizer = zoneOffsetRandomizer;
   }

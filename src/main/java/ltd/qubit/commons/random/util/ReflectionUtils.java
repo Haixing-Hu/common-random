@@ -94,13 +94,13 @@ import static ltd.qubit.commons.reflect.FieldUtils.isFinal;
 import static ltd.qubit.commons.reflect.FieldUtils.isStatic;
 
 /**
- * Reflection utility methods.
+ * 反射实用工具方法。
  *
- * <strong>This class is intended for internal use only. All public methods
- * (except {@link ReflectionUtils#asRandomizer(java.util.function.Supplier)}
- * might change between minor versions without notice.</strong>
+ * <p><strong>此类仅供内部使用。所有公共方法（除了
+ * {@link ReflectionUtils#asRandomizer(java.util.function.Supplier)}）
+ * 可能会在次要版本之间更改，恕不另行通知。</strong>
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author 胡海星
  */
 public final class ReflectionUtils {
 
@@ -109,14 +109,13 @@ public final class ReflectionUtils {
   private ReflectionUtils() {}
 
   /**
-   * Create a dynamic proxy that adapts the given {@link Supplier} to a {@link
-   * Randomizer}.
+   * 创建一个动态代理，将给定的{@link Supplier}适配为{@link Randomizer}。
    *
    * @param supplier
-   *     to adapt
+   *     要适配的{@link Supplier}
    * @param <T>
-   *     target type
-   * @return the proxy randomizer
+   *     目标类型
+   * @return 代理随机化器
    */
   @SuppressWarnings({"unchecked", "rawtypes"})
   public static <T> Randomizer<T> asRandomizer(final Supplier<T> supplier) {
@@ -155,24 +154,24 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Get declared fields of a given type.
+   * 获取给定类型的声明字段。
    *
    * @param type
-   *     the type to introspect
+   *     要内省的类型
    * @param <T>
-   *     the actual type to introspect
-   * @return list of declared fields
+   *     要内省的实际类型
+   * @return 声明字段的列表
    */
   public static <T> List<Field> getDeclaredFields(final T type) {
     return new ArrayList<>(asList(type.getClass().getDeclaredFields()));
   }
 
   /**
-   * Get inherited fields of a given type.
+   * 获取给定类型的继承字段。
    *
    * @param type
-   *     the type to introspect
-   * @return list of inherited fields
+   *     要内省的类型
+   * @return 继承字段的列表
    */
   public static List<Field> getInheritedFields(final Class<?> type) {
     final List<Field> inheritedFields = new ArrayList<>();
@@ -186,20 +185,19 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Set a value in a field of a target object. If the target object provides a
-   * setter for the field, this setter will be used. Otherwise, the field will
-   * be set using reflection.
+   * 在目标对象的字段中设置一个值。如果目标对象为该字段提供了setter，
+   * 则将使用该setter。否则，将使用反射设置该字段。
    *
    * @param object
-   *     instance to set the property on
+   *     要设置属性的实例
    * @param field
-   *     field to set the property on
+   *     要设置属性的字段
    * @param value
-   *     value to set
+   *     要设置的值
    * @throws IllegalAccessException
-   *     if the property cannot be set
+   *     如果无法设置属性
    * @throws InvocationTargetException
-   *     if the property cannot be set
+   *     如果无法设置属性
    */
   public static void setProperty(final Object object, final Field field,
       final Object value)
@@ -220,6 +218,16 @@ public final class ReflectionUtils {
     }
   }
 
+  /**
+   * 尝试将方法设置为可访问。
+   *
+   * @param method
+   *     要设置的方法。
+   * @param value
+   *     如果为 {@code true}，则表示该方法应该可访问；
+   *     如果为 {@code false}，则表示该方法应该不可访问。
+   * @return 如果操作成功，则为 {@code true}；否则为 {@code false}。
+   */
   public static boolean trySetAccessible(final Method method, final boolean value) {
     try {
       method.setAccessible(value);
@@ -239,6 +247,16 @@ public final class ReflectionUtils {
     }
   }
 
+  /**
+   * 尝试将字段设置为可访问。
+   *
+   * @param field
+   *     要设置的字段。
+   * @param value
+   *     如果为 {@code true}，则表示该字段应该可访问；
+   *     如果为 {@code false}，则表示该字段应该不可访问。
+   * @return 如果操作成功，则为 {@code true}；否则为 {@code false}。
+   */
   public static boolean trySetAccessible(final Field field, final boolean value) {
     try {
       field.setAccessible(value);
@@ -259,16 +277,16 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Set a value (accessible or not accessible) in a field of a target object.
+   * 在目标对象中设置字段值。
    *
    * @param object
-   *     instance to set the property on
+   *     要设置字段值的实例。
    * @param field
-   *     field to set the property on
+   *     要设置值的字段。
    * @param value
-   *     value to set
+   *     要设置的值。
    * @throws ReflectionException
-   *     if the property cannot be set
+   *     如果无法设置字段值。
    */
   public static void setFieldValue(final Object object, final Field field,
       final Object value) throws ReflectionException {
@@ -276,16 +294,15 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Get the value (accessible or not accessible) of a field of a target
-   * object.
+   * 从目标对象获取字段值。
    *
    * @param object
-   *     instance to get the field of
+   *     要从中获取字段值的实例。
    * @param field
-   *     field to get the value of
-   * @return the value of the field
+   *     要获取值的字段。
+   * @return 字段的值。
    * @throws ReflectionException
-   *     if field can not be accessed
+   *     如果无法获取字段值。
    */
   public static Object getFieldValue(final Object object, final Field field)
       throws ReflectionException {
@@ -293,11 +310,11 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Get wrapper type of a primitive type.
+   * 获取给定原始类型的包装类型。
    *
    * @param primitiveType
-   *     to get its wrapper type
-   * @return the wrapper type of the given primitive type
+   *     要为其获取包装类型的原始类型。
+   * @return 给定原始类型的包装类型。
    */
   public static Class<?> getWrapperType(final Class<?> primitiveType) {
     for (final PrimitiveEnum p : PrimitiveEnum.values()) {
@@ -309,17 +326,15 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Check if a field has a primitive type and matching default value which is
-   * set by the compiler.
+   * 检查具有默认值的原始类型字段。
    *
    * @param object
-   *     instance to get the field value of
+   *     要内省的对象。
    * @param field
-   *     field to check
-   * @return true if the field is primitive and is set to the default value,
-   *     false otherwise
+   *     要检查的字段。
+   * @return 如果字段具有默认值，则为true。
    * @throws IllegalAccessException
-   *     if field cannot be accessed
+   *     如果字段不可访问。
    */
   public static boolean isPrimitiveFieldWithDefaultValue(final Object object,
       final Field field) throws IllegalAccessException {
@@ -331,6 +346,15 @@ public final class ReflectionUtils {
     return isPrimitiveDefaultValue(fieldType, fieldValue);
   }
 
+  /**
+   * 检查给定值是否为原始类型的默认值。
+   *
+   * @param type
+   *     原始类型
+   * @param value
+   *     要检查的值
+   * @return 如果值是原始类型的默认值，则返回true
+   */
   private static boolean isPrimitiveDefaultValue(final Class<?> type,
       final Object value) {
     if (value == null) {
@@ -361,29 +385,26 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Searches the classpath for all public concrete subtypes of the given
-   * interface or abstract class.
+   * 在类路径中搜索给定接口或抽象类的所有公共具体子类型。
    *
    * @param type
-   *     to search concrete subtypes of
+   *     要搜索具体子类型的类型
    * @param <T>
-   *     the actual type to introspect
-   * @return a list of all concrete subtypes found
+   *     要内省的实际类型
+   * @return 找到的所有具体子类型的列表
    */
   public static <T> List<Class<?>> getPublicConcreteSubTypesOf(final Class<T> type) {
     return ClassGraphFacade.getPublicConcreteSubTypesOf(type);
   }
 
   /**
-   * Filters a list of types to keep only elements having the same parameterized
-   * types as the given type.
+   * 过滤类型列表，只保留与给定类型具有相同参数化类型的元素。
    *
-   * @param type
-   *     the type to use for the search
    * @param types
-   *     a list of types to filter
-   * @return a list of types having the same parameterized types as the given
-   *     type
+   *     要过滤的类型列表
+   * @param type
+   *     用于搜索的类型
+   * @return 与给定类型具有相同参数化类型的类型列表
    */
   public static List<Class<?>> filterSameParameterizedTypes(
       final List<Class<?>> types, final Type type) {
@@ -407,11 +428,11 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Return an empty implementation for a {@link Collection} type.
+   * 为{@link Collection}类型返回一个空的实现。
    *
    * @param collectionInterface
-   *     for which an empty implementation should be returned
-   * @return empty implementation for the collection interface
+   *     需要返回空实现的集合接口
+   * @return 集合接口的空实现
    */
   public static <T> Collection<T> getEmptyImplementationForCollectionInterface(
       final Class<?> collectionInterface) {
@@ -439,13 +460,13 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Create an empty collection for the given type.
+   * 为给定类型创建一个空集合。
    *
    * @param type
-   *     for which an empty collection should we created
+   *     需要创建空集合的类型
    * @param size
-   *     initial size of the collection
-   * @return empty collection
+   *     集合的初始大小
+   * @return 空集合
    */
   @SuppressWarnings("unchecked")
   public static <T> Collection<T> getEmptyCollectionForType(final Class<?> type, final int size) {
@@ -467,11 +488,11 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Return an empty implementation for the given {@link Map} interface.
+   * 为给定的{@link Map}接口返回一个空的实现。
    *
    * @param mapInterface
-   *     for which an empty implementation should be returned
-   * @return empty implementation for the given {@link Map} interface.
+   *     需要返回空实现的Map接口
+   * @return 给定{@link Map}接口的空实现
    */
   public static Map<?, ?> getEmptyImplementationForMapInterface(
       final Class<?> mapInterface) {
@@ -488,6 +509,14 @@ public final class ReflectionUtils {
     return map;
   }
 
+  /**
+   * 拒绝不支持的类型。
+   *
+   * @param type
+   *     要检查的类型
+   * @throws UnsupportedOperationException
+   *     如果类型不受支持
+   */
   private static void rejectUnsupportedTypes(final Class<?> type) {
     if (type.equals(SynchronousQueue.class)) {
       // SynchronousQueue is not supported since it requires a consuming thread at insertion time
@@ -502,11 +531,11 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Get the read method for given field.
+   * 获取给定字段的读取方法。
    *
    * @param field
-   *     field to get the read method for.
-   * @return Optional of read method or empty if field has no read method
+   *     要获取读取方法的字段
+   * @return 读取方法的Optional，如果字段没有读取方法则为空
    */
   public static Optional<Method> getReadMethod(final Field field) {
     final String fieldName = field.getName();
@@ -524,6 +553,15 @@ public final class ReflectionUtils {
     return getPublicMethod("is" + capitalizedFieldName, fieldClass);
   }
 
+  /**
+   * 获取指定名称的公共方法。
+   *
+   * @param name
+   *     方法名称
+   * @param target
+   *     目标类
+   * @return 方法的Optional，如果没有找到则为空
+   */
   private static Optional<Method> getPublicMethod(final String name,
       final Class<?> target) {
     try {
@@ -533,6 +571,13 @@ public final class ReflectionUtils {
     }
   }
 
+  /**
+   * 获取泛型接口的实际类型参数。
+   *
+   * @param type
+   *     要检查的类型
+   * @return 泛型接口的实际类型参数列表
+   */
   private static List<Type[]> getActualTypeArgumentsOfGenericInterfaces(
       final Class<?> type) {
     final List<Type[]> result = new ArrayList<>();
@@ -545,6 +590,19 @@ public final class ReflectionUtils {
     return result;
   }
 
+  /**
+   * 创建新的随机化器实例。
+   *
+   * @param type
+   *     随机化器的类型
+   * @param randomizerArguments
+   *     随机化器的构造参数
+   * @param <T>
+   *     随机化器的泛型类型
+   * @return 新的随机化器实例
+   * @throws ObjectCreationException
+   *     如果无法创建对象
+   */
   @SuppressWarnings("unchecked")
   public static <T> Randomizer<T> newInstance(final Class<T> type,
       final RandomizerArgument[] randomizerArguments) {
@@ -576,16 +634,41 @@ public final class ReflectionUtils {
     }
   }
 
+  /**
+   * 检查随机化器参数数组是否非空。
+   *
+   * @param randomizerArguments
+   *     随机化器参数数组
+   * @return 如果数组非空且长度大于0，则返回true
+   */
   private static boolean notEmpty(
       final RandomizerArgument[] randomizerArguments) {
     return randomizerArguments != null && randomizerArguments.length > 0;
   }
 
+  /**
+   * 检查构造函数是否具有与随机化器参数相同的参数数量。
+   *
+   * @param constructor
+   *     构造函数
+   * @param randomizerArguments
+   *     随机化器参数数组
+   * @return 如果参数数量相同，则返回true
+   */
   private static boolean hasSameArgumentNumber(final Constructor<?> constructor,
       final RandomizerArgument[] randomizerArguments) {
     return constructor.getParameterCount() == randomizerArguments.length;
   }
 
+  /**
+   * 检查构造函数是否具有与随机化器参数相同的参数类型。
+   *
+   * @param constructor
+   *     构造函数
+   * @param randomizerArguments
+   *     随机化器参数数组
+   * @return 如果参数类型匹配，则返回true
+   */
   private static boolean hasSameArgumentTypes(final Constructor<?> constructor,
       final RandomizerArgument[] randomizerArguments) {
     final Class<?>[] constructorParameterTypes = constructor
@@ -600,6 +683,13 @@ public final class ReflectionUtils {
     return true;
   }
 
+  /**
+   * 将声明的参数转换为对象数组。
+   *
+   * @param declaredArguments
+   *     声明的参数数组
+   * @return 转换后的对象数组
+   */
   private static Object[] convertArguments(
       final RandomizerArgument[] declaredArguments) {
     final int numberOfArguments = declaredArguments.length;
@@ -620,6 +710,15 @@ public final class ReflectionUtils {
     return arguments;
   }
 
+  /**
+   * 将字符串值转换为指定的目标类型。
+   *
+   * @param value
+   *     要转换的字符串值
+   * @param targetType
+   *     目标类型
+   * @return 转换后的对象
+   */
   @SuppressWarnings("deprecation")
   private static Object convertValue(final String value,
       final Class<?> targetType) {
@@ -674,6 +773,15 @@ public final class ReflectionUtils {
     return value;
   }
 
+  /**
+   * 将对象数组转换为指定的目标类型数组。
+   *
+   * @param array
+   *     要转换的对象数组
+   * @param targetType
+   *     目标数组类型
+   * @return 转换后的数组
+   */
   private static Object convertArray(final Object array,
       final Class<?> targetType) {
     final Object[] values = (Object[]) array;
@@ -686,6 +794,15 @@ public final class ReflectionUtils {
     return convertedValuesArray;
   }
 
+  /**
+   * 获取可填充的字段列表。
+   *
+   * @param type
+   *     类型
+   * @param obj
+   *     对象实例
+   * @return 可填充的字段列表
+   */
   public static List<Field> getPopulatableFields(final Class<?> type,
       final Object obj) {
     //    // retrieve declared and inherited fields
@@ -709,17 +826,16 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Tests whether a field of a specified object has a default value.
+   * 测试指定对象的字段是否具有默认值。
    *
    * @param obj
-   *     the object.
+   *     对象
    * @param field
-   *     the field of the object.
-   * @return {@code true} if the field of the object has a default value, i.e.,
-   *     null value for objects and zero value for primitive types; returns
-   *     {@code false} otherwise;
+   *     对象的字段
+   * @return 如果对象的字段具有默认值（即对象的null值和原始类型的零值）
+   *     则返回{@code true}；否则返回{@code false}
    * @throws IllegalAccessException
-   *     if any reflection error occurs.
+   *     如果发生任何反射错误
    */
   public static boolean fieldHasDefaultValue(final Object obj,
       final Field field)
@@ -733,13 +849,11 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Gets the element type of a collection.
+   * 获取集合的元素类型。
    *
    * @param type
-   *     the generic type of a collection class, which implements {@code
-   *     Collection}.
-   * @return the element class of the collection, or {@code null} if it cannot
-   *     be resolved.
+   *     实现{@code Collection}的集合类的泛型类型
+   * @return 集合的元素类，如果无法解析则返回{@code null}
    */
   @Nullable
   public static Class<?> getCollectionElementType(final Type type) {
@@ -760,12 +874,11 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Gets the key/value type of a map.
+   * 获取映射的键/值类型。
    *
    * @param type
-   *     the generic type of a map class, which implements {@code Map}.
-   * @return the pair of key/value class of the map, or {@code null} if it
-   *     cannot be resolved.
+   *     实现{@code Map}的映射类的泛型类型
+   * @return 映射的键/值类对，如果无法解析则返回{@code null}
    */
   @Nullable
   public static Pair<Class<?>, Class<?>> getMapElementType(final Type type) {
@@ -795,14 +908,13 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Create an empty collection.
+   * 创建一个空集合。
    *
    * @param type
-   *     the class of the collection.
+   *     集合的类
    * @param size
-   *     the expected size of the collection, which will be the initial capacity
-   *     of the created collection.
-   * @return an empty collection object.
+   *     集合的期望大小，这将是创建的集合的初始容量
+   * @return 空集合对象
    */
   public static <T> Collection<T> createEmptyCollection(final Class<?> type,
       final int size) {
@@ -814,17 +926,17 @@ public final class ReflectionUtils {
   }
 
   /**
-   * Create an empty map.
+   * 创建一个空映射。
    *
    * @param objectFactory
-   *     the object factory.
+   *     对象工厂
    * @param context
-   *     the randomization context.
+   *     随机化上下文
    * @param type
-   *     the class of the map.
+   *     映射的类
    * @param genericType
-   *     the generic type of the map.
-   * @return the specified empty map.
+   *     映射的泛型类型
+   * @return 指定的空映射
    */
   @SuppressWarnings({"unchecked", "rawtypes"})
   public static Map<Object, Object> createEmptyMap(

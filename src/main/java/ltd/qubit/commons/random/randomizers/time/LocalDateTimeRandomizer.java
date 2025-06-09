@@ -15,9 +15,9 @@ import java.time.LocalTime;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random {@link LocalDateTime}.
+ * 生成随机{@link LocalDateTime}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class LocalDateTimeRandomizer implements Randomizer<LocalDateTime> {
 
@@ -25,7 +25,7 @@ public class LocalDateTimeRandomizer implements Randomizer<LocalDateTime> {
   private LocalTimeRandomizer localTimeRandomizer;
 
   /**
-   * Create a new {@link LocalDateTimeRandomizer}.
+   * 创建一个新的{@link LocalDateTimeRandomizer}。
    */
   public LocalDateTimeRandomizer() {
     localDateRandomizer = new LocalDateRandomizer();
@@ -33,16 +33,21 @@ public class LocalDateTimeRandomizer implements Randomizer<LocalDateTime> {
   }
 
   /**
-   * Create a new {@link LocalDateTimeRandomizer}.
+   * 创建一个新的{@link LocalDateTimeRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public LocalDateTimeRandomizer(final long seed) {
     localDateRandomizer = new LocalDateRandomizer(seed);
     localTimeRandomizer = new LocalTimeRandomizer(seed);
   }
 
+  /**
+   * 生成一个随机的本地日期时间。
+   *
+   * @return 一个随机的{@link LocalDateTime}
+   */
   @Override
   public LocalDateTime getRandomValue() {
     final LocalDate localDate = localDateRandomizer.getRandomValue();
@@ -50,10 +55,22 @@ public class LocalDateTimeRandomizer implements Randomizer<LocalDateTime> {
     return LocalDateTime.of(localDate, localTime);
   }
 
+  /**
+   * 设置{@link LocalDateRandomizer}。
+   *
+   * @param localDateRandomizer
+   *         要设置的{@link LocalDateRandomizer}
+   */
   public void setLocalDateRandomizer(final LocalDateRandomizer localDateRandomizer) {
     this.localDateRandomizer = localDateRandomizer;
   }
 
+  /**
+   * 设置{@link LocalTimeRandomizer}。
+   *
+   * @param localTimeRandomizer
+   *         要设置的{@link LocalTimeRandomizer}
+   */
   public void setLocalTimeRandomizer(final LocalTimeRandomizer localTimeRandomizer) {
     this.localTimeRandomizer = localTimeRandomizer;
   }

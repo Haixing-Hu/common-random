@@ -27,9 +27,9 @@ import static ltd.qubit.commons.lang.ClassUtils.isCollectionType;
 import static ltd.qubit.commons.lang.ClassUtils.isMapType;
 
 /**
- * An annotation handler for the {@link NotEmpty} annotation.
+ * {@link NotEmpty} 注解的注解处理器。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class NotEmptyAnnotationHandler implements AnnotationHandler {
 
@@ -40,6 +40,16 @@ public class NotEmptyAnnotationHandler implements AnnotationHandler {
   private final CollectionPopulator collectionPopulator;
   private final MapPopulator mapPopulator;
 
+  /**
+   * 构造一个 {@link NotEmptyAnnotationHandler}。
+   *
+   * @param seed
+   *     用于生成随机数的种子。
+   * @param random
+   *     {@link EasyRandom} 的实例。
+   * @param parameters
+   *     {@link Parameters} 的实例。
+   */
   public NotEmptyAnnotationHandler(final long seed, final EasyRandom random,
           final Parameters parameters) {
     this.seed = seed;
@@ -50,6 +60,9 @@ public class NotEmptyAnnotationHandler implements AnnotationHandler {
     this.mapPopulator = random.getMapPopulator();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Randomizer<?> getRandomizer(final Field field, final Context context) {
     // NotEmpty sizeAnnotation = getAnnotation(field, NotEmpty.class);

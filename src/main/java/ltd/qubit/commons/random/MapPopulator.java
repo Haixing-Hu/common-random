@@ -24,25 +24,50 @@ import static ltd.qubit.commons.random.util.RandomUtils.createRandomMap;
 import static ltd.qubit.commons.random.util.RandomUtils.getRandomCollectionSize;
 
 /**
- * Random map populator.
+ * 随机映射表填充器。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class MapPopulator {
 
   private final EasyRandom random;
   private final ObjectFactory objectFactory;
 
+  /**
+   * 构造一个 {@link MapPopulator}。
+   *
+   * @param random
+   *     用于填充映射表的 {@link EasyRandom} 实例。
+   */
   public MapPopulator(final EasyRandom random) {
     this.random = random;
     this.objectFactory = random.getObjectFactory();
   }
 
+  /**
+   * 构造一个 {@link MapPopulator}。
+   *
+   * @param random
+   *     用于填充映射表的 {@link EasyRandom} 实例。
+   * @param objectFactory
+   *     用于创建对象的对象工厂。
+   */
   public MapPopulator(final EasyRandom random, final ObjectFactory objectFactory) {
     this.random = random;
     this.objectFactory = objectFactory;
   }
 
+  /**
+   * 填充指定的映射表字段。
+   *
+   * @param field
+   *     要填充的字段。
+   * @param context
+   *     当前上下文。
+   * @param sizeRange
+   *     映射表大小的范围。
+   * @return 填充了随机键值对的映射表。
+   */
   @SuppressWarnings({"unchecked", "rawtypes"})
   public Map<?, ?> populate(final Field field, final Context context,
           final @Nullable CloseRange<Integer> sizeRange) {
@@ -56,6 +81,17 @@ public class MapPopulator {
             fieldGenericType, size);
   }
 
+  /**
+   * 填充指定类型的映射表。
+   *
+   * @param fieldType
+   *     要填充的映射表类型。
+   * @param context
+   *     当前上下文。
+   * @param sizeRange
+   *     映射表大小的范围。
+   * @return 填充了随机键值对的映射表。
+   */
   @SuppressWarnings({"unchecked", "rawtypes"})
   public Map<?, ?> populate(final Class<?> fieldType, final Context context,
           final @Nullable CloseRange<Integer> sizeRange) {
@@ -67,6 +103,15 @@ public class MapPopulator {
             fieldType, size);
   }
 
+  /**
+   * 获取一个随机化器，该随机化器可以为指定的字段生成随机映射表。
+   *
+   * @param field
+   *     要为其创建随机化器的字段。
+   * @param sizeRange
+   *     映射表大小的范围。
+   * @return 一个可以为指定字段生成随机映射表的随机化器。
+   */
   public Randomizer<?> getRandomizer(final Field field,
           final @Nullable CloseRange<Integer> sizeRange) {
     return new AbstractContextAwareRandomizer<Object>() {
@@ -77,6 +122,15 @@ public class MapPopulator {
     };
   }
 
+  /**
+   * 获取一个随机化器，该随机化器可以为指定的类型生成随机映射表。
+   *
+   * @param fieldType
+   *     要为其创建随机化器的字段类型。
+   * @param sizeRange
+   *     映射表大小的范围。
+   * @return 一个可以为指定类型生成随机映射表的随机化器。
+   */
   public Randomizer<?> getRandomizer(final Class<?> fieldType,
           final @Nullable CloseRange<Integer> sizeRange) {
     return new AbstractContextAwareRandomizer<Object>() {

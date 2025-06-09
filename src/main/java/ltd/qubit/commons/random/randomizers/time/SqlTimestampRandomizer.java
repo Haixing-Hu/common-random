@@ -13,31 +13,36 @@ import java.sql.Timestamp;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * Generate a random {@link Timestamp}.
+ * 生成随机{@link Timestamp}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class SqlTimestampRandomizer implements Randomizer<Timestamp> {
 
   private final DateRandomizer delegate;
 
   /**
-   * Create a new {@link SqlTimestampRandomizer}.
+   * 创建一个新的{@link SqlTimestampRandomizer}。
    */
   public SqlTimestampRandomizer() {
     delegate = new DateRandomizer();
   }
 
   /**
-   * Create a new {@link SqlTimestampRandomizer}.
+   * 创建一个新的{@link SqlTimestampRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public SqlTimestampRandomizer(final long seed) {
     delegate = new DateRandomizer(seed);
   }
 
+  /**
+   * 生成一个随机的SQL时间戳。
+   *
+   * @return 一个随机的{@link Timestamp}
+   */
   @Override
   public Timestamp getRandomValue() {
     return new Timestamp(delegate.getRandomValue().getTime());

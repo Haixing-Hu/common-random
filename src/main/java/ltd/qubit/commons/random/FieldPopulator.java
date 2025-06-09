@@ -33,17 +33,15 @@ import static ltd.qubit.commons.random.util.ReflectionUtils.setFieldValue;
 import static ltd.qubit.commons.random.util.ReflectionUtils.setProperty;
 
 /**
- * Component that encapsulate the logic of generating a random value for a given
- * field. It collaborates with a:
+ * 封装了为给定字段生成随机值逻辑的组件。它与以下内容协作：
  * <ul>
- * <li>{@link EasyRandom} whenever the field is a user defined type.</li>
- * <li>{@link ArrayPopulator} whenever the field is an array type.</li>
- * <li>{@link CollectionPopulator} whenever the field is a collection
- * type.</li>
- * <li>{@link CollectionPopulator}whenever the field is a map type.</li>
+ * <li>{@link EasyRandom}：当字段是用户定义的类型时。</li>
+ * <li>{@link ArrayPopulator}：当字段是数组类型时。</li>
+ * <li>{@link CollectionPopulator}：当字段是集合类型时。</li>
+ * <li>{@link MapPopulator}：当字段是映射类型时。</li>
  * </ul>
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class FieldPopulator {
 
@@ -54,6 +52,12 @@ public class FieldPopulator {
   private final MapPopulator mapPopulator;
   private final RandomizerProvider randomizerProvider;
 
+  /**
+   * 构造一个 {@link FieldPopulator}。
+   *
+   * @param random
+   *     EasyRandom 实例。
+   */
   public FieldPopulator(final EasyRandom random) {
     this.random = random;
     this.arrayPopulator = random.getArrayPopulator();
@@ -62,6 +66,20 @@ public class FieldPopulator {
     this.randomizerProvider = random.getRandomizerProvider();
   }
 
+  /**
+   * 构造一个 {@link FieldPopulator}。
+   *
+   * @param random
+   *     EasyRandom 实例。
+   * @param randomizerProvider
+   *     随机化器提供者。
+   * @param arrayPopulator
+   *     数组填充器。
+   * @param collectionPopulator
+   *     集合填充器。
+   * @param mapPopulator
+   *     映射填充器。
+   */
   public FieldPopulator(final EasyRandom random,
           final RandomizerProvider randomizerProvider,
           final ArrayPopulator arrayPopulator,
@@ -74,6 +92,18 @@ public class FieldPopulator {
     this.mapPopulator = mapPopulator;
   }
 
+  /**
+   * 填充指定对象的指定名称的字段。
+   *
+   * @param object
+   *     要填充其字段的对象。
+   * @param fieldName
+   *     要填充的字段的名称。
+   * @throws IllegalAccessException
+   *     如果字段不可访问。
+   * @throws NoSuchFieldException
+   *     如果字段不存在。
+   */
   public void populate(final Object object, final String fieldName)
       throws IllegalAccessException, NoSuchFieldException {
     final Class<?> type = object.getClass();
@@ -81,6 +111,16 @@ public class FieldPopulator {
     populate(object, field);
   }
 
+  /**
+   * 填充指定对象的指定字段。
+   *
+   * @param object
+   *     要填充其字段的对象。
+   * @param field
+   *     要填充的字段。
+   * @throws IllegalAccessException
+   *     如果字段不可访问。
+   */
   public void populate(final Object object, final Field field)
       throws IllegalAccessException {
     final Context context = new Context(object.getClass(), random.getParameters());
@@ -89,6 +129,18 @@ public class FieldPopulator {
     populate(object, field, context);
   }
 
+  /**
+   * 填充指定对象的指定字段。
+   *
+   * @param object
+   *     要填充其字段的对象。
+   * @param field
+   *     要填充的字段。
+   * @param context
+   *     随机化上下文。
+   * @throws IllegalAccessException
+   *     如果字段不可访问。
+   */
   public void populate(final Object object, final Field field, final Context context)
           throws IllegalAccessException {
     context.pushStackItem(new ContextStackItem(object, field));
@@ -181,6 +233,18 @@ public class FieldPopulator {
     return value;
   }
 
+  /**
+   * 填充对象的字段。
+   *
+   * @param object
+   *     要填充其字段的对象。
+   * @param fields
+   *     要填充的字段列表。
+   * @param context
+   *     随机化上下文。
+   * @throws IllegalAccessException
+   *     如果字段不可访问。
+   */
   public void populateFields(final Object object, final List<Field> fields,
           final Context context) throws IllegalAccessException {
     logger.debug("Populate fields: class = {}, fields = {}, context = {}",

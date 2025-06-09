@@ -14,33 +14,33 @@ import ltd.qubit.commons.random.randomizers.AbstractRangeRandomizer;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Generate a random {@link Byte} in the given range.
+ * 在给定范围内生成一个随机的{@link Byte}。
  *
- * @author Rémi Alvergnat, Haixing Hu
+ * @author Rémi Alvergnat, 胡海星
  */
 public class ByteRangeRandomizer extends AbstractRangeRandomizer<Byte> {
 
   /**
-   * Create a new {@link ByteRangeRandomizer}.
+   * 创建一个新的{@link ByteRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    */
   public ByteRangeRandomizer(final Byte min, final Byte max) {
     super(min, max);
   }
 
   /**
-   * Create a new {@link ByteRangeRandomizer}.
+   * 创建一个新的{@link ByteRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public ByteRangeRandomizer(final Byte min, final Byte max, final long seed) {
     super(min, max, seed);

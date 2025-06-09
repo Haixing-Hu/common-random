@@ -17,12 +17,12 @@ import java.util.logging.Logger;
 import static java.util.Date.from;
 
 /**
- * Date utilities class.
+ * 日期工具类。
  *
- * <strong>This class is intended for internal use only.</strong>
+ * <p><strong>此类仅供内部使用。</strong>
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
- * @deprecated This class is deprecated since v4.3 and will be removed in v5.0
+ * @author 胡海星
+ * @deprecated此类自v4.3版起已弃用，并将在v5.0版中删除
  */
 @Deprecated
 public final class DateUtils {
@@ -36,23 +36,22 @@ public final class DateUtils {
   private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat(DATE_FORMAT);
 
   /**
-   * Convert a {@link ZonedDateTime} to {@link Date}.
+   * 将{@link ZonedDateTime}转换为{@link Date}。
    *
    * @param zonedDateTime
-   *     to convert
-   * @return the corresponding {@link Date} object
+   *     要转换的{@link ZonedDateTime}
+   * @return 相应的{@link Date}对象
    */
   public static Date toDate(final ZonedDateTime zonedDateTime) {
     return from(zonedDateTime.toInstant());
   }
 
   /**
-   * Parse a string formatted in {@link DateUtils#DATE_FORMAT} to a {@link
-   * Date}.
+   * 将以{@link DateUtils#DATE_FORMAT}格式化的字符串解析为{@link Date}。
    *
    * @param value
-   *     date to parse. Should be in {@link DateUtils#DATE_FORMAT} format.
-   * @return parsed date
+   *     要解析的日期。应采用{@link DateUtils#DATE_FORMAT}格式。
+   * @return 解析后的日期
    */
   public static Date parse(final String value) {
     try {

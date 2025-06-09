@@ -17,16 +17,16 @@ import ltd.qubit.commons.random.randomizers.range.IntegerRangeRandomizer;
 import ltd.qubit.commons.util.range.CloseRange;
 
 /**
- * A {@link Randomizer} that generates random {@link Year}.
+ * 生成随机{@link Year}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class YearRandomizer implements Randomizer<Year> {
 
   private final IntegerRangeRandomizer yearRandomizer;
 
   /**
-   * Create a new {@link YearRandomizer}.
+   * 创建一个新的{@link YearRandomizer}。
    */
   public YearRandomizer() {
     final CloseRange<ZonedDateTime> range = Parameters.DEFAULT_DATES_RANGE;
@@ -35,10 +35,10 @@ public class YearRandomizer implements Randomizer<Year> {
   }
 
   /**
-   * Create a new {@link YearRandomizer}.
+   * 创建一个新的{@link YearRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public YearRandomizer(final long seed) {
     final CloseRange<ZonedDateTime> range = Parameters.DEFAULT_DATES_RANGE;
@@ -46,6 +46,11 @@ public class YearRandomizer implements Randomizer<Year> {
             range.getMax().getYear(), seed);
   }
 
+  /**
+   * 生成一个随机的年份。
+   *
+   * @return 一个随机的{@link Year}
+   */
   @Override
   public Year getRandomValue() {
     final int randomYear = yearRandomizer.getRandomValue();

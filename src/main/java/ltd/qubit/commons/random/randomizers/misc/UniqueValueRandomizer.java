@@ -40,6 +40,13 @@ import static java.util.Objects.requireNonNull;
 
 import static ltd.qubit.commons.random.Parameters.DEFAULT_MAX_LOOPS;
 
+/**
+ * 唯一值随机化器。
+ *
+ * @param <T>
+ *     要生成的对象类型。
+ * @author 胡海星
+ */
 @Priority(Integer.MAX_VALUE - 1)
 public class UniqueValueRandomizer<T> implements ContextAwareRandomizer<T> {
 
@@ -53,6 +60,22 @@ public class UniqueValueRandomizer<T> implements ContextAwareRandomizer<T> {
   private final Set<Object> cache;
   private Context context;
 
+  /**
+   * 构造一个 {@link UniqueValueRandomizer}。
+   *
+   * @param field
+   *     被 {@link Unique} 注解的字段。
+   * @param respectTo
+   *     一个字符串数组，表示唯一性约束所依赖的其他字段的名称。
+   * @param ignoreCase
+   *     指示唯一性检查是否应忽略大小写。
+   * @param random
+   *     {@link EasyRandom} 实例。
+   * @param provider
+   *     随机化器提供者。
+   * @param cache
+   *     用于存储已生成的唯一值的缓存。
+   */
   public UniqueValueRandomizer(final Field field,
       final @Nullable String[] respectTo, final boolean ignoreCase,
       final EasyRandom random, final RandomizerProvider provider,
@@ -160,17 +183,17 @@ public class UniqueValueRandomizer<T> implements ContextAwareRandomizer<T> {
   }
 
   /**
-   * Fixes the value of a unique field used to build the cache.
+   * 修复用于构建缓存的唯一字段的值。
    *
-   * <p>The MySQL database treats {@code VARCHAR} column as case-insensitive by
-   * default. When testing a DAO with a model containing a {@link Unique}
-   * annotated field, which maps to a unique {@code VARCHAR} column in the MySQL
-   * table, we should compare the string value of the unique field in the
-   * case-insensitive way.
+   * <p>默认情况下，MySQL数据库将{@code VARCHAR}列视为不区分大小写。当使用包含
+   * {@link Unique}注解字段的模型测试DAO时，该字段映射到MySQL表中的唯一
+   * {@code VARCHAR}列，我们应该以不区分大小写的方式比较唯一字段的字符串值。
    *
+   * @param type
+   *     字段的类型。
    * @param value
-   *     the value of a unique field.
-   * @return the fixed result.
+   *     唯一字段的值。
+   * @return 修复后的结果。
    */
   private Object fixFieldValue(final Class<?> type, final Object value) {
     if (value == null) {

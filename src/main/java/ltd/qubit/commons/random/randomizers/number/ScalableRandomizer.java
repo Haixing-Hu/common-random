@@ -20,28 +20,51 @@ import ltd.qubit.commons.random.api.ContextAwareRandomizer;
 import static ltd.qubit.commons.reflect.FieldUtils.getAnnotation;
 
 /**
- * A randomizer which can scale the generated value.
+ * 可以缩放生成值的随机化器。
  *
  * @param <T>
- *      the type of the generated value.
+ *     生成值的类型。
+ * @author 胡海星
  */
 public abstract class ScalableRandomizer<T> implements ContextAwareRandomizer<T> {
 
   protected Integer scale;
   protected RoundingMode roundingMode = RoundingMode.HALF_UP;
 
+  /**
+   * 获取小数位数。
+   *
+   * @return 小数位数
+   */
   public Integer getScale() {
     return scale;
   }
 
+  /**
+   * 设置小数位数。
+   *
+   * @param scale
+   *         要设置的小数位数
+   */
   public void setScale(final Integer scale) {
     this.scale = scale;
   }
 
+  /**
+   * 获取舍入模式。
+   *
+   * @return 舍入模式
+   */
   public RoundingMode getRoundingMode() {
     return roundingMode;
   }
 
+  /**
+   * 设置舍入模式。
+   *
+   * @param roundingMode
+   *         要设置的舍入模式
+   */
   public void setRoundingMode(final RoundingMode roundingMode) {
     this.roundingMode = roundingMode;
   }

@@ -20,40 +20,46 @@ import ltd.qubit.commons.util.range.CloseRange;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Generate a random {@link YearMonth} in the given range.
+ * 在给定范围内生成一个随机的{@link YearMonth}。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class YearMonthRangeRandomizer extends
     AbstractRangeRandomizer<YearMonth> {
 
   /**
-   * Create a new {@link YearMonthRangeRandomizer}.
+   * 创建一个新的{@link YearMonthRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    */
   public YearMonthRangeRandomizer(final YearMonth min, final YearMonth max) {
     super(min, max);
   }
 
   /**
-   * Create a new {@link YearMonthRangeRandomizer}.
+   * 创建一个新的{@link YearMonthRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public YearMonthRangeRandomizer(final YearMonth min, final YearMonth max,
           final long seed) {
     super(min, max, seed);
   }
 
+  /**
+   * 创建一个新的{@link YearMonthRangeRandomizer}。
+   *
+   * @param parameters
+   *         随机化参数。
+   */
   public YearMonthRangeRandomizer(final Parameters parameters) {
     super(parameters.getSeed());
     setParameters(parameters);

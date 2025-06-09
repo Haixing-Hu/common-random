@@ -16,10 +16,11 @@ import static ltd.qubit.commons.lang.ClassUtils.isPopulatable;
 import static ltd.qubit.commons.random.util.ReflectionUtils.createEmptyCollection;
 
 /**
- * A randomizer for generating {@link Collection} types.
+ * 用于生成 {@link Collection} 类型的随机化器。
  *
  * @param <T>
- *     the type of elements in the collection
+ *     集合中元素的类型。
+ * @author 胡海星
  */
 public class CollectionRandomizer<T> extends AbstractCollectionRandomizer<T> {
 
@@ -27,14 +28,14 @@ public class CollectionRandomizer<T> extends AbstractCollectionRandomizer<T> {
   private final Class<T> elementType;
 
   /**
-   * Constructs a new randomizer.
+   * 构造一个新的随机化器。
    *
    * @param delegate
-   *     the randomizer used to generate the elements in the collection.
+   *     用于在集合中生成元素的随机化器。
    * @param collectionType
-   *     the type of the collection to create.
+   *     要创建的集合的类型。
    * @param elementType
-   *     the type of the elements in the collection to create.
+   *     要创建的集合中元素的类型。
    */
   public CollectionRandomizer(final Randomizer<T> delegate,
       final Class<? extends Collection<T>> collectionType,
@@ -43,17 +44,18 @@ public class CollectionRandomizer<T> extends AbstractCollectionRandomizer<T> {
     this.collectionType = collectionType;
     this.elementType = elementType;
   }
+
   /**
-   * Constructs a new randomizer.
+   * 构造一个新的随机化器。
    *
    * @param delegate
-   *     the randomizer used to generate the elements in the collection.
+   *     用于在集合中生成元素的随机化器。
    * @param size
-   *     the number of elements to generate.
+   *     要生成的元素数。
    * @param collectionType
-   *     the type of the collection to create.
+   *     要创建的集合的类型。
    * @param elementType
-   *     the type of the elements in the collection to create.
+   *     要创建的集合中元素的类型。
    */
   CollectionRandomizer(final Randomizer<T> delegate, final int size,
       final Class<? extends Collection<T>> collectionType,
@@ -64,10 +66,10 @@ public class CollectionRandomizer<T> extends AbstractCollectionRandomizer<T> {
   }
 
   /**
-   * Generates a random collection.
+   * 生成一个随机集合。
    *
    * @return
-   *     a random collection.
+   *     一个随机集合。
    */
   @Override
   public Collection<T> getRandomValue() {

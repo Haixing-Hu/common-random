@@ -11,28 +11,33 @@ package ltd.qubit.commons.random.randomizers.number;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * Generate a random {@link Integer}.
+ * 生成一个随机的{@link Integer}。
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author 胡海星
  */
 public class IntegerRandomizer extends AbstractRandomizer<Integer> {
 
   /**
-   * Create a new {@link IntegerRandomizer}.
+   * 创建一个新的{@link IntegerRandomizer}。
    */
   public IntegerRandomizer() {
   }
 
   /**
-   * Create a new {@link IntegerRandomizer}.
+   * 创建一个新的{@link IntegerRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public IntegerRandomizer(final long seed) {
     super(seed);
   }
 
+  /**
+   * 生成一个随机的 {@link Integer}。
+   *
+   * @return 一个随机的 {@link Integer}
+   */
   @Override
   public Integer getRandomValue() {
     return random.nextInt();

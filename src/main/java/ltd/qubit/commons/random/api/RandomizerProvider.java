@@ -14,68 +14,66 @@ import java.util.Set;
 import ltd.qubit.commons.random.Context;
 
 /**
- * Strategy interface to provide randomizers for field/type based on the current
- * context. Implementations may (or may not) use registries to provide
- * randomizers.
+ * 根据当前上下文为字段/类型提供随机化器的策略接口。
+ * 实现可以（或不可以）使用注册表来提供随机化器。
  *
- * <p>The added value of this interface compared to a simple {@link
- * RandomizerRegistry} is that it gives access to the current context and allows
- * fine grained randomizer selection based on that context.
+ * <p>此接口与简单的 {@link RandomizerRegistry} 相比的附加价值在于，它允许访问当前上下文，
+ * 并允许基于该上下文进行细粒度的随机化器选择。
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author 胡海星
  */
 public interface RandomizerProvider extends Cloneable {
 
   /**
-   * Return a randomizer for the given field in the current context.
+   * 在当前上下文中返回给定字段的随机化器。
    *
    * @param field
-   *         the field for which a randomizer should be returned
+   *     应为其返回随机化器的字段。
    * @param context
-   *         current randomization context
-   * @return a randomizer for the given field in the current context.
+   *     当前的随机化上下文。
+   * @return 在当前上下文中为给定字段提供的随机化器。
    */
   default Randomizer<?> getByField(Field field, Context context) {
     return null;
   }
 
   /**
-   * Return a randomizer for the given type in the current context.
+   * 在当前上下文中返回给定类型的随机化器。
    *
    * @param type
-   *         for which a randomizer should be returned
+   *     应为其返回随机化器的类型。
    * @param context
-   *         current randomization context
+   *     当前的随机化上下文。
    * @param <T>
-   *         generic type
-   * @return a randomizer for the given type in the current context.
+   *     泛型类型。
+   * @return 在当前上下文中为给定类型提供的随机化器。
    */
   default <T> Randomizer<T> getByType(Class<T> type, Context context) {
     return null;
   }
 
   /**
-   * Add randomizer registries.
+   * 添加随机化器注册表。
    *
    * @param registries
-   *         the registries to add.
-   * @return this object.
+   *     要添加的注册表。
+   * @return 此对象。
    */
   RandomizerProvider addRegistries(Set<RandomizerRegistry> registries);
 
   /**
-   * Remove the specified randomizer registry .
+   * 删除指定的随机化器注册表。
    *
    * @param registryClass
-   *         the class of the specified registry to be removed.
-   * @return this object.
+   *     要删除的指定注册表的类。
+   * @return 此对象。
    */
   RandomizerProvider removeRegistry(Class<? extends RandomizerRegistry> registryClass);
 
   /**
-   * Clone this randomizer registries.
+   * 克隆此随机化器注册表。
    *
-   * @return the cloned copy of this object.
+   * @return 此对象的克隆副本。
    */
   RandomizerProvider clone();
 

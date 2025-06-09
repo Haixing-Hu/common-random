@@ -17,34 +17,34 @@ import ltd.qubit.commons.util.range.CloseRange;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Generate a random {@link LocalDate} in the given range.
+ * 在给定范围内生成一个随机的{@link LocalDate}。
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author 胡海星
  */
 public class LocalDateRangeRandomizer extends
     AbstractRangeRandomizer<LocalDate> {
 
   /**
-   * Create a new {@link LocalDateRangeRandomizer}.
+   * 创建一个新的{@link LocalDateRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    */
   public LocalDateRangeRandomizer(final LocalDate min, final LocalDate max) {
     super(min, max);
   }
 
   /**
-   * Create a new {@link LocalDateRangeRandomizer}.
+   * 创建一个新的{@link LocalDateRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public LocalDateRangeRandomizer(final LocalDate min, final LocalDate max,
           final long seed) {
@@ -52,27 +52,33 @@ public class LocalDateRangeRandomizer extends
   }
 
   /**
-   * Create a new {@link LocalDateRangeRandomizer}.
+   * 创建一个新的{@link LocalDateRangeRandomizer}。
    *
    * @param range
-   *         the range
+   *         范围
    */
   public LocalDateRangeRandomizer(final CloseRange<LocalDate> range) {
     super(range);
   }
 
   /**
-   * Create a new {@link LocalDateRangeRandomizer}.
+   * 创建一个新的{@link LocalDateRangeRandomizer}。
    *
    * @param range
-   *         the range
+   *         范围
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public LocalDateRangeRandomizer(final CloseRange<LocalDate> range, final long seed) {
     super(range, seed);
   }
 
+  /**
+   * 创建一个新的{@link LocalDateRangeRandomizer}。
+   *
+   * @param parameters
+   *         随机化参数。
+   */
   public LocalDateRangeRandomizer(final Parameters parameters) {
     super(parameters.getSeed());
     setParameters(parameters);

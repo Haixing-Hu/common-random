@@ -14,53 +14,58 @@ import java.util.concurrent.TimeUnit;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * Generate a random {@link Date}.
+ * 生成随机{@link Date}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class SqlDateRandomizer implements Randomizer<Date> {
 
   private final DateRandomizer delegate;
 
   /**
-   * Create a new {@link SqlDateRandomizer}.
+   * 创建一个新的{@link SqlDateRandomizer}。
    */
   public SqlDateRandomizer() {
     delegate = new DateRandomizer();
   }
 
   /**
-   * Create a new {@link SqlDateRandomizer}.
+   * 创建一个新的{@link SqlDateRandomizer}。
    *
    * @param precision
-   *     the precision of the generated date time.
+   *     生成日期时间的精度。
    */
   public SqlDateRandomizer(final TimeUnit precision) {
     delegate = new DateRandomizer(precision);
   }
 
   /**
-   * Create a new {@link SqlDateRandomizer}.
+   * 创建一个新的{@link SqlDateRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public SqlDateRandomizer(final long seed) {
     delegate = new DateRandomizer(seed);
   }
 
   /**
-   * Create a new {@link SqlDateRandomizer}.
+   * 创建一个新的{@link SqlDateRandomizer}。
    *
    * @param precision
-   *     the precision of the generated date time.
+   *     生成日期时间的精度。
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public SqlDateRandomizer(final TimeUnit precision, final long seed) {
     delegate = new DateRandomizer(precision, seed);
   }
 
+  /**
+   * 生成一个随机的SQL日期。
+   *
+   * @return 一个随机的{@link Date}
+   */
   @Override
   public Date getRandomValue() {
     return new Date(delegate.getRandomValue().getTime());

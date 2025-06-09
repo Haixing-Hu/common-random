@@ -17,11 +17,11 @@ import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
 
 /**
- * Facade for {@link io.github.classgraph.ClassGraph}. It is a separate class
- * from {@link ReflectionUtils}, so that the classpath scanning - which can take
- * a few seconds - is only done when necessary.
+ * {@link io.github.classgraph.ClassGraph} 的外观。
+ * 它是与 {@link ReflectionUtils} 分开的类，因此只有在必要时才进行类路径扫描，
+ * 这可能需要几秒钟。
  *
- * @author Pascal Schumacher (https://github.com/PascalSchumacher)
+ * @author 胡海星
  */
 abstract class ClassGraphFacade {
 
@@ -34,12 +34,13 @@ abstract class ClassGraphFacade {
                           .scan();
 
   /**
-   * Searches the classpath for all public concrete subtypes of the given
-   * interface or abstract class.
+   * 在类路径中搜索给定接口或抽象类的所有公共具体子类型。
    *
    * @param type
-   *         to search concrete subtypes of
-   * @return a list of all concrete subtypes found
+   *         要搜索其具体子类型的类型
+   * @param <T>
+   *         要搜索其具体子类型的类型
+   * @return 找到的所有具体子类型的列表
    */
   public static <T> List<Class<?>> getPublicConcreteSubTypesOf(final Class<T> type) {
     return typeToConcreteSubTypes.computeIfAbsent(type, ClassGraphFacade::search);

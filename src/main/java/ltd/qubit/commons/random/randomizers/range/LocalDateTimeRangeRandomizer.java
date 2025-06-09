@@ -19,20 +19,20 @@ import ltd.qubit.commons.util.range.CloseRange;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Generate a random {@link LocalDateTime} in the given range.
+ * 在给定范围内生成一个随机的{@link LocalDateTime}。
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author 胡海星
  */
 public class LocalDateTimeRangeRandomizer extends
     AbstractRangeRandomizer<LocalDateTime> {
 
   /**
-   * Create a new {@link LocalDateTimeRangeRandomizer}.
+   * 创建一个新的{@link LocalDateTimeRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    */
   public LocalDateTimeRangeRandomizer(final LocalDateTime min,
           final LocalDateTime max) {
@@ -40,20 +40,26 @@ public class LocalDateTimeRangeRandomizer extends
   }
 
   /**
-   * Create a new {@link LocalDateTimeRangeRandomizer}.
+   * 创建一个新的{@link LocalDateTimeRangeRandomizer}。
    *
    * @param min
-   *         min value
+   *         最小值
    * @param max
-   *         max value
+   *         最大值
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public LocalDateTimeRangeRandomizer(final LocalDateTime min,
           final LocalDateTime max, final long seed) {
     super(min, max, seed);
   }
 
+  /**
+   * 创建一个新的{@link LocalDateTimeRangeRandomizer}。
+   *
+   * @param parameters
+   *         随机化参数。
+   */
   public LocalDateTimeRangeRandomizer(final Parameters parameters) {
     super(parameters.getSeed());
     setParameters(parameters);

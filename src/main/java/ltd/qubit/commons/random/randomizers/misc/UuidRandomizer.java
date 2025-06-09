@@ -13,23 +13,23 @@ import java.util.UUID;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * Generate a random {@link UUID}.
+ * 生成一个随机的 {@link UUID}。
  *
- * @author Pascal Schumacher
+ * @author 胡海星
  */
 public class UuidRandomizer extends AbstractRandomizer<UUID> {
 
   /**
-   * Create a new {@link UuidRandomizer}.
+   * 创建一个新的 {@link UuidRandomizer}。
    */
   public UuidRandomizer() {
   }
 
   /**
-   * Create a new {@link UuidRandomizer}.
+   * 创建一个新的 {@link UuidRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public UuidRandomizer(final long seed) {
     super(seed);

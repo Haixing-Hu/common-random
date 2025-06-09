@@ -11,19 +11,19 @@ package ltd.qubit.commons.random.randomizers.misc;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates constant values. Yeah.. That's not random.
+ * 一个生成常量值的 {@link Randomizer}。是的... 这不是随机的。
  *
- * @author Mahmoud Ben Hassine
+ * @author 胡海星
  */
 public class ConstantRandomizer<T> implements Randomizer<T> {
 
   private final T value;
 
   /**
-   * Create a new {@link ConstantRandomizer}.
+   * 创建一个新的 {@link ConstantRandomizer}。
    *
    * @param value
-   *         the constant value
+   *         常量值
    */
   public ConstantRandomizer(final T value) {
     this.value = value;

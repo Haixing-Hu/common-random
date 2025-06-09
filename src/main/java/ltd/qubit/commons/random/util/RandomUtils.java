@@ -38,22 +38,26 @@ import static ltd.qubit.commons.random.util.ReflectionUtils.getCollectionElement
 import static ltd.qubit.commons.random.util.ReflectionUtils.getMapElementType;
 import static ltd.qubit.commons.random.util.ReflectionUtils.getPopulatableFields;
 
+/**
+ * 提供随机化相关的工具方法。
+ *
+ * @author 胡海星
+ */
 public class RandomUtils {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(RandomUtils.class);
 
   /**
-   * Gets the random size of a collection.
+   * 获取集合的随机大小。
    *
    * @param random
-   *     a random number generator.
+   *     随机数生成器。
    * @param context
-   *     the randomization context.
+   *     随机化上下文。
    * @param sizeRange
-   *     the optional specified range of the collection size. If it is {@code
-   *     null}, use the size of range from the parameters of the {@code
-   *     context}.
-   * @return the randomized size of a collection.
+   *     集合大小的可选指定范围。如果为{@code null}，则使用
+   *     {@code context}参数中的大小范围。
+   * @return 集合的随机大小。
    */
   public static int getRandomCollectionSize(final RandomEx random,
       final Context context, @Nullable final CloseRange<Integer> sizeRange) {
@@ -65,21 +69,21 @@ public class RandomUtils {
   }
 
   /**
-   * Creates a random collection.
+   * 创建一个随机集合。
    *
    * @param random
-   *     a random bean generator.
+   *     随机bean生成器。
    * @param context
-   *     the randomization context.
+   *     随机化上下文。
    * @param collectionType
-   *     the class of the collection.
+   *     集合的类。
    * @param collectionGenericType
-   *     the generic type of the collection, or it could be the same as the
-   *     {@code type} argument.
+   *     集合的泛型类型，或者可以与{@code type}参数相同。
    * @param size
-   *     the size of the generated collection.
-   * @return a random collection of the specified size; or an empty collection
-   *     if its element type cannot be resolved.
+   *     生成的集合的大小。
+   * @param <T>
+   *     集合的元素类型。
+   * @return 指定大小的随机集合；如果其元素类型无法解析，则为空集合。
    */
   @SuppressWarnings({"unchecked"})
   public static <T> Collection<T> createRandomCollection(final EasyRandom random,
@@ -98,23 +102,21 @@ public class RandomUtils {
   }
 
   /**
-   * Creates a random map.
+   * 创建一个随机映射。
    *
    * @param random
-   *     a random bean generator.
+   *     随机bean生成器。
    * @param objectFactory
-   *     the object factory.
+   *     对象工厂。
    * @param context
-   *     the randomization context.
+   *     随机化上下文。
    * @param type
-   *     the class of the map.
+   *     映射的类。
    * @param genericType
-   *     the generic type of the map, or it could be the same as the {@code
-   *     type} argument.
+   *     映射的泛型类型，或者可以与{@code type}参数相同。
    * @param size
-   *     the size of the generated map.
-   * @return a random map of the specified size; or an empty map if its element
-   *     type cannot be resolved.
+   *     生成的映射的大小。
+   * @return 指定大小的随机映射；如果其元素类型无法解析，则为空映射。
    */
   @SuppressWarnings({"unchecked", "rawtypes"})
   public static Map createRandomMap(final EasyRandom random,
@@ -150,19 +152,19 @@ public class RandomUtils {
   }
 
   /**
-   * Populates the remained fields of an object.
+   * 填充对象的剩余字段。
    *
    * @param random
-   *     a random bean generator.
+   *     随机bean生成器。
    * @param context
-   *     the randomization context.
+   *     随机化上下文。
    * @param type
-   *     the class of the object.
+   *     对象的类。
    * @param obj
-   *     the object.
+   *     对象。
    * @param <T>
-   *     the type of the object.
-   * @return the object whose remained fields are populated.
+   *     对象的类型。
+   * @return 填充了剩余字段的对象。
    */
   public static <T> T populateRemainedFields(final EasyRandom random,
       final Context context, final Class<?> type, final T obj) {

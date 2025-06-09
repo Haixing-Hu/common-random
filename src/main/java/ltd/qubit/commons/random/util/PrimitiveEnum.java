@@ -9,9 +9,9 @@
 package ltd.qubit.commons.random.util;
 
 /**
- * Wrapper for primitive TYPE values and their classes.
+ * 原始TYPE值及其类的包装器。
  *
- * @author Sam Van Overmeire
+ * @author 胡海星
  */
 enum PrimitiveEnum {
 
@@ -27,15 +27,33 @@ enum PrimitiveEnum {
   private final Class<?> type;
   private final Class<?> clazz;
 
+  /**
+   * 创建一个新的{@link PrimitiveEnum}。
+   *
+   * @param type
+   *     原始类型。
+   * @param clazz
+   *     包装类。
+   */
   PrimitiveEnum(final Class<?> type, final Class<?> clazz) {
     this.type = type;
     this.clazz = clazz;
   }
 
+  /**
+   * 获取原始类型。
+   *
+   * @return 原始类型。
+   */
   public Class<?> getType() {
     return type;
   }
 
+  /**
+   * 获取包装类。
+   *
+   * @return 包装类。
+   */
   public Class<?> getClazz() {
     return clazz;
   }

@@ -7,6 +7,6 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * This package contains randomizers for date and time types.
+ * 此包包含日期和时间类型的随机化器。
  */
 package ltd.qubit.commons.random.randomizers.time;

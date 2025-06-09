@@ -12,10 +12,10 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.range.IntegerRangeRandomizer;
 
 /**
- * A {@link Randomizer} that generates a random minute value between {@link
- * MinuteRandomizer#MIN_MINUTE} and {@link MinuteRandomizer#MAX_MINUTE}.
+ * 生成介于{@link MinuteRandomizer#MIN_MINUTE}和{@link MinuteRandomizer#MAX_MINUTE}
+ * 之间的随机分钟值的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class MinuteRandomizer implements Randomizer<Integer> {
 
@@ -24,14 +24,28 @@ public class MinuteRandomizer implements Randomizer<Integer> {
 
   private final IntegerRangeRandomizer minuteRandomizer;
 
+  /**
+   * 创建一个新的{@link MinuteRandomizer}。
+   */
   public MinuteRandomizer() {
     minuteRandomizer = new IntegerRangeRandomizer(MIN_MINUTE, MAX_MINUTE);
   }
 
+  /**
+   * 创建一个新的{@link MinuteRandomizer}。
+   *
+   * @param seed
+   *         初始种子
+   */
   public MinuteRandomizer(final long seed) {
     minuteRandomizer = new IntegerRangeRandomizer(MIN_MINUTE, MAX_MINUTE, seed);
   }
 
+  /**
+   * 生成一个随机的分钟值。
+   *
+   * @return 一个随机的分钟值（0-59）
+   */
   @Override
   public Integer getRandomValue() {
     return minuteRandomizer.getRandomValue();

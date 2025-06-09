@@ -11,10 +11,9 @@ package ltd.qubit.commons.random.randomizers.misc;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A randomizer used to skip fields from being populated. This is an
- * implementation of the Null Object Pattern
+ * 一个用于跳过字段填充的随机化器。这是空对象模式的一个实现。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class SkipRandomizer implements Randomizer<Object> {
 

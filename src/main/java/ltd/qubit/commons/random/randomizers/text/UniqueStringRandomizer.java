@@ -15,14 +15,19 @@ import ltd.qubit.commons.random.randomizers.AbstractContextAwareRandomizer;
 import ltd.qubit.commons.util.UuidUtils;
 
 /**
- * A string randomizer which always generate unique strings.
+ * 始终生成唯一字符串的字符串随机化器。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class UniqueStringRandomizer extends AbstractContextAwareRandomizer<String> {
 
   private static final Set<String> CACHE = new HashSet<>();
 
+  /**
+   * 生成一个唯一的字符串。
+   *
+   * @return 一个唯一的字符串。
+   */
   @Override
   public String getRandomValue() {
     String result = UuidUtils.getUuid();

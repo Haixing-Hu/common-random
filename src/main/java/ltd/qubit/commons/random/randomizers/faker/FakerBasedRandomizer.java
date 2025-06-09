@@ -16,11 +16,11 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * Abstract {@link Randomizer} based on <a href="https://github.com/DiUS/java-faker">Faker</a>.
+ * 基于<a href="https://github.com/DiUS/java-faker">Faker</a>的抽象{@link Randomizer}。
  *
  * @param <T>
- *         the element type
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ *         元素类型
+ * @author 胡海星
  */
 public abstract class FakerBasedRandomizer<T> extends AbstractRandomizer<T> {
 
@@ -28,14 +28,31 @@ public abstract class FakerBasedRandomizer<T> extends AbstractRandomizer<T> {
 
   protected final Faker faker;
 
+  /**
+   * 创建一个新的{@link FakerBasedRandomizer}，使用默认区域设置。
+   */
   protected FakerBasedRandomizer() {
     faker = new Faker(DEFAULT_LOCALE);
   }
 
+  /**
+   * 创建一个新的{@link FakerBasedRandomizer}，使用指定的种子和默认区域设置。
+   *
+   * @param seed
+   *         初始种子
+   */
   protected FakerBasedRandomizer(final long seed) {
     this(seed, DEFAULT_LOCALE);
   }
 
+  /**
+   * 创建一个新的{@link FakerBasedRandomizer}，使用指定的种子和区域设置。
+   *
+   * @param seed
+   *         初始种子
+   * @param locale
+   *         要使用的区域设置
+   */
   protected FakerBasedRandomizer(final long seed, final Locale locale) {
     super(seed);
     faker = new Faker(locale, random);

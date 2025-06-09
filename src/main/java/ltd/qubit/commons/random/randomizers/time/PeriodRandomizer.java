@@ -16,9 +16,9 @@ import ltd.qubit.commons.random.api.Randomizer;
 import ltd.qubit.commons.random.randomizers.misc.EnumRandomizer;
 
 /**
- * A {@link Randomizer} that generates random {@link Period}.
+ * 生成随机{@link Period}的{@link Randomizer}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class PeriodRandomizer implements Randomizer<Period> {
 
@@ -27,7 +27,7 @@ public class PeriodRandomizer implements Randomizer<Period> {
   private final DayRandomizer dayRandomizer;
 
   /**
-   * Create a new {@link PeriodRandomizer}.
+   * 创建一个新的{@link PeriodRandomizer}。
    */
   public PeriodRandomizer() {
     yearRandomizer = new YearRandomizer();
@@ -36,10 +36,10 @@ public class PeriodRandomizer implements Randomizer<Period> {
   }
 
   /**
-   * Create a new {@link PeriodRandomizer}.
+   * 创建一个新的{@link PeriodRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public PeriodRandomizer(final long seed) {
     yearRandomizer = new YearRandomizer(seed);
@@ -47,6 +47,11 @@ public class PeriodRandomizer implements Randomizer<Period> {
     dayRandomizer = new DayRandomizer(seed);
   }
 
+  /**
+   * 生成一个随机的时间段。
+   *
+   * @return 一个随机的{@link Period}
+   */
   @Override
   public Period getRandomValue() {
     final Year randomYear = yearRandomizer.getRandomValue();

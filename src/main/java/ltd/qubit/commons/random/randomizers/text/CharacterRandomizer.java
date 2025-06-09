@@ -11,29 +11,34 @@ package ltd.qubit.commons.random.randomizers.text;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * Generate a random {@link Character}.
+ * 生成一个随机的{@link Character}。
  *
- * @author Mahmoud Ben Hassine, Haixing Hu
+ * @author 胡海星
  */
 public class CharacterRandomizer extends AbstractRandomizer<Character> {
 
   /**
-   * Create a new {@link CharacterRandomizer}.
+   * 创建一个新的{@link CharacterRandomizer}。
    */
   public CharacterRandomizer() {
     super();
   }
 
   /**
-   * Create a new {@link CharacterRandomizer}.
+   * 创建一个新的{@link CharacterRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *         初始种子
    */
   public CharacterRandomizer(final long seed) {
     super(seed);
   }
 
+  /**
+   * 生成一个随机的字符。
+   *
+   * @return 一个随机的字符。
+   */
   @Override
   public Character getRandomValue() {
     return random.nextLetterChar();

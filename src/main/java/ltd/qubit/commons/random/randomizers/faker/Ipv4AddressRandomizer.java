@@ -13,40 +13,45 @@ import java.util.Locale;
 import ltd.qubit.commons.random.api.Randomizer;
 
 /**
- * A {@link Randomizer} that generates random IPv4 addresses.
+ * 生成随机IPv4地址的{@link Randomizer}。
  *
- * @author Michael Düsterhus
+ * @author 胡海星
  */
 public class Ipv4AddressRandomizer extends FakerBasedRandomizer<String> {
 
   /**
-   * Create a new {@link Ipv4AddressRandomizer}.
+   * 创建一个新的{@link Ipv4AddressRandomizer}。
    */
   public Ipv4AddressRandomizer() {
   }
 
   /**
-   * Create a new {@link Ipv4AddressRandomizer}.
+   * 创建一个新的{@link Ipv4AddressRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    */
   public Ipv4AddressRandomizer(final long seed) {
     super(seed);
   }
 
   /**
-   * Create a new {@link Ipv4AddressRandomizer}.
+   * 创建一个新的{@link Ipv4AddressRandomizer}。
    *
    * @param seed
-   *         the initial seed
+   *         初始种子
    * @param locale
-   *         the locale to use
+   *         要使用的区域设置
    */
   public Ipv4AddressRandomizer(final long seed, final Locale locale) {
     super(seed, locale);
   }
 
+  /**
+   * 生成一个随机的IPv4地址。
+   *
+   * @return 一个随机的IPv4地址
+   */
   @Override
   public String getRandomValue() {
     return faker.internet().ipV4Address();

@@ -14,30 +14,36 @@ import java.net.URL;
 import ltd.qubit.commons.random.randomizers.AbstractRandomizer;
 
 /**
- * Generate a random {@link URL}.
+ * 生成一个随机的 {@link URL}。
  *
- * @author Mahmoud Ben Hassine (mahmoud.benhassine@icloud.com)
+ * @author 胡海星
  */
 public class UrlRandomizer extends AbstractRandomizer<URL> {
 
   private final String[] urls = getPredefinedValuesOf("urls");
 
   /**
-   * Create a new {@link UrlRandomizer}.
+   * 创建一个新的 {@link UrlRandomizer}。
    */
   public UrlRandomizer() {
   }
 
   /**
-   * Create a new {@link UrlRandomizer}.
+   * 创建一个新的 {@link UrlRandomizer}。
    *
    * @param seed
-   *         initial seed
+   *     初始种子。
    */
   public UrlRandomizer(final long seed) {
     super(seed);
   }
 
+  /**
+   * 生成一个随机的 {@link URL}。
+   *
+   * @return
+   *     一个随机的 {@link URL}。
+   */
   @Override
   public URL getRandomValue() {
     try {

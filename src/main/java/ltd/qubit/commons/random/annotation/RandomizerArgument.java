@@ -9,23 +9,23 @@
 package ltd.qubit.commons.random.annotation;
 
 /**
- * Argument of a {@link Randomizer}.
+ * {@link Randomizer}的参数。
  *
- * @author Dovid Kopel (https://github.com/dovidkopel)
+ * @author 胡海星
  */
 public @interface RandomizerArgument {
 
   /**
-   * The value of the argument.
+   * 参数的值。
    *
-   * @return value of the argument
+   * @return 参数的值
    */
   String value() default "";
 
   /**
-   * The type of the argument.
+   * 参数的类型。
    *
-   * @return type of the argument
+   * @return 参数的类型
    */
   Class<?> type() default Object.class;
 }

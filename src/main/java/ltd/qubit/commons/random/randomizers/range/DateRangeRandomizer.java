@@ -26,35 +26,35 @@ import static ltd.qubit.commons.lang.Argument.requireNonNull;
 import static ltd.qubit.commons.reflect.FieldUtils.getAnnotation;
 
 /**
- * Generate a random {@link Date} in the given range.
+ * 在给定范围内生成一个随机的{@link Date}。
  *
- * @author Rémi Alvergnat, Haixing Hu
+ * @author 胡海星
  */
 public class DateRangeRandomizer extends AbstractRangeRandomizer<Date> {
 
   private TimeUnit precision = Precision.DEFAULT_VALUE;
 
   /**
-   * Create a new {@link DateRangeRandomizer}.
+   * 创建一个新的{@link DateRangeRandomizer}。
    *
    * @param min
-   *     min value
+   *     最小值
    * @param max
-   *     max value
+   *     最大值
    */
   public DateRangeRandomizer(final Date min, final Date max) {
     super(min, max);
   }
 
   /**
-   * Create a new {@link DateRangeRandomizer}.
+   * 创建一个新的{@link DateRangeRandomizer}。
    *
    * @param min
-   *     min value
+   *     最小值
    * @param max
-   *     max value
+   *     最大值
    * @param precision
-   *     the precision of the generated date time.
+   *     生成日期的精度。
    */
   public DateRangeRandomizer(final Date min, final Date max,
       final TimeUnit precision) {
@@ -63,30 +63,30 @@ public class DateRangeRandomizer extends AbstractRangeRandomizer<Date> {
   }
 
   /**
-   * Create a new {@link DateRangeRandomizer}.
+   * 创建一个新的{@link DateRangeRandomizer}。
    *
    * @param min
-   *     min value
+   *     最小值
    * @param max
-   *     max value
+   *     最大值
    * @param seed
-   *     initial seed
+   *     初始种子
    */
   public DateRangeRandomizer(final Date min, final Date max, final long seed) {
     super(min, max, seed);
   }
 
   /**
-   * Create a new {@link DateRangeRandomizer}.
+   * 创建一个新的{@link DateRangeRandomizer}。
    *
    * @param min
-   *     min value
+   *     最小值
    * @param max
-   *     max value
+   *     最大值
    * @param precision
-   *     the precision of the generated date time.
+   *     生成日期的精度。
    * @param seed
-   *     initial seed
+   *     初始种子
    */
   public DateRangeRandomizer(final Date min, final Date max,
       final TimeUnit precision, final long seed) {
@@ -95,22 +95,22 @@ public class DateRangeRandomizer extends AbstractRangeRandomizer<Date> {
   }
 
   /**
-   * Create a new {@link DateRangeRandomizer}.
+   * 创建一个新的{@link DateRangeRandomizer}。
    *
    * @param range
-   *     the range.
+   *     范围。
    */
   public DateRangeRandomizer(final CloseRange<Date> range) {
     super(range);
   }
 
   /**
-   * Create a new {@link DateRangeRandomizer}.
+   * 创建一个新的{@link DateRangeRandomizer}。
    *
    * @param range
-   *     the range.
+   *     范围。
    * @param precision
-   *     the precision of the generated date time.
+   *     生成日期的精度。
    */
   public DateRangeRandomizer(final CloseRange<Date> range,
       final TimeUnit precision) {
@@ -119,26 +119,26 @@ public class DateRangeRandomizer extends AbstractRangeRandomizer<Date> {
   }
 
   /**
-   * Create a new {@link DateRangeRandomizer}.
+   * 创建一个新的{@link DateRangeRandomizer}。
    *
    * @param range
-   *     the range.
+   *     范围。
    * @param seed
-   *     initial seed
+   *     初始种子
    */
   public DateRangeRandomizer(final CloseRange<Date> range, final long seed) {
     super(range, seed);
   }
 
   /**
-   * Create a new {@link DateRangeRandomizer}.
+   * 创建一个新的{@link DateRangeRandomizer}。
    *
    * @param range
-   *     the range.
+   *     范围。
    * @param precision
-   *     the precision of the generated date time.
+   *     生成日期的精度。
    * @param seed
-   *     initial seed
+   *     初始种子
    */
   public DateRangeRandomizer(final CloseRange<Date> range,
       final TimeUnit precision, final long seed) {
@@ -147,10 +147,10 @@ public class DateRangeRandomizer extends AbstractRangeRandomizer<Date> {
   }
 
   /**
-   * Create a new {@link DateRangeRandomizer}.
+   * 创建一个新的{@link DateRangeRandomizer}。
    *
    * @param parameters
-   *     the random generator parameters.
+   *     随机生成器参数。
    */
   public DateRangeRandomizer(final Parameters parameters) {
     super(parameters.getSeed());
@@ -158,12 +158,12 @@ public class DateRangeRandomizer extends AbstractRangeRandomizer<Date> {
   }
 
   /**
-   * Create a new {@link DateRangeRandomizer}.
+   * 创建一个新的{@link DateRangeRandomizer}。
    *
    * @param parameters
-   *     the random generator parameters.
+   *     随机生成器参数。
    * @param precision
-   *     the precision of the generated date time.
+   *     生成日期的精度。
    */
   public DateRangeRandomizer(final Parameters parameters,
       final TimeUnit precision) {
